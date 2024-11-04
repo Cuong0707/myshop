@@ -1,0 +1,38 @@
+/* Categories.css */
+
+.categories {
+    display: flex;
+    justify-content: center;
+}
+
+.category {
+    padding: 15px;
+    position: relative;
+}
+
+.category img {
+    display: block;
+}
+
+.category p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+/* Responsive Design for Categories */
+@media (max-width: 1160px) {
+    .categories {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width: 768px) {
+    .category img{
+        width: 100%;
+    }
+}

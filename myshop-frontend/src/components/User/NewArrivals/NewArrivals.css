@@ -1,0 +1,53 @@
+/* NewArrivals.css */
+
+.new-arrivals {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.title-arrivals {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.title-arrivals hr {
+    border: none;
+    background-color: black;
+    height: 2px;
+    width: 20%;
+    margin: auto;
+}
+
+
+.new-arrivals .show-more {
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #232323;
+    text-align: center;
+    width: 300px;
+    height: 50px;
+    margin: 70px;
+    transition: background-color 0.3s;
+}
+
+.new-arrivals .show-more:hover {
+    background-color: #d2b9b9;
+}
+
+
+/* Responsive Design for New Arrivals */
+@media (max-width: 550px) {
+    .products {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+    }
+    
+    .new-arrivals .show-more {
+        margin: 0;
+        width: 120px;
+    }
+}

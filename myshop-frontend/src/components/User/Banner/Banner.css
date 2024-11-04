@@ -1,0 +1,78 @@
+/* Banner.css */
+
+.banner {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.banner-img {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.banner-content {
+    position: absolute;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    justify-self: center;
+    text-align: center;
+}
+
+.banner-content h1 {
+    font-size: 40px;
+}
+
+.banner-content p {
+    font-size: 12px;
+}
+
+.banner-content a {
+    font-size: 14px;
+}
+
+.banner:hover .banner-img {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.custom-line {
+    border: none;
+    background-color: black;
+    height: 2px;
+    width: 10%;
+    margin: 10px auto;
+}
+
+.shop-now {
+    display: inline-block;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Responsive Design for Banner */
+@media (max-width: 768px) {
+    .banner h1 {
+        font-size: 30px;
+    }
+
+    .banner p {
+        display: none;
+    }
+
+    .banner a {
+        margin: 0;
+    }
+}

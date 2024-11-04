@@ -1,0 +1,130 @@
+.products {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product {
+    padding: 10px 10px;
+}
+
+.product .main-image {
+    position: relative;
+    display: inline-block;
+}
+
+.overlay-image {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.product .product-title {
+    font-size: 12px;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    color: #969696;
+    font-weight: 400;
+    text-align: center;
+}
+
+.product .product-name {
+    font-size: 12px;
+    letter-spacing: 0px;
+    color: #232323;
+    font-weight: 400;
+    text-align: center;
+}
+
+.product .price {
+    font-size: 14px;
+    line-height: 25px;
+    color: #232323;
+    font-weight: 600;
+    text-align: center;
+}
+
+.product .selection {
+    display: none;
+}
+
+.product .submit {
+    background-color: #ffffff;
+    display: none;
+}
+
+.product .btn-submit {
+    background-color: #232323;
+    color: #ffffff;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+}
+
+.product .add-to-cart,
+.product .submit {
+    position: absolute;
+    bottom: 0%;
+    transform: translateX(-50%);
+    left: 50%;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+}
+
+.product .add-to-cart {
+    background-color: #ffffff;
+    border: 1px solid #232323;
+    color: #232323;
+}
+
+.dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+    border: 2px solid #ccc;
+}
+
+.blue {
+    background-color: #3b5998;
+}
+
+.black {
+    background-color: #333333;
+}
+
+.gray {
+    background-color: #e0e0e0;
+}
+
+.product:hover .selection {
+    display: block;
+}
+@media (max-width: 1160px) {
+
+    .products{
+        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+@media (max-width: 550px) {
+    .products{
+        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+    
+}

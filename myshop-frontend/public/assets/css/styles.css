@@ -454,11 +454,33 @@ footer h2{
     .banner a{
         margin: 0;
     }
+    .new-arrivals .show-more{
+        width: 120px;
+    }
+    .category img{
+        width: 100%;
+    }
     .footer-top .information{
         padding: 0 5px 0 10px;
     }
     .footer-top .customer{
         padding: 0 10px 0 5px;
+    }
+    .footer-top h1{
+        font-size: 10px;
+    }
+    .footer-top h2{
+        font-size: 8px;
+    }
+    .footer-top .email-input{
+        width: 50px;
+    }
+    .footer-top{
+        grid-template-columns: repeat(4,1fr);
+        text-align: center;
+    }
+    .footer-top .shop{
+        grid-column: 1;
     }
 }
 @media (max-width: 550px) {
@@ -467,6 +489,5 @@ footer h2{
         display: grid;
         grid-template-columns: repeat(1,1fr);
     }
-    
 }
 

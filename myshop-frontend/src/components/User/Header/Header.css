@@ -1,0 +1,150 @@
+/* Header.css */
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins";
+    line-height: 1.6;
+}
+
+/* Header */
+.top-bar {
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+.scrolling-bar {
+    overflow: hidden;
+    background-color: #ffe8e8;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+.scrolling-content {
+    display: inline-flex;
+    animation: scroll 15s linear infinite;
+}
+
+.scrolling-content p {
+    margin: 0 100px;
+    font-size: 12px;
+    color: #333;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.bottom-bar {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 30px 0 0 0;
+}
+
+.main-nav {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 10px;
+    background-color: #000;
+}
+
+.menu {
+    grid-column: 2 / span 4;
+    list-style: none;
+    display: flex;
+    column-gap: 50px;
+    row-gap: 10px;
+}
+
+.menu li a {
+    transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+    color: #156562;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: #333;
+    margin: 3px 0;
+}
+
+.logo {
+    font-size: 24px;
+    color: black;
+    text-decoration: none;
+    grid-column: 2;
+}
+
+.user-actions {
+    display: block;
+    grid-column: 4 / span 2;
+    text-align: right;
+}
+
+.user-actions p {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #232323;
+    font-weight: 600;
+}
+
+.user-actions a {
+    font-size: 12px;
+    letter-spacing: 0px;
+    color: #323232;
+    font-weight: 400;
+    text-decoration: none;
+    padding-left: 25px;
+}
+
+.menu a {
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Responsive Design for Header */
+@media (max-width: 1160px) {
+    .menu {
+        display: none;
+        flex-wrap: wrap;
+        width: 100%;
+        background-color: black;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .user-actions {
+        display: flex;
+        flex-direction: column;
+    }
+}
