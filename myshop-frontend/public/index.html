@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Khám phá bộ sưu tập thời trang mới nhất với các thiết kế hiện đại, phong cách và chất lượng cao. Cập nhật xu hướng thời trang, từ trang phục hàng ngày đến các sự kiện đặc biệt.">
+    <title>Ella Fashion Store</title>
+    <script>
+        function toggleButtons(button)
+        {
+            button.style.display = 'none' ;
+            const submit = button.nextElementSibling;
+            submit.style.display = 'block' ;
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+    
+        menuToggle.addEventListener('click', function() {
+            menu.classList.toggle('active'); 
+        });
+        });
+    </script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="scrolling-bar">
+                <div class="scrolling-content">
+                    <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
+                    <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
+                    <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
+                </div>
+                <div class="scrolling-content">
+                    <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
+                    <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
+                    <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-bar">
+            <a href="#" class="logo">
+                <img src="assets/images/ella.jpg" alt="Ella Fashion Store Logo" class="logo-img">
+            </a>
+            <div class="user-actions">
+                <p>FREE SHIPPING ON ALL ORDERS. NO MINIMUN PURCHASE</p>
+                <a href="#">
+                    <img src="assets/images/cardicon.jpg" alt="Card Icon">
+                    Shopping Cart
+                </a>
+                <a href="#">
+                    <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon">
+                    My Wish lists
+                </a>
+                <a href="#">Sign in or Create an account</a>
+            </div>
+        </div>
+        <!-- Menu -->
+        <nav class="main-nav">
+            <div class="menu-toggle" id="menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="menu" id="menu">
+                <li><a href="#">New In</a></li>
+                <li><a href="#">Trend</a></li>
+                <li><a href="#">Collections</a></li>
+                <li><a href="#">Lookbook</a></li>
+                <li><a href="#">Demo</a></li>
+                <li><a href="#">Shop Instagram</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Brands</a></li>
+                <li><a href="#">FAQs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner -->
+    <section class="banner">
+        <img src="assets/images/banner.jpg" alt="Banner Image" class="banner-img">
+        <div class="banner-content">
+            <h2>Cosmopolis</h2>
+            <hr class="custom-line">
+            <p>Quisqueem sodales suscipit tortor odio commodo ut comodo lacus malesuada malesuada elemen divena kenasus.</p>
+            <a href="#" class="shop-now">Shop Now</a>
+        </div>
+    </section>
+    
+
+    <!-- Categories -->
+    <div class="categories">
+        <div class="category">
+            <img src="assets/images/img1.jpg" alt="Editor's Pick">
+                <p>Editor's Pick</p>
+        </div>
+        <div class="category">
+            <img src="assets/images/img2.jpg" alt="Shoes">
+            <p>Shoes</p>
+        </div>
+        <div class="category">
+            <img src="assets/images/img3.jpg" alt="Accessories">
+            <p>Accessories</p>
+        </div>
+    </div>
+
+    <!-- New Arrivals -->
+    <section class="new-arrivals">
+        <div class="title-arrivals">
+            <hr><h2>New Arrivals</h2><hr>
+        </div>
+        <div class="products">
+            <!-- Product 1 -->
+            <div class="product">
+                <div class="main-image">
+                    <img src="assets/images/item1.jpg" alt="Product 1">
+                    <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" class="overlay-image">
+                    <div class="selection">
+                        <button class="add-to-cart" onclick="toggleButtons(this)">Add to Cart</button>
+                        <div class="submit">
+                            <p class="title-submit">Size</p>
+                            <p>XS   S   M   L   XL  2X</p>
+                            <button class="btn-submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <p class="product-title">SODLING</p>
+                <p class="product-name">Nominoise Demenoisa</p>
+                <p class="price">$88.00 - $98.00</p>
+                <div class="dot blue"></div>
+                <div class="dot black"></div>
+                <div class="dot gray"></div>
+            </div>
+            <!-- Product 2 -->
+            <div class="product">
+                <div class="main-image">
+                    <img src="assets/images/item2.jpg" alt="Product 2">
+                    <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" class="overlay-image">
+                    <div class="selection">
+                        <button class="add-to-cart" onclick="toggleButtons(this)">Add to Cart</button>
+                        <div class="submit">
+                            <p class="title-submit">Size</p>
+                            <p>XS   S   M   L   XL  2X</p>
+                            <button class="btn-submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <p class="product-title">TOMORROW</p>
+                <p class="product-name">Dinanderium Pretum</p>
+                <p class="price">$130.00 - $180.00</p>
+                <div class="dot blue"></div>
+                <div class="dot black"></div>
+                <div class="dot gray"></div>
+                <div class="dot blue"></div>
+                <div class="dot black"></div>
+            </div>
+            <!-- Product 3 -->
+            <div class="product">
+                <div class="main-image">
+                    <img src="assets/images/item3.jpg" alt="Product 3">
+                    <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" class="overlay-image">
+                    <div class="selection">
+                        <button class="add-to-cart" onclick="toggleButtons(this)">Add to Cart</button>
+                        <div class="submit">
+                            <p class="title-submit">Size</p>
+                            <p>XS   S   M   L   XL  2X</p>
+                            <button class="btn-submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <p class="product-title">PAUL SMITH</p>
+                <p class="product-name">Magoria Demaratin</p>
+                <p class="price">$88.00</p>
+                <div class="dot gray"></div>
+            </div>
+            <div class="product">
+                <div class="main-image">
+                    <img src="assets/images/item4.jpg" alt="Product 4">
+                    <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" class="overlay-image">
+                    <div class="selection">
+                        <button class="add-to-cart" onclick="toggleButtons(this)">Add to Cart</button>
+                        <div class="submit">
+                            <p class="title-submit">Size</p>
+                            <p>XS   S   M   L   XL  2X</p>
+                            <button class="btn-submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <p class="product-title">DONATELLO</p>
+                <p class="product-name">Magoria Demaratin</p>
+                <p class="price">$88.00</p>
+                <div class="dot gray"></div>
+                <div class="dot blue"></div>
+                <div class="dot black"></div>
+            </div>
+        </div>
+        <button class="show-more">Show More</button>
+    </section>
+    
+    <!-- Instagram -->
+    <section class="instagram">
+        <h2>#ella on Instagram</h2>
+        <div class="instagram-gallery">
+            <img src="assets/images/ins1.jpg" alt="Instagram 1">
+            <img src="assets/images/ins2.jpg" alt="Instagram 2">
+            <img src="assets/images/ins3.jpg" alt="Instagram 3">
+            <img src="assets/images/ins4.jpg" alt="Instagram 4">
+            <img src="assets/images/ins5.jpg" alt="Instagram 5">
+        </div>
+        <button class="view-gallery">View Gallery</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="shop">
+                <h1>shop</h1>
+                <h2>New In</h2>
+                <h2>Women</h2>
+                <h2>Men</h2>
+                <h2>Shoes</h2>
+                <h2>Bags & Accessories</h2>
+                <h2>Top Brands</h2>
+                <h2>Sale & Special Offers</h2>
+                <h2>Lookbook</h2>
+            </div>
+            <div class="information">
+                <h1>information</h1>
+                <h2>About</h2>
+                <h2>Customer Service</h2>
+                <h2>Reward Program</h2>
+                <h2>Shipping & Returns</h2>
+                <h2>Privacy Policy</h2>
+                <h2>Term & Conditions</h2>
+                <h2>Blog</h2>
+            </div>
+            <div class="customer">
+                <h1>Customer Service</h1>
+                <h2>Search Terms</h2>
+                <h2>Advanced Search</h2>
+                <h2>Orders and Returns</h2>
+                <h2>Contact Us</h2>
+                <h2>Theme FAQs</h2>
+                <h2>Consultant</h2>
+                <h2>Store Locations</h2>
+            </div>
+            <div class="newsletter">
+                <h1>newsletter sign up</h1>
+                <h2>Sign up for exclusive updates, new arrivals & insider only discoutns</h2>
+                <div class="email-form">
+                    <input type="email" placeholder="Email Address" class="email-input" required>
+                    <button type="submit" class="submit-btn">SUBMIT</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <h2>&copy; 2014 Ella Demo. All Rights Reserved. Powered by Shopify. <br> Shopify Themes by HaloThemes.com </h2>
+        </div>
+    </footer>
+</body>
+
+</html>
