@@ -1,5 +1,6 @@
 package com.example.myshop_backend.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,9 +10,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeDto {
-	private Long id;
-	private String firstName;
-	private String lastName;
-	private String email;
+public class ProductDto {
+	private Integer productId;
+    private String name;
+    private String description;
+    private Double price;
+    private String imageUrl;
+    private int categoryId;
+    
 }

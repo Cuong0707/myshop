@@ -1,10 +1,13 @@
 package com.example.myshop_backend.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +23,8 @@ import lombok.Setter;
 public class Users {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name = "user_id")
+	private int userId;
 	
 	@Column(name = "name")
 	private String name;
@@ -39,4 +43,7 @@ public class Users {
 	
 	@Column(name = "password")
 	private String passWord;
+	
+	@OneToMany(mappedBy = "users")
+	private List<Order> orders;
 }

@@ -11,13 +11,13 @@ public class UserMapper {
 				userDto.getEmail(),
 				userDto.getAddress(),
 				userDto.getPaymentInfo(),
-				userDto.getUserName(),
-				userDto.getPassWord()
+				userDto.getUserName(), 
+				userDto.getPassWord(), null
 		);	
 	}
 	public static UserDto mapToUserDto(Users users) {
 		return new UserDto(
-				users.getId(),
+				users.getUserId(),
 				users.getName(),
 				users.getEmail(),
 				users.getAddress(),

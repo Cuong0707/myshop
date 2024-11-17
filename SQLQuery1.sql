@@ -38,6 +38,9 @@ CREATE TABLE Orders (
     user_id INT,
     order_date DATE NOT NULL,
     status NVARCHAR(50),
+    payment_method INT NOT NULL,
+    CONSTRAINT FK_Order_PaymentMethods FOREIGN KEY (payment_method)
+        REFERENCES PaymentMethods(payment_method_id),
     CONSTRAINT FK_Orders_Users FOREIGN KEY (user_id)
         REFERENCES Users(user_id)
 );

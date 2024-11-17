@@ -3,7 +3,6 @@ package com.example.myshop_backend.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.myshop_backend.dto.EmployeeDto;
 import com.example.myshop_backend.dto.UserDto;
 import com.example.myshop_backend.entity.Users;
 import com.example.myshop_backend.service.UserService;

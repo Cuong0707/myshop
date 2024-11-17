@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService{
 	public UserDto createUserDto(UserDto userDto) {
 		Users users = UserMapper.mapToUsers(userDto);
 		Users savedUsers = userRepository.save(users);
+		System.err.println(savedUsers);
 		return UserMapper.mapToUserDto(savedUsers);
 	}
 }
