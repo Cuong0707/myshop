@@ -20,7 +20,31 @@ public class UserServiceImpl implements UserService{
 	public UserDto createUserDto(UserDto userDto) {
 		Users users = UserMapper.mapToUsers(userDto);
 		Users savedUsers = userRepository.save(users);
-		System.err.println(savedUsers);
 		return UserMapper.mapToUserDto(savedUsers);
 	}
+	
+	@Override
+	public String registerUser(UserDto userDto) {
+        // Kiểm tra confirm password
+        if (!userDto.getPassWord().equals(userDto.getConfirmPassword())) {
+            return "Password và Confirm Password không khớp!";
+        }
+
+        // Kiểm tra username đã tồn tại
+        if (userRepository.existsByUserName(userDto.getUserName())) {
+            return "Username đã tồn tại!";
+        }
+
+        // Tạo mới người dùng
+        Users newUser = new Users();
+        newUser.setUserName(userDto.getUserName());
+        newUser.setPassWord(userDto.getPassWord());
+        newUser.setName(userDto.getName());
+        newUser.setEmail(userDto.getEmail());
+        newUser.setAddress(userDto.getAddress());
+        newUser.setPaymentInfo(userDto.getPaymentInfo());
+
+        userRepository.save(newUser);
+        return "Đăng ký thành công!";
+    }
 }

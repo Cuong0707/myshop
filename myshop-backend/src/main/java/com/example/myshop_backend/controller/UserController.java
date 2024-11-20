@@ -21,12 +21,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class UserController {
 	private UserService userService;
 	
-	@PostMapping
-	public ResponseEntity<UserDto> creatEntity(@RequestBody UserDto userDto) {
-		
-		UserDto saveUserDto = userService.createUserDto(userDto);
-		
-		return new ResponseEntity<>(saveUserDto,HttpStatus.CREATED);
-	}
+//	@PostMapping
+//	public ResponseEntity<UserDto> creatEntity(@RequestBody UserDto userDto) {
+//		
+//		UserDto saveUserDto = userService.createUserDto(userDto);
+//		System.out.println("aaaaaa "+ saveUserDto);
+//		return new ResponseEntity<>(saveUserDto,HttpStatus.CREATED);
+//	}
+	@PostMapping("/signup")
+	public ResponseEntity<String> registerUser(@RequestBody UserDto userDto) {
+        String response = userService.registerUser(userDto);
+        if (response.equals("Đăng ký thành công!")) {
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
 	
 }

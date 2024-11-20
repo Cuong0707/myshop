@@ -32,7 +32,7 @@ function Header() {
                         <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" />
                         My Wish lists
                     </a>
-                    <a href="#">Sign in or Create an account</a>
+                    <a href="/signup">Sign in or Create an account</a>
                 </div>
             </div>
             <nav className="main-nav">

@@ -41,7 +41,7 @@ public class Users {
 	@Column(name = "username")
 	private String userName;
 	
-	@Column(name = "password")
+	@Column(name = "password", nullable = false)
 	private String passWord;
 	
 	@OneToMany(mappedBy = "users")

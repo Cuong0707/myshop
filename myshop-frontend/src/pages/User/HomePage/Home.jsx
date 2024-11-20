@@ -8,6 +8,7 @@ import Footer from '../../../components/User/Footer/Footer'
 function HomePage() {
     return (
         <div>
+            
             <Header />
             <Banner />
             <div className="categories">

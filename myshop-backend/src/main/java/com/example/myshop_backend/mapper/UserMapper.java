@@ -23,7 +23,7 @@ public class UserMapper {
 				users.getAddress(),
 				users.getPaymentInfo(),
 				users.getUserName(),
-				users.getPassWord()
+				users.getPassWord(),null
 		);	
 	}
 }

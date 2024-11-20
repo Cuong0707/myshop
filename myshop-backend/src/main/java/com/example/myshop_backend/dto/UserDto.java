@@ -17,4 +17,5 @@ public class UserDto {
 	private String paymentInfo;
 	private String userName;
 	private String passWord;
+	private String confirmPassword;
 }

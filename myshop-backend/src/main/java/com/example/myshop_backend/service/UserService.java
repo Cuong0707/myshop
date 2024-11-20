@@ -4,4 +4,5 @@ import com.example.myshop_backend.dto.UserDto;
 
 public interface UserService {
 	UserDto createUserDto(UserDto userDto);
+	String registerUser(UserDto userDto);
 }

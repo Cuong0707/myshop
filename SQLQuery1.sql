@@ -24,11 +24,11 @@ CREATE TABLE Product (
 -- Tạo bảng Users (Người dùng)
 CREATE TABLE Users (
     user_id INT PRIMARY KEY IDENTITY(1,1),
-    name NVARCHAR(255) NOT NULL,
-    email NVARCHAR(255) NOT NULL UNIQUE,
+    name NVARCHAR(255) NULL,
+    email NVARCHAR(255) NULL,
     address NVARCHAR(500),
     payment_info NVARCHAR(255),
-	username NVARCHAR(255) UNIQUE, 
+	username NVARCHAR(255) NOT NULL, 
 	password NVARCHAR(255) NOT NULL
 );
 
