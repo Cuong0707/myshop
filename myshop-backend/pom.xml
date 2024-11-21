@@ -71,11 +71,11 @@
 		    <version>8.0.33</version> <!-- Phiên bản mới nhất của MySQL Connector -->
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>com.datn.api</groupId>
 			<artifactId>backend</artifactId>
 			<version>1.0</version>
-		</dependency>
+		</dependency>-->
 		
 	</dependencies>
 
