@@ -6,6 +6,9 @@ const GlobalPopup = ({message,onAnimationEnd }) => {
     const timer = setTimeout(onAnimationEnd, 4000); // Đợi cho đến khi animation kết thúc
     return () => clearTimeout(timer);
   }, [message, onAnimationEnd]);
+  if (!message) {
+    return null;
+  }
   return (
     
       <div className="global-popup">

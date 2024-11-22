@@ -19,7 +19,7 @@ function Header() {
                 </div>
             </div>
             <div className="bottom-bar">
-                <a href="#" className="logo">
+                <a href="/" className="logo">
                     <img src="assets/images/ella.jpg" alt="Ella Fashion Store Logo" className="logo-img" />
                 </a>
                 <div className="user-actions">
@@ -42,8 +42,8 @@ function Header() {
                     <span className="bar"></span>
                 </div>
                 <ul className="menu" id="menu">
-                    <li><a href="#">New In</a></li>
-                    <li><a href="#">Shop</a></li>
+                    <li><a href="/">New In</a></li>
+                    <li><a href="/shop">Shop</a></li>
                     <li><a href="#">Collections</a></li>
                     <li><a href="#">Lookbook</a></li>
                     <li><a href="#">Demo</a></li>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Product.css'; // Nhập CSS cho Product nếu cần
+import './Item.css'; 
 
 function Product({ title, name, price, image, onAddToCart }) {
     const toggleButtons = (button) => {

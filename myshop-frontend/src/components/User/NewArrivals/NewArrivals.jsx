@@ -1,6 +1,6 @@
 import React from 'react';
 import './NewArrivals.css'; // Nhập CSS cho NewArrivals nếu cần
-import Product from '../Product/Product';
+import Item from '../Item/Item';
 
 function NewArrivals() {
     const products = [
@@ -22,7 +22,7 @@ function NewArrivals() {
             </div>
             <div className="products">
                 {products.map((product, index) => (
-                    <Product key={index} {...product} onAddToCart={handleAddToCart} />
+                    <Item key={index} {...product} onAddToCart={handleAddToCart} />
                 ))}
             </div>
             <button className="show-more">Show More</button>
