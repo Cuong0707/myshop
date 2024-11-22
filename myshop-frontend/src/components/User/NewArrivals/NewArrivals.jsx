@@ -16,7 +16,7 @@ function NewArrivals() {
     };
 
     return (
-        <section className="new-arrivals">
+        <section className="new-arrivals slide-in-right">
             <div className="title-arrivals">
                 <hr /><h2>New Arrivals</h2><hr />
             </div>
@@ -25,7 +25,7 @@ function NewArrivals() {
                     <Product key={index} {...product} onAddToCart={handleAddToCart} />
                 ))}
             </div>
-            <button class="show-more">Show More</button>
+            <button className="show-more">Show More</button>
         </section>
     );
 }

@@ -43,7 +43,7 @@ function Header() {
                 </div>
                 <ul className="menu" id="menu">
                     <li><a href="#">New In</a></li>
-                    <li><a href="#">Trend</a></li>
+                    <li><a href="#">Shop</a></li>
                     <li><a href="#">Collections</a></li>
                     <li><a href="#">Lookbook</a></li>
                     <li><a href="#">Demo</a></li>

@@ -4,8 +4,8 @@ import './Footer.css';
 function Footer() {
     return (
         <div className="footer">
-            <div class="footer-top">
-                <div class="shop">
+            <div className="footer-top">
+                <div className="shop">
                     <h1>shop</h1>
                     <h2>New In</h2>
                     <h2>Women</h2>
@@ -16,7 +16,7 @@ function Footer() {
                     <h2>Sale & Special Offers</h2>
                     <h2>Lookbook</h2>
                 </div>
-                <div class="information">
+                <div className="information">
                     <h1>information</h1>
                     <h2>About</h2>
                     <h2>Customer Service</h2>
@@ -26,7 +26,7 @@ function Footer() {
                     <h2>Term & Conditions</h2>
                     <h2>Blog</h2>
                 </div>
-                <div class="customer">
+                <div className="customer">
                     <h1>Customer Service</h1>
                     <h2>Search Terms</h2>
                     <h2>Advanced Search</h2>
@@ -36,16 +36,16 @@ function Footer() {
                     <h2>Consultant</h2>
                     <h2>Store Locations</h2>
                 </div>
-                <div class="newsletter">
+                <div className="newsletter">
                     <h1>newsletter sign up</h1>
                     <h2>Sign up for exclusive updates, new arrivals & insider only discoutns</h2>
-                    <div class="email-form">
-                        <input type="email" placeholder="Email Address" class="email-input" required/>
-                        <button type="submit" class="submit-btn">SUBMIT</button>
+                    <div className="email-form">
+                        <input type="email" placeholder="Email Address" className="email-input" required/>
+                        <button type="submit" className="submit-btn">SUBMIT</button>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div className="footer-bottom">
                 <h2>&copy; 2014 Ella Demo. All Rights Reserved. Powered by Shopify. <br/> Shopify Themes by HaloThemes.com </h2>
             </div>
             
