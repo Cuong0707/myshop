@@ -4,6 +4,7 @@ import Banner from '../../../components/User/Banner/Banner';
 import Category from '../../../components/User/Category/Category';
 import NewArrivals from '../../../components/User/NewArrivals/NewArrivals';
 import Footer from '../../../components/User/Footer/Footer'
+import Instagram from '../../../components/User/Instagram/Instagram'
 import './Home.css'
 function HomePage() {
     return (
@@ -16,6 +17,7 @@ function HomePage() {
                 <Category image="assets/images/img3.jpg" title="Accessories" />
             </div>
             <NewArrivals/>
+            <Instagram/>
             <Footer/>
         </div>
     );
