@@ -45,7 +45,7 @@
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 20px;
     }
-    
+
     .new-arrivals .show-more {
         margin: 0;
         width: 120px;
