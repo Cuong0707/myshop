@@ -1,5 +1,5 @@
 import React from 'react';
-import './Banner.css'; // Nhập CSS cho Banner nếu cần
+import './Banner.css'; 
 
 function Banner() {
     return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Header.css'; // Nhập CSS cho Header nếu cần
+import './Header.css'; 
 
 function Header() {
     const handleMenuToggle = () => {
@@ -12,6 +12,12 @@ function Header() {
             <div className="top-bar">
                 <div className="scrolling-bar">
                     <div className="scrolling-content">
+                        <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
+                        <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
+                        <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
+                        <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
+                        <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
+                        <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
                         <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
                         <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
                         <p>SPECIAL OFFER: ENJOY 3 MONTHS OF SHOPIFY FOR <strong>$1/MONTH</strong></p>
