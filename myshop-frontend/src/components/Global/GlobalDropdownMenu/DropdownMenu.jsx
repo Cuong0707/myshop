@@ -1,36 +1,31 @@
-import React,{useState} from "react";
+import React, { useState } from 'react';
 import './DropdownMenu.css'
-
-
-const DropdownMenu = ({categories,title}) => {
+const DropdownMenu = ({ title, items, onItemClick }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const item = categories;
+
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
+
     return (
-        <div className="dropmenu">
-            <div onClick={toggleMenu} className='dropmenu-title'>
-                <div>
-                    {title}
-                    <span style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.3s ease", }}>▼</span>
-                </div>
-                <hr/>
+        <div className="menu-container">
+            <div className="menu-header" onClick={toggleMenu}>
+                {title}
             </div>
-            {
-                isOpen && (
-                    <div className={"dropmenu open"}>
-                        <ul>
-                        {item.map((category, index) => (
-                            <li key={index}>
-                                {category}
-                            </li>
-                        ))}
-                    </ul>
+            <hr />
+            <div className={`menu-items ${isOpen ? 'show' : 'hide'}`}>
+                {items.map((item, index) => (
+                    <div 
+                        key={index} 
+                        onClick={() => onItemClick(item)} 
+                        className="menu-item"
+                    >
+                        {item}
                     </div>
-                )
-            }
+                ))}
+            </div>
         </div>
-    )
-}
+    );
+};
+
 export default DropdownMenu;

@@ -1,109 +1,53 @@
-/* .dropmenu {
-    padding: 10px;
+.menu-container {
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-.dropmenu-title {
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
+.menu-header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  user-select: none;
 }
 
-.dropmenu-title hr {
-    border-color: black;
-    width: 100%;
+.menu-items {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
 }
 
-.dropmenu-item {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 1s ease, opacity 1s ease;
-    background-color: #7f2929;
-    border: 1px solid transparent;
-    border-top: none;
-}
-.dropmenu-item.open {
-    max-height: 300px;
-    opacity: 1;
-    border: 1px solid #ddd;
-}
-.dropmenu-item ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-top: none;
-    background-color: #f9f9f9;
+.menu-items.show {
+  max-height: 200px;
+  opacity: 1;
 }
 
-.dropmenu-item ul li {
-    padding: 5px 0;
+.menu-items.hide {
+  max-height: 0;
+  opacity: 0;
 }
 
- */
+.menu-item {
+  padding: 8px 10px;
+  border-top: 1px solid #eee;
+  cursor: pointer;
+}
 
- /* Định dạng chung cho menu */
-.dropmenu {
-    width: 200px;
-    font-family: Arial, sans-serif;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 10px auto;
-    background-color: #fff;
-  }
-  
-  /* Tiêu đề của menu */
-  .dropmenu-title {
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .dropmenu-title:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Mũi tên */
-  .dropmenu-title span {
-    transition: transform 0.3s ease;
-  }
-  
-  /* Tạo khoảng cách giữa tiêu đề và danh sách */
-  hr {
-    margin: 0;
-    border: 0;
-    border-top: 1px solid #ddd;
-  }
-  
-  /* Danh sách item */
-  .dropmenu-item {
-    padding: 10px;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-  }
-  
-  /* Khi mở menu */
-  .dropmenu-item.open {
-    max-height: 300px; /* Đủ lớn để chứa tất cả mục */
-    opacity: 1;
-  }
-  
-  .dropmenu-item ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .dropmenu-item li {
-    padding: 5px 0;
-    cursor: pointer;
-  }
-  
-  .dropmenu-item li:hover {
-    background-color: #f0f0f0;
-  }
-  
+.menu-item:hover {
+  background-color: #f9f9f9;
+}
+
+.products-container {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.product-item {
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+}

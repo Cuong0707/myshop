@@ -11,7 +11,7 @@ function Product({ title, name, price, image, onAddToCart }) {
     return (
         <div className="product">
             <div className="main-image">
-                <img src={image} alt={title} />
+                <img loading="lazy" src={image} alt={title} className="item-image"/>
                 <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" className="overlay-image" />
                 <div className="selection">
                     <button className="add-to-cart" onClick={(e) => { onAddToCart(e.currentTarget); toggleButtons(e.currentTarget); }}>Add to Cart</button>

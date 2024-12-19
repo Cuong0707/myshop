@@ -3,11 +3,15 @@
     align-items: center;
     justify-content: center;
 }
-
 .product {
-    padding: 10px 10px;
+    padding: 5px 5px;
+    object-fit:cover;
 }
-
+.item-image{
+    object-fit: contain;
+    max-width: 280px;
+    height: auto;
+}
 .product .main-image {
     position: relative;
     display: inline-block;
@@ -17,6 +21,7 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    height: 10px;
 }
 
 .product .product-title {

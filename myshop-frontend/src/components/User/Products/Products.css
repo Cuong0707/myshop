@@ -20,7 +20,7 @@
     padding-right: 15px;
 }
 .page-sidebar{
-
+    justify-items: center;
     width: 100%;
     max-width: 300px;
 }
@@ -50,9 +50,7 @@
     width: 100%;
     max-width: calc(100% - 300px);
 }
-.articleLookbook-item{
-    padding: 15px;
-}
+
 toolbar-item{
     border-top: 1px solid black;
     display: flex;
@@ -75,9 +73,10 @@ toolbar-item{
     display: flex;
 }
 .list-product{
-    display: grid;
-    grid-template-columns:repeat(4,1fr);
+    display: flex;
     justify-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .list-product img{
@@ -92,4 +91,14 @@ toolbar-item{
     width: 200px;
     height: 50px;
     margin-top: 15px;
+}
+
+
+@media (max-width: 620px) {
+    .page-sidebar{
+        display: none;
+    }
+    .page-content{
+        max-width: 100%;
+    }
 }
