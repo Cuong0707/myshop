@@ -7,16 +7,24 @@
     padding: 5px 5px;
     object-fit:cover;
 }
-.item-image{
+.item-image img{
     object-fit: contain;
-    max-width: 280px;
-    height: auto;
+    width: 100%;
 }
 .product .main-image {
     position: relative;
     display: inline-block;
 }
-
+.item-image {
+    background-size: cover;
+    max-width: 280px;
+    width: 280px;
+    height: 411px;
+}
+.item-image img[src=""],
+.item-image img:not([src]) {
+  visibility: hidden; /* Ẩn ảnh nếu không có `src` */
+}
 .overlay-image {
     position: absolute;
     top: 10px;

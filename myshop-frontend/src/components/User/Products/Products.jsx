@@ -1,36 +1,47 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Item from '../Item/Item';
 import './Products.css';
 import DropdownMenu from '../../Global/GlobalDropdownMenu/DropdownMenu';
 import { fetchProducts } from '../../../services/productService';
+
 function Products() {
     const [products, setProducts] = useState([]);
-    const [visibleCount, setVisibleCount] = useState(10);
     const [isLoading, setIsLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const loaderRef = useRef(null);
+
     const handleAddToCart = (button) => {
-        // Logic thêm sản phẩm vào giỏ hàng
         console.log("Added to cart", button);
     };
-    const loadProducts = async () => {
-        if (isLoading) return;
 
+    // Hàm tải sản phẩm
+    const loadProducts = useCallback(async () => {
+        if (isLoading || !hasMore) return;
         setIsLoading(true);
-
         try {
-            const newProducts = await fetchProducts(products.length, 10); // Gọi API
-            if (newProducts.length === 0) {
-                setHasMore(false);
+            const currentPage = Math.floor(products.length / 6); 
+            const newProducts = await fetchProducts(currentPage, 6); // Gọi API
+            const temp = newProducts.filter(
+                (product) => !products.some((p) => p.productId === product.productId)
+            );
+            if (temp.length === 0) {
+                setHasMore(false); // Không còn sản phẩm mới
             } else {
-                setProducts((prevProducts) => [...prevProducts, ...newProducts]);
+                const filteredProducts = newProducts.filter(
+                    (product) => !products.some((p) => p.productId === product.productId)
+                );
+                if (filteredProducts.length > 0) {
+                    setProducts((prev) => [...prev, ...filteredProducts]);
+                }
             }
         } catch (error) {
-            // Xử lý lỗi nếu cần
+            console.error("Failed to load products:", error);
+        } finally {
+            setIsLoading(false);
         }
+    }, [isLoading, hasMore, products]);
 
-        setIsLoading(false);
-    };
+    // IntersectionObserver cho tải thêm
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -41,7 +52,7 @@ function Products() {
             { threshold: 1.0 }
         );
 
-        if (loaderRef.current) {
+        if (loaderRef.current && hasMore) {
             observer.observe(loaderRef.current);
         }
 
@@ -50,7 +61,8 @@ function Products() {
                 observer.unobserve(loaderRef.current);
             }
         };
-    }, [hasMore]);
+    }, [hasMore, loadProducts]);
+
     return (
         <div className='main-product'>
             <nav className='collection-breadcrumb'>
@@ -59,15 +71,18 @@ function Products() {
             <div className="colection">
                 <div className='page-sidebar'>
                     <h1>Select</h1>
-                    <DropdownMenu title="Collection"
+                    <DropdownMenu
+                        title="Collection"
                         items={['spring', 'summer', 'autumn', 'winter']}
                         onItemClick={handleAddToCart}
                     />
-                    <DropdownMenu title="Collection"
+                    <DropdownMenu
+                        title="Collection"
                         items={['spring', 'summer', 'autumn', 'winter']}
                         onItemClick={handleAddToCart}
                     />
-                    <DropdownMenu title="Collection"
+                    <DropdownMenu
+                        title="Collection"
                         items={['spring', 'summer', 'autumn', 'winter']}
                         onItemClick={handleAddToCart}
                     />
@@ -94,37 +109,33 @@ function Products() {
                         </div>
                     </toolbar-item>
                     <div className="list-product">
-                        {/* {products.slice(0, visibleCount).map((product) => (
-                            <div key={product.id} className="product-item">
-                                {product.name}
-                            </div>
+                        {products.map((product) => (
+                            <Item
+                                key={product.productId}
+                                title={product.productId}
+                                price={product.price}
+                                name={product.name}
+                                image={product.imageUrl}
+                                onAddToCart={handleAddToCart}
+                            />
                         ))}
                     </div>
-                    {hasMore && (
-                        <div ref={loaderRef} className="loading">
-                            {isLoading ? 'Loading more products...' : 'Scroll to load more products'}
-                        </div>
-                    )} */}
-                    <Item title={"img1"} price={"300$"} name={"hinh anh"} image={"/assets/products/set1.jpg"} onAddToCart={handleAddToCart} />
-                    <Item title={"img1"} price={"300$"} name={"hinh anh"} image={"/assets/products/set1.jpg"} onAddToCart={handleAddToCart} />
-                    <Item title={"img1"} price={"300$"} name={"hinh anh"} image={"/assets/products/set1.jpg"} onAddToCart={handleAddToCart} />
-                    <Item title={"img1"} price={"300$"} name={"hinh anh"} image={"/assets/products/set1.jpg"} onAddToCart={handleAddToCart} />
-                    <Item title={"img1"} price={"300$"} name={"hinh anh"} image={"/assets/products/set1.jpg"} onAddToCart={handleAddToCart} />
-                    <Item title={"img1"} price={"300$"} name={"hinh anh"} image={"/assets/products/set1.jpg"} onAddToCart={handleAddToCart} />
-                    <Item title={"img1"} price={"300$"} name={"hinh anh"} image={"/assets/products/set1.jpg"} onAddToCart={handleAddToCart} />
-                    <Item title={"img1"} price={"300$"} name={"hinh anh"} image={"/assets/products/set1.jpg"} onAddToCart={handleAddToCart} />
-                </div>
-                <div className="pagination-wrapper">
-                    <nav className='pagination'>
-                        <span>Page</span>
-                        <span>4/20</span>
-                    </nav>
-                    <button>Show More</button>
+
+                    <div className="pagination-wrapper">
+                        <nav className='pagination'>
+                            <div ref={loaderRef} className="loading">
+                                {hasMore
+                                    ? isLoading
+                                        ? 'Loading more products...'
+                                        : 'Scroll to load more products'
+                                    : 'No more products available'}
+                            </div>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
-        </div >
-    )
+    );
 }
 
 export default Products;
