@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './DropdownMenu.css'
 const DropdownMenu = ({ title, items, onItemClick }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);

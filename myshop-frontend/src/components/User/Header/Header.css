@@ -6,7 +6,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+header{
+    position: relative;
+}
 body {
     font-family: "Poppins";
     line-height: 1.6;
@@ -55,15 +57,19 @@ body {
 
 .bottom-bar {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
     padding: 30px 0 0 0;
 }
 
 .main-nav {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: center;
     padding: 10px;
     background-color: #000;
+    z-index: 1;
 }
 
 .menu {
@@ -154,5 +160,8 @@ body {
     .user-actions {
         display: flex;
         flex-direction: column;
+    }
+    .main-nav{
+        justify-content: left;
     }
 }
