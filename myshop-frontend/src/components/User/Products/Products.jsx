@@ -70,7 +70,7 @@ function Products() {
             </nav>
             <div className="colection">
                 <div className='page-sidebar'>
-                    <h1>Select</h1>
+                    <h1>Filter</h1>
                     <DropdownMenu
                         title="Collection"
                         items={['spring', 'summer', 'autumn', 'winter']}
