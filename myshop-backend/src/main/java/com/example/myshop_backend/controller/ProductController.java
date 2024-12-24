@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,8 +42,17 @@ public class ProductController {
 	@GetMapping("/page")
 	public ResponseEntity<List<ProductDto>> getPageProducts(
 			@RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "6") int size){
-		Page<ProductDto> products = productService.getPageProducts(PageRequest.of(page, size));
+	        @RequestParam(defaultValue = "6") int size,
+	        @RequestParam(defaultValue = "productId") String sortBy,
+	        @RequestParam(defaultValue = "asc") String sortDir,
+	        @RequestParam(required = false) String collection,
+	        @RequestParam(required = false) String brand){
+		Sort sort = sortDir.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+
+		PageRequest pageRequest = PageRequest.of(page, size, sort);
+		
+		Page<ProductDto> products = productService.getFilteredPageProducts(collection, brand, pageRequest);
+
         return ResponseEntity.ok(products.getContent());
 	}
 }

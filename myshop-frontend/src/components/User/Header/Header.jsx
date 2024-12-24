@@ -8,6 +8,7 @@ function Header() {
     };
 
     return (
+        <>
         <header>
             <div className="top-bar">
                 <div className="scrolling-bar">
@@ -41,25 +42,28 @@ function Header() {
                     <a href="/signup">Sign in or Create an account</a>
                 </div>
             </div>
-            <nav className="main-nav">
-                <div className="menu-toggle" onClick={handleMenuToggle}>
-                    <span className="bar"></span>
-                    <span className="bar"></span>
-                    <span className="bar"></span>
-                </div>
-                <ul className="menu" id="menu">
-                    <li><a href="/">New In</a></li>
-                    <li><a href="/shop">Shop</a></li>
-                    <li><a href="#">Collections</a></li>
-                    <li><a href="#">Lookbook</a></li>
-                    <li><a href="#">Demo</a></li>
-                    <li><a href="#">Shop Instagram</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Brands</a></li>
-                    <li><a href="#">FAQs</a></li>
-                </ul>
-            </nav>
         </header>
+        <div className='navigation'>
+                <nav className="main-nav">
+                    <div className="menu-toggle" onClick={handleMenuToggle}>
+                        <span className="bar"></span>
+                        <span className="bar"></span>
+                        <span className="bar"></span>
+                    </div>
+                    <ul className="menu" id="menu">
+                        <li><a href="/">New In</a></li>
+                        <li><a href="/shop">Shop</a></li>
+                        <li><a href="#">Collections</a></li>
+                        <li><a href="#">Lookbook</a></li>
+                        <li><a href="#">Demo</a></li>
+                        <li><a href="#">Shop Instagram</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Brands</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </>
     );
 }
 

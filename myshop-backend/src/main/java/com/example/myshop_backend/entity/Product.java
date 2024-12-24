@@ -53,4 +53,11 @@ public class Product {
         inverseJoinColumns = @JoinColumn(name = "order_id")
     )
     private List<Order> orders;
+    
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
+    
+    @ManyToMany(mappedBy = "products")
+    private List<Collection> collections;
 }

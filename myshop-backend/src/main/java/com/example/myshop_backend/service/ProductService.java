@@ -15,6 +15,7 @@ public interface ProductService {
 
 	List<ProductDto> getAllProducts();
 
-	Page<ProductDto> getPageProducts(Pageable pageable);
+	Page<ProductDto> getFilteredPageProducts(String collection, String brand, Pageable pageable);
+	
 	
 }

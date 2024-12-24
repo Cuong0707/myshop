@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 header{
-    position: relative;
+    overflow: visible;
 }
 body {
     font-family: "Poppins";
@@ -59,17 +59,19 @@ body {
     display: grid;
     padding: 30px 0 0 0;
 }
-
-.main-nav {
-    display: flex;
-    position: fixed;
+.navigation{
+    position: sticky;
     top: 0;
     left: 0;
+    width: 100%;
+    z-index: 1;
+}
+.main-nav {
+    display: flex;
     width: 100%;
     justify-content: center;
     padding: 10px;
     background-color: #000;
-    z-index: 1;
 }
 
 .menu {
