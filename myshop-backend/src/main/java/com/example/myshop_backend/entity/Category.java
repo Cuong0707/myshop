@@ -26,8 +26,8 @@ public class Category {
 	@Column(name = "category_id")
  	private Integer categoryId;
 	
-	 @Column(name = "name", nullable = false, length = 255)
-	    private String name;
+	@Column(name = "name", nullable = false, length = 255)
+	private String name;
 
     @Column(name = "description", length = 500)
     private String description;

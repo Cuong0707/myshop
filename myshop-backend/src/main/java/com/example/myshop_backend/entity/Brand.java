@@ -32,7 +32,7 @@ public class Brand {
 	@Column(name = "brand_name", nullable = false, length = 50)
 	private String brandName;
 	
-	@Column(name = "brand_img", nullable = true)
+	@Column(name = "brand_img", nullable = true,columnDefinition = "VARCHAR(255)")
 	private String brandImg;
 	
 	@OneToMany(mappedBy = "brand")

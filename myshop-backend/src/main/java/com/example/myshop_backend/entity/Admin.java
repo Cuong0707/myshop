@@ -29,7 +29,7 @@ public class Admin {
     @Column(name = "username", nullable = false, length = 255, unique = true)
     private String username;
 
-    @Column(name = "password", nullable = false, length = 255)
+    @Column(name = "password", nullable = false, length = 255, columnDefinition = "VARCHAR(255)")
     private String password;
 
     @Column(name = "email", length = 255)

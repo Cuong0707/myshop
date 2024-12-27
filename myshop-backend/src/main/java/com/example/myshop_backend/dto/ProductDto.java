@@ -1,6 +1,8 @@
 package com.example.myshop_backend.dto;
 
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +18,7 @@ public class ProductDto {
     private String description;
     private Double price;
     private String imageUrl;
-    private int categoryId;
+    private Integer categoryId;
+    private List<Integer> collectionId;
     
 }

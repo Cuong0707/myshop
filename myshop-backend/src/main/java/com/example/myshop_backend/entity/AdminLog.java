@@ -33,7 +33,7 @@ public class AdminLog {
     @JoinColumn(name = "admin_id")
     private Admin admin;
 
-    @Column(name = "action", nullable = false, length = 255)
+    @Column(name = "action", nullable = false, length = 255, columnDefinition = "VARCHAR(255)")
     private String action;
     
     @Column(name = "action_date", nullable = false)

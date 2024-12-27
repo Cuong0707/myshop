@@ -10,14 +10,14 @@ function HomePage() {
     return (
         <div>
             <Header />
-                <Banner />
-                <div className="categories">
-                    <Category image="assets/images/img1.jpg" title="Editor's Pick" />
-                    <Category image="assets/images/img2.jpg" title="Shoes" />
-                    <Category image="assets/images/img3.jpg" title="Accessories" />
-                </div>
-                <NewArrivals />
-                <Instagram />
+            <Banner />
+            <div className="categories">
+                <Category image="assets/images/img1.jpg" title="Editor's Pick" />
+                <Category image="assets/images/img2.jpg" title="Shoes" />
+                <Category image="assets/images/img3.jpg" title="Accessories" />
+            </div>
+            <NewArrivals />
+            <Instagram />
             <Footer />
         </div>
     );
