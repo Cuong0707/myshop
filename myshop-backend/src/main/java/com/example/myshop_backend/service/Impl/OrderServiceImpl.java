@@ -22,8 +22,8 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Override
 	public Order creaOrder(OrderDto orderDto) {
-		Order order = OrderMapper
-		orderDto.setOrderStatus(OrderStatus.PENDING); // Mặc định là PENDING khi tạo đơn
+		Order order = OrderMapper.orderDtoToOrder(orderDto);
+//		orderDto.setOrderStatus(OrderStatus.PENDING); // Mặc định là PENDING khi tạo đơn
         return orderRepository.save(order);
 	}
 

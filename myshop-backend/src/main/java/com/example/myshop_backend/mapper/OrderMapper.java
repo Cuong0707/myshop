@@ -16,12 +16,16 @@ public class OrderMapper {
 
         Order order = new Order();
         order.setOrderId(orderDto.getOrderID());
-        order.setUsers(userRepository.findById(orderDto.getUserId()));
-        order.setOrderDate(orderDto.getOrderDate());
-        order.setPaymentDate(orderDto.getPaymentDate());
-        order.setStatus(orderDto.getStatus());
+        order.setUsers(userRepository.findById(orderDto.getUserId())
+	            .orElseThrow(() -> new IllegalArgumentException("Invalid User ID")));
+        order.setOrderDate(null);
+        order.setPaymentDate(null);
+        order.setStatus(orderDto.getOrderStatus());
         order.setPaymentMethod(orderDto.getPaymentMethod());
-        order.setProducts(orderDto.getProducts());
+        
+        /*
+         * Chỉnh sửa thêm order.setOrderproduct để lấy danh sách và số lượng sản phẩm
+         */
 
         return order;
     }

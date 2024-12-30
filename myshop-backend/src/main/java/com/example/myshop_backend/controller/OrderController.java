@@ -1,7 +1,9 @@
 package com.example.myshop_backend.controller;
 
+import com.example.myshop_backend.dto.OrderDto;
 import com.example.myshop_backend.entity.Order;
 import com.example.myshop_backend.enums.OrderStatus;
+import com.example.myshop_backend.mapper.OrderMapper;
 import com.example.myshop_backend.service.Impl.OrderServiceImpl;
 import com.example.myshop_backend.service.OrderService;
 import com.example.myshop_backend.service.PaymentService;
@@ -15,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/api/orders")
 public class OrderController {
 
     @Autowired
@@ -26,9 +28,9 @@ public class OrderController {
 
     // Tạo đơn hàng mới
     @PostMapping("/create")
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+    public ResponseEntity<Order> createOrder(@RequestBody OrderDto orderDto) {
         try {
-            Order newOrder = orderService.createOrder(order);
+            Order newOrder =  orderService.creaOrder(orderDto);
             return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

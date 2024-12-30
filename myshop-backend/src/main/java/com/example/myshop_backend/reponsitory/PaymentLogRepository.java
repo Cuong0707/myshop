@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.myshop_backend.entity.PaymentLog;
 
-@Repository
 public interface PaymentLogRepository extends JpaRepository<PaymentLog, Integer>{
 
 }

@@ -28,7 +28,7 @@ public class PaymentServiceImpl implements PaymentService{
 	
 	@Override
 	@Transactional
-	public String processPayment(Integer paymentMethodId, BigDecimal amount, Integer orderId) {
+	public String processPayment(Integer orderId,Integer paymentMethodId, BigDecimal amount ) {
 		
 		Order order = orderRepository.findById(orderId).orElseThrow(()->new IllegalArgumentException("Invalid Order ID"));
 		
