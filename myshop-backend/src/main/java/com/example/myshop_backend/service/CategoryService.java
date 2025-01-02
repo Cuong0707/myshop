@@ -7,5 +7,7 @@ import com.example.myshop_backend.entity.Category;
 
 public interface CategoryService {
 	List<CategoryDto> findAll();
+
+	CategoryDto createCategory(CategoryDto categoryDto);
 }
 

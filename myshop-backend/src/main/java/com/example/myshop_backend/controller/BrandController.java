@@ -11,25 +11,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.myshop_backend.dto.CategoryDto;
-import com.example.myshop_backend.service.CategoryService;
+import com.example.myshop_backend.dto.BrandDto;
+import com.example.myshop_backend.service.BrandService;
 
 @RestController
-@RequestMapping("api/category")
-public class CategoryController {
+@RequestMapping("/api/brand")
+public class BrandController {
 	
 	@Autowired
-	private CategoryService categoryService;
+	private BrandService brandService;
 	
 	@GetMapping
-	public ResponseEntity<List<CategoryDto>> getAll(){
-		List<CategoryDto> categoryDtos = categoryService.findAll();
-		return new ResponseEntity<>(categoryDtos,HttpStatus.OK);
+	public ResponseEntity<List<BrandDto>> getAllBrand()
+	{
+		List<BrandDto> brandDtos = brandService.getAllBrand();
+		return new ResponseEntity<>(brandDtos,HttpStatus.OK);
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto)
+	public ResponseEntity<BrandDto> createBrand(@RequestBody BrandDto brandDto)
 	{
-		return new ResponseEntity<>(categoryService.createCategory(categoryDto),HttpStatus.CREATED);
+		return new ResponseEntity<>(brandService.createBrand(brandDto),HttpStatus.CREATED);
 	}
 }
