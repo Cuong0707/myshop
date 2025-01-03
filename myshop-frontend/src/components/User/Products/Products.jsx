@@ -19,20 +19,15 @@ function Products() {
         if (isLoading || !hasMore) return;
         setIsLoading(true);
         try {
-            const currentPage = Math.floor(products.length / 6); 
-            const newProducts = await fetchProducts(currentPage, 6); // Gọi API
-            const temp = newProducts.filter(
+            const currentPage = Math.floor(products.length / 4); 
+            const newProducts = await fetchProducts(currentPage, 4); 
+            const uniqueProducts = newProducts.filter(
                 (product) => !products.some((p) => p.productId === product.productId)
             );
-            if (temp.length === 0) {
-                setHasMore(false); // Không còn sản phẩm mới
+            if (uniqueProducts.length === 0) {
+                setHasMore(false); // Dừng tải thêm
             } else {
-                const filteredProducts = newProducts.filter(
-                    (product) => !products.some((p) => p.productId === product.productId)
-                );
-                if (filteredProducts.length > 0) {
-                    setProducts((prev) => [...prev, ...filteredProducts]);
-                }
+                setProducts((prev) => [...prev, ...uniqueProducts]);
             }
         } catch (error) {
             console.error("Failed to load products:", error);
@@ -43,25 +38,26 @@ function Products() {
 
     // IntersectionObserver cho tải thêm
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting && hasMore) {
-                    loadProducts();
-                }
-            },
-            { threshold: 1.0 }
-        );
-
-        if (loaderRef.current && hasMore) {
-            observer.observe(loaderRef.current);
-        }
-
-        return () => {
-            if (loaderRef.current) {
-                observer.unobserve(loaderRef.current);
+        const loaderElement = loaderRef.current; // Sao chép giá trị của loaderRef.current
+        const observerCallback = (entries) => {
+            if (entries[0].isIntersecting && hasMore && !isLoading) {
+                loadProducts();
             }
         };
-    }, [hasMore, loadProducts]);
+    
+        const observer = new IntersectionObserver(observerCallback, { threshold: 1.0 });
+    
+        if (loaderElement && hasMore) {
+            observer.observe(loaderElement);
+        }
+    
+        return () => {
+            if (loaderElement) {
+                observer.unobserve(loaderElement); // Dùng biến cục bộ thay vì loaderRef.current
+            }
+        };
+    }, [hasMore, isLoading, loadProducts]); // Thêm loadProducts vào danh sách phụ thuộc
+    
 
     return (
         <div className='main-product'>
@@ -116,7 +112,6 @@ function Products() {
                                 price={product.price}
                                 name={product.name}
                                 image={product.imageUrl}
-                                onAddToCart={handleAddToCart}
                             />
                         ))}
                     </div>

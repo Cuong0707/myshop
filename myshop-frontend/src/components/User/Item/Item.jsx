@@ -1,12 +1,14 @@
 import React from 'react';
 import './Item.css'; 
-
-function Product({ title, name, price, image, onAddToCart }) {
-    const toggleButtons = (button) => {
-        button.style.display = 'none';
-        const submit = button.nextElementSibling;
-        submit.style.display = 'block';
-    };
+import { useCart } from '../../../context/CartContext';
+function Product({ title, name, price, image }) {
+    const { addToCart} = useCart();
+    const product = [{
+        "title" : title,
+        "name" : name,
+        "price" : price,
+        "image" : image
+    }];
 
     return (
         <div className="product">
@@ -16,7 +18,7 @@ function Product({ title, name, price, image, onAddToCart }) {
                 </div>
                 <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" className="overlay-image" />
                 <div className="selection">
-                    <button className="add-to-cart" onClick={(e) => { onAddToCart(e.currentTarget); toggleButtons(e.currentTarget); }}>Add to Cart</button>
+                    <button className="add-to-cart" onClick={addToCart(product)}>Add to Cart</button>
                     <div className="submit" style={{ display: 'none' }}>
                         <p className="title-submit">Size</p>
                         <p>XS   S   M   L   XL  2X</p>

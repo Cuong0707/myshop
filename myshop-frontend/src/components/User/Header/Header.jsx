@@ -1,7 +1,11 @@
 import React from 'react';
 import './Header.css'; 
-
+import { useCart } from '../../../context/CartContext';
 function Header() {
+    const { cart } = useCart();
+
+  // Tính tổng số lượng sản phẩm
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
     const handleMenuToggle = () => {
         const menu = document.getElementById('menu');
         menu.classList.toggle('active');
@@ -31,9 +35,9 @@ function Header() {
                 </a>
                 <div className="user-actions">
                     <p>FREE SHIPPING ON ALL ORDERS. NO MINIMUM PURCHASE</p>
-                    <a href="#">
+                    <a href="/cart">
                         <img src="assets/images/cardicon.jpg" alt="Card Icon" />
-                        Shopping Cart
+                        Shopping Cart ({totalItems})
                     </a>
                     <a href="#">
                         <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" />
