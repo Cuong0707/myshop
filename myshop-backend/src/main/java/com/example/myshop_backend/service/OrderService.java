@@ -8,8 +8,8 @@ import com.example.myshop_backend.entity.Order;
 import com.example.myshop_backend.enums.OrderStatus;
 
 public interface OrderService{
-	Order creaOrder(OrderDto orderDto);
-	Optional<Order> getOrderById(Integer orderId);
-	List<Order> getAllOrders();
-	Order updateOrderStatus(Integer orderId, OrderStatus status);
+	OrderDto creaOrder(OrderDto orderDto);
+	OrderDto getOrderById(Integer orderId);
+	List<OrderDto> getAllOrders();
+	OrderDto updateOrderStatus(Integer orderId, OrderStatus status);
 }

@@ -2,7 +2,8 @@ package com.example.myshop_backend.service.Impl;
 
 import org.springframework.stereotype.Service;
 
-import com.example.myshop_backend.entity.PaymentLog;
+import com.example.myshop_backend.dto.PaymentLogDto;
+import com.example.myshop_backend.mapper.PaymentLogMapper;
 import com.example.myshop_backend.reponsitory.PaymentLogRepository;
 import com.example.myshop_backend.service.PaymentLogService;
 
@@ -14,7 +15,7 @@ public class PaymentLogServiceImpl implements PaymentLogService{
 	private PaymentLogRepository paymentLogRepository;
 	
 	@Override
-	public PaymentLog createPaymentLog(PaymentLog log) {
-        return paymentLogRepository.save(log);
+	public PaymentLogDto createPaymentLog(PaymentLogDto logDto) {
+        return PaymentLogMapper.paymentLogToDto(paymentLogRepository.save(PaymentLogMapper.dtoToPaymentLog(logDto)));
     }
 }

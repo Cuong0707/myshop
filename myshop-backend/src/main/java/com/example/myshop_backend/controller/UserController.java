@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myshop_backend.dto.UserDto;
 import com.example.myshop_backend.entity.Users;
+import com.example.myshop_backend.exceptions.ApiResponse;
 import com.example.myshop_backend.service.UserService;
 
 import lombok.AllArgsConstructor;
@@ -29,12 +30,12 @@ public class UserController {
 //		return new ResponseEntity<>(saveUserDto,HttpStatus.CREATED);
 //	}
 	@PostMapping("/signup")
-	public ResponseEntity<String> registerUser(@RequestBody UserDto userDto) {
+	public ApiResponse<String> registerUser(@RequestBody UserDto userDto) {
         String response = userService.registerUser(userDto);
         if (response.equals("Đăng ký thành công!")) {
-            return ResponseEntity.ok(response);
+            return ApiResponse.success(HttpStatus.OK, "OK", response);
         } else {
-            return ResponseEntity.badRequest().body(response);
+            return ApiResponse.error(HttpStatus.BAD_REQUEST, "Error", response);
         }
     }
 	

@@ -14,6 +14,7 @@ import com.example.myshop_backend.mapper.CollectionMapper;
 import com.example.myshop_backend.reponsitory.CollectionRepository;
 import com.example.myshop_backend.reponsitory.ProductRepository;
 import com.example.myshop_backend.service.CollectionService;
+import com.example.myshop_backend.exceptions.NotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -28,7 +29,8 @@ public class CollectionServiceImpl implements CollectionService{
 	
 	@Override
 	public CollectionDto addProductsToCollection(Integer collectionId, List<Integer> productIds) {
-		Collection collection = collectionRepository.findById(collectionId).orElseThrow(() -> new RuntimeException("Collection not found"));
+		Collection collection = collectionRepository.findById(collectionId).
+				orElseThrow(() -> new NotFoundException("Collection not found :"+ collectionId));
 		List<Product> products = productRepository.findAllById(productIds);
 		List<Integer> notFoundIds = productIds.stream()
 		        .filter(id -> products.stream().noneMatch(product -> product.getProductId().equals(id))) //Duyệt qua xem sp có tồn tại chưa

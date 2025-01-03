@@ -9,6 +9,7 @@ import com.example.myshop_backend.entity.Order;
 import com.example.myshop_backend.entity.PaymentLog;
 import com.example.myshop_backend.entity.PaymentMethod;
 import com.example.myshop_backend.enums.OrderStatus;
+import com.example.myshop_backend.mapper.PaymentLogMapper;
 import com.example.myshop_backend.reponsitory.OrderRepository;
 import com.example.myshop_backend.reponsitory.PaymentMethodRepository;
 import com.example.myshop_backend.service.PaymentLogService;
@@ -60,7 +61,7 @@ public class PaymentServiceImpl implements PaymentService{
 	    log.setCurrency(paymentMethod.getCurrency());
 	    log.setStatus("PENDING"); // Trạng thái có thể thay đổi tùy theo kết quả giao dịch
 	    log.setTransactionDate(LocalDateTime.now());
-	    paymentLogService.createPaymentLog(log);
+	    paymentLogService.createPaymentLog(PaymentLogMapper.paymentLogToDto(log));
 	    
 	    if ("SUCCESS".equals(log.getStatus())) {
             // Cập nhật trạng thái của đơn hàng thành COMPLETED

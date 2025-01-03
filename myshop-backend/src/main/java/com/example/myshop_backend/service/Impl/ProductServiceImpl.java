@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.myshop_backend.dto.ProductDto;
 import com.example.myshop_backend.entity.Product;
+import com.example.myshop_backend.exceptions.BadCredentialsException;
 import com.example.myshop_backend.mapper.ProductMapper;
 import com.example.myshop_backend.reponsitory.ProductRepository;
 import com.example.myshop_backend.service.ProductService;
@@ -25,16 +26,21 @@ public class ProductServiceImpl implements ProductService{
 	private ProductRepository productRepository;
 	
 	@Override
-	public Product createProductDto(ProductDto productDto) {
-		Product product = ProductMapper.productDtoToProduct(productDto);
-		return productRepository.save(product);
+	public ProductDto addProduct(ProductDto productDto) {
+		return null;
 	}
 	
 	@Override
-	public ProductDto addProduct(ProductDto productDto) {
-        Product product = ProductMapper.productDtoToProduct(productDto);
-        Product savedProduct = productRepository.save(product);
-        return ProductMapper.productToProductDto(savedProduct);
+	public ProductDto createProductDto(Product product) {
+//        if(productDto.getProductId()!=null)
+//        {
+//        	productDto.setProductId(null);
+//        }
+//        else if(productRepository.existsById(productDto.getProductId())){
+//        	throw new BadCredentialsException("Id Exist");
+//        }
+        ProductDto savedProduct = ProductMapper.productToProductDto(productRepository.save((product)));
+        return savedProduct;
     }
 	
 	@Override

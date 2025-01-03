@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myshop_backend.dto.ProductDto;
 import com.example.myshop_backend.entity.Product;
+import com.example.myshop_backend.exceptions.ApiResponse;
+import com.example.myshop_backend.mapper.ProductMapper;
 import com.example.myshop_backend.service.ProductService;
 
 import lombok.AllArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,18 +32,18 @@ public class ProductController {
 	private final ProductService productService;
 	
 	@GetMapping
-	public ResponseEntity<List<ProductDto>> getAllProducts() {
+	public ApiResponse<List<ProductDto>> getAllProducts() {
         List<ProductDto> products = productService.getAllProducts();
-        return ResponseEntity.ok(products); // Trả về danh sách ProductDto
+        return ApiResponse.success(HttpStatus.OK, "Ok", products); // Trả về danh sách ProductDto
     }
 	
 	@PostMapping("/create")
-	public ResponseEntity<Product> createProduct(@RequestBody ProductDto productDto){
-		Product product = productService.createProductDto(productDto);
-		return ResponseEntity.ok(product);
+	public ApiResponse<ProductDto> createProduct(@RequestBody Product product){
+		ProductDto productDto1 = productService.createProductDto(product);
+		return ApiResponse.success(HttpStatus.CREATED, "Product Created", productDto1);
 	}
 	@GetMapping("/page")
-	public ResponseEntity<List<ProductDto>> getPageProducts(
+	public ApiResponse<List<ProductDto>> getPageProducts(
 			@RequestParam(defaultValue = "0") int page,
 	        @RequestParam(defaultValue = "6") int size,
 	        @RequestParam(defaultValue = "productId") String sortBy,
@@ -53,6 +56,6 @@ public class ProductController {
 		
 		Page<ProductDto> products = productService.getFilteredPageProducts(collection, brand, pageRequest);
 
-        return ResponseEntity.ok(products.getContent());
+        return ApiResponse.success(HttpStatus.OK, "Ok", products.getContent());
 	}
 }
