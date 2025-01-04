@@ -106,13 +106,7 @@ function Products() {
                     </toolbar-item>
                     <div className="list-product">
                         {products.map((product) => (
-                            <Item
-                                key={product.productId}
-                                title={product.productId}
-                                price={product.price}
-                                name={product.name}
-                                image={product.imageUrl}
-                            />
+                            <Item product={product}/>
                         ))}
                     </div>
 
