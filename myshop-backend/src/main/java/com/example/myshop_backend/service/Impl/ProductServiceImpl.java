@@ -2,6 +2,7 @@ package com.example.myshop_backend.service.Impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,7 +32,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public ProductDto createProductDto(Product product) {
+	public List<ProductDto> createProductDto(List<Product> products) {
 //        if(productDto.getProductId()!=null)
 //        {
 //        	productDto.setProductId(null);
@@ -39,7 +40,8 @@ public class ProductServiceImpl implements ProductService{
 //        else if(productRepository.existsById(productDto.getProductId())){
 //        	throw new BadCredentialsException("Id Exist");
 //        }
-        ProductDto savedProduct = ProductMapper.productToProductDto(productRepository.save((product)));
+		
+        List<ProductDto> savedProduct = productRepository.saveAll(products).stream().map(ProductMapper::productToProductDto).collect(Collectors.toList());
         return savedProduct;
     }
 	

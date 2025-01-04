@@ -38,9 +38,9 @@ public class ProductController {
     }
 	
 	@PostMapping("/create")
-	public ApiResponse<ProductDto> createProduct(@RequestBody Product product){
-		ProductDto productDto1 = productService.createProductDto(product);
-		return ApiResponse.success(HttpStatus.CREATED, "Product Created", productDto1);
+	public ApiResponse<List<ProductDto>> createProduct(@RequestBody List<Product> products){
+		List<ProductDto> productDtos = productService.createProductDto(products);
+		return ApiResponse.success(HttpStatus.CREATED, "Product Created", productDtos);
 	}
 	@GetMapping("/page")
 	public ApiResponse<List<ProductDto>> getPageProducts(

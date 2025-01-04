@@ -9,7 +9,7 @@ import com.example.myshop_backend.dto.ProductDto;
 import com.example.myshop_backend.entity.Product;
 
 public interface ProductService {
-	ProductDto createProductDto(Product product);
+	List<ProductDto> createProductDto(List<Product> products);
 
 	ProductDto addProduct(ProductDto productDto);
 
