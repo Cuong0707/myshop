@@ -28,7 +28,7 @@ public class CollectionController {
 	@Autowired
 	private CollectionService collectionService;
 	
-	@PostMapping("/")
+	@PostMapping("/create")
 	public ResponseEntity<Collection> createCollection(@RequestBody CollectionDto collectionDto)
 	{
 		Collection collection = collectionService.createCollection(collectionDto);

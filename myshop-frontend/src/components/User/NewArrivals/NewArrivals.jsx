@@ -1,28 +1,33 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './NewArrivals.css'; // Nhập CSS cho NewArrivals nếu cần
 import Item from '../Item/Item';
-
+import {fetchProducts} from '../../../services/productService'
 function NewArrivals() {
-    const products = [
-        { title: "SODLING", name: "Nominoise Demenoisa", price: "$88.00 - $98.00", image: "assets/images/item1.jpg" },
-        { title: "TOMORROW", name: "Dinanderium Pretum", price: "$130.00 - $180.00", image: "assets/images/item2.jpg" },
-        { title: "PAUL SMITH", name: "Magoria Demaratin", price: "$88.00", image: "assets/images/item3.jpg" },
-        { title: "DONATELLO", name: "Magoria Demaratin", price: "$88.00", image: "assets/images/item4.jpg" }
-    ];
+    const [products, setProducts] = useState([]);
+    const [error, setError] = useState();
 
-    const handleAddToCart = (button) => {
-        // Logic thêm sản phẩm vào giỏ hàng
-        console.log("Added to cart", button);
-    };
 
+    useEffect(()=>{
+        const loadProducts = async () => {
+            try {
+                const data = await fetchProducts(0, 4); // Offset 0, limit 6
+                setProducts(data);
+            } catch (error) {
+                setError(error.message);
+            }
+        }
+        loadProducts();
+    },[])
+    
+    
     return (
         <section className="new-arrivals slide-in-right">
             <div className="title-arrivals">
                 <hr /><h2>New Arrivals</h2><hr />
             </div>
             <div className="products">
-                {products.map((product, index) => (
-                    <Item key={index} {...product} onAddToCart={handleAddToCart} />
+                {products.map((product) => (
+                    <Item key={product.productId} product={product} />
                 ))}
             </div>
             <button className="show-more">Show More</button>

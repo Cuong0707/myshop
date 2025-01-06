@@ -33,8 +33,8 @@ public class CategoryMapper {
 	{
 		return new CategoryDto(
 				category.getCategoryId(),
-				category.getDescription(),
 				category.getName(),
+				category.getDescription(),
 				category.getProducts().stream().map(Product::getProductId).collect(Collectors.toList())
 				);
 	}

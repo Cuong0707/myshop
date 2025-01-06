@@ -9,11 +9,11 @@ function Products() {
     const [isLoading, setIsLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const loaderRef = useRef(null);
-
+    
     const handleAddToCart = (button) => {
         console.log("Added to cart", button);
     };
-
+    
     // Hàm tải sản phẩm
     const loadProducts = useCallback(async () => {
         if (isLoading || !hasMore) return;
@@ -57,7 +57,7 @@ function Products() {
             }
         };
     }, [hasMore, isLoading, loadProducts]); // Thêm loadProducts vào danh sách phụ thuộc
-    
+    console.log(products);
 
     return (
         <div className='main-product'>
@@ -106,7 +106,7 @@ function Products() {
                     </toolbar-item>
                     <div className="list-product">
                         {products.map((product) => (
-                            <Item product={product}/>
+                            <Item key={product.productId} product={product}/>
                         ))}
                     </div>
 
