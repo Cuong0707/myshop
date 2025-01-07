@@ -25,7 +25,9 @@ const ShoppingCart = () => {
                   <img className="img-product-cart" src={item.imageUrl}/>
                   {item.name}
                 </div>
-                <div>{item.price}</div>
+                <div>
+                  <strong>{item.price}</strong>
+                </div>
                 <div>{item.quantity}</div>
                 <div className="total-product-cart">
                   ${item.price * item.quantity}

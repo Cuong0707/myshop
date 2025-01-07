@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
-import './DropdownMenu.css'
-const DropdownMenu = ({ title, items, onItemClick }) => {
+import './DropdownMenu.css';
+
+function DropdownMenu({ title, items, onItemClick }) {
     const [isOpen, setIsOpen] = useState(true);
+    const [selectedItem, setSelectedItem] = useState(null);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+    };
+
+    const handleItemClick = (item) => {
+        if (selectedItem === item) {
+            setSelectedItem(null); // Bỏ chọn nếu nhấp lại vào mục đã chọn
+            onItemClick(null); // Gọi hàm onItemClick với giá trị null
+        } else {
+            setSelectedItem(item); // Chọn mục mới
+            onItemClick(item); // Gọi hàm onItemClick với mục mới
+        }
     };
 
     return (
@@ -17,8 +29,8 @@ const DropdownMenu = ({ title, items, onItemClick }) => {
                 {items.map((item, index) => (
                     <div 
                         key={index} 
-                        onClick={() => onItemClick(item)} 
-                        className="menu-item"
+                        onClick={() => handleItemClick(item)}
+                        className={`menu-item ${selectedItem === item ? 'selected' : ''}`}
                     >
                         {item}
                     </div>
@@ -26,6 +38,6 @@ const DropdownMenu = ({ title, items, onItemClick }) => {
             </div>
         </div>
     );
-};
+}
 
 export default DropdownMenu;

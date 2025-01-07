@@ -36,7 +36,9 @@
 .new-arrivals .show-more:hover {
     background-color: #d2b9b9;
 }
-
+.products img{
+    max-height: 350px;
+}
 
 /* Responsive Design for New Arrivals */
 @media (max-width: 550px) {

@@ -3,24 +3,47 @@ import Item from '../Item/Item';
 import './Products.css';
 import DropdownMenu from '../../Global/GlobalDropdownMenu/DropdownMenu';
 import { fetchProducts } from '../../../services/productService';
+import { getCollections } from '../../../services/collectionService';
+import { getAllBrands } from '../../../services/brandService';
 
 function Products() {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const loaderRef = useRef(null);
-    
+    const [collections, setCollections] = useState([]);
+    const [brands, setBrands] = useState([]);
     const handleAddToCart = (button) => {
         console.log("Added to cart", button);
     };
-    
+    const loadCollections = useCallback(async () => {
+        try {
+            const collections = await getCollections()
+            setCollections(collections.map((collection) => collection.collectionName));
+        } catch (error) {
+            console.error('Failed to load collections:', error);
+        }
+    }, []);
+    const loadBrands = useCallback(async () => {
+        try {
+            const brands = await getAllBrands();
+            setBrands(brands);
+            console.log(brands);
+        } catch (error) {
+            console.error('Failed to load brands:', error);
+        }
+    }, []);
+    useEffect(() => {
+        loadCollections();
+        loadBrands();
+    }, [loadCollections,loadBrands]);
     // Hàm tải sản phẩm
     const loadProducts = useCallback(async () => {
         if (isLoading || !hasMore) return;
         setIsLoading(true);
         try {
-            const currentPage = Math.floor(products.length / 4); 
-            const newProducts = await fetchProducts(currentPage, 4); 
+            const currentPage = Math.floor(products.length / 4);
+            const newProducts = await fetchProducts(currentPage, 4);
             const uniqueProducts = newProducts.filter(
                 (product) => !products.some((p) => p.productId === product.productId)
             );
@@ -44,20 +67,19 @@ function Products() {
                 loadProducts();
             }
         };
-    
+
         const observer = new IntersectionObserver(observerCallback, { threshold: 1.0 });
-    
+
         if (loaderElement && hasMore) {
             observer.observe(loaderElement);
         }
-    
+
         return () => {
             if (loaderElement) {
                 observer.unobserve(loaderElement); // Dùng biến cục bộ thay vì loaderRef.current
             }
         };
     }, [hasMore, isLoading, loadProducts]); // Thêm loadProducts vào danh sách phụ thuộc
-    console.log(products);
 
     return (
         <div className='main-product'>
@@ -69,10 +91,16 @@ function Products() {
                     <h1>Filter</h1>
                     <DropdownMenu
                         title="Collection"
-                        items={['spring', 'summer', 'autumn', 'winter']}
+                        items={collections}
                         onItemClick={handleAddToCart}
                     />
+
                     <DropdownMenu
+                        title="Brand"
+                        items={brands.map((brand) => brand.brandName)}
+                        onItemClick={handleAddToCart}
+                    />
+                    {/* <DropdownMenu
                         title="Collection"
                         items={['spring', 'summer', 'autumn', 'winter']}
                         onItemClick={handleAddToCart}
@@ -81,7 +109,7 @@ function Products() {
                         title="Collection"
                         items={['spring', 'summer', 'autumn', 'winter']}
                         onItemClick={handleAddToCart}
-                    />
+                    /> */}
                 </div>
                 <div className='page-content'>
                     <div className="articleLookbook">
@@ -106,7 +134,7 @@ function Products() {
                     </toolbar-item>
                     <div className="list-product">
                         {products.map((product) => (
-                            <Item key={product.productId} product={product}/>
+                            <Item key={product.productId} product={product} />
                         ))}
                     </div>
 

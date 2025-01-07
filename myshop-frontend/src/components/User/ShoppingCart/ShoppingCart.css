@@ -1,5 +1,6 @@
 .img-product-cart{
     max-height: 100px;
+    margin-right: 20px;
 }
 .cart li{
     border-bottom: 1px dotted #6e6e6e;
@@ -24,12 +25,16 @@
     width: 25%;
     text-align: center;
 }
+strong {
+    font-weight: 400;
+    color:#6e6e6e;
+}
 .products-cart .title-cart{
     justify-content: center;
 }
 .products-cart .title-product-cart{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 }
 .products-cart .remove-cart{
