@@ -6,9 +6,7 @@ import './CartPage.css'
 function ShoppingCart() {
     return (
         <div>
-            <Header />
             <Cart/>
-            <Footer />
         </div>
     );
 }

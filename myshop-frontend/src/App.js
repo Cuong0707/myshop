@@ -7,6 +7,8 @@ import ProductPage from "./pages/User/ProductPage/ProductPage";
 import { PopupProvider } from "./context/PopupContext";
 import './App.css'
 import ShoppingCart from "./pages/User/CartPage/CartPage";
+import Header from "./components/User/Header/Header";
+import Footer from "./components/User/Footer/Footer";
 function App(){
     useEffect(() => {
         const observer = new IntersectionObserver((entries, observer) => {
@@ -26,6 +28,7 @@ function App(){
     return(
         <PopupProvider>
             <Router>
+                <Header/>
                 <Routes>
                     <Route path="/" element={<HomePage/>} />
                     <Route path="/signup" element={<SignUpPage/>} />
@@ -33,6 +36,7 @@ function App(){
                     <Route path="/shop" element={<ProductPage/>} />
                     <Route path="/cart" element={<ShoppingCart/>} />
                 </Routes>
+                <Footer/>
             </Router>
             <GlobalPopup/>
         </PopupProvider>

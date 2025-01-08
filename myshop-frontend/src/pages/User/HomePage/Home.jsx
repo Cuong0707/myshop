@@ -9,7 +9,6 @@ import './Home.css'
 function HomePage() {
     return (
         <div>
-            <Header />
             <Banner />
             <div className="categories">
                 <Category image="assets/images/img1.jpg" title="Editor's Pick" />
@@ -18,7 +17,6 @@ function HomePage() {
             </div>
             <NewArrivals />
             <Instagram />
-            <Footer />
         </div>
     );
 }

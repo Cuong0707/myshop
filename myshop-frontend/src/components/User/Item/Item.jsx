@@ -1,8 +1,10 @@
 import React from 'react';
 import './Item.css'; 
 import { useCart } from '../../../context/CartContext';
+import { usePopup } from '../../../context/PopupContext';
 function Product({ product }) {
     const { addToCart} = useCart();
+    const { setPopup } = usePopup();
     // const product = [{
     //     "title" : title,
     //     "name" : name,
@@ -18,7 +20,7 @@ function Product({ product }) {
                 </div>
                 <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" className="overlay-image" />
                 <div className="selection">
-                    <button className="add-to-cart" onClick={()=>addToCart(product)}>Add to Cart</button>
+                    <button className="add-to-cart" onClick={()=>{addToCart(product);setPopup("Đã thêm sản phẩm vào giỏ hàng !");}}>Add to Cart</button>
                     <div className="submit" style={{ display: 'none' }}>
                         <p className="title-submit">Size</p>
                         <p>XS   S   M   L   XL  2X</p>

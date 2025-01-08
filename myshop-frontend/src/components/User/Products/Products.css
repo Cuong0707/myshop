@@ -75,7 +75,7 @@ toolbar-item{
 .list-product{
     display: flex;
     justify-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 
@@ -86,14 +86,17 @@ toolbar-item{
     width: 15vw;
 }
 .pagination-wrapper{
-    text-align: center;
+    align-items: center;
     padding: 50px;
 }
-.pagination-wrapper button{
-    width: 200px;
-    height: 50px;
-    margin-top: 15px;
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
 }
+
 
 @media (max-width: 925px) {
     .list-product img{

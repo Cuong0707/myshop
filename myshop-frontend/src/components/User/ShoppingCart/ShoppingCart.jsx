@@ -18,27 +18,38 @@ const ShoppingCart = () => {
         <p>Your cart is empty</p>
       ) : (
         <>
-          <ul>
+          <ul className="list-cart">
             {cart.map((item) => (
-              <li key={item.title} className="products-cart">
+              <li key={item.productId} className="products-cart">
                 <div className="title-product-cart">
-                  <img className="img-product-cart" src={item.imageUrl}/>
-                  {item.name}
+                  <img className="img-product-cart" src={item.imageUrl} />
+                  <div className="name-item-temp">
+                    {item.name}
+                  </div>
                 </div>
-                <div>
-                  <strong>{item.price}</strong>
+                <div className="info-product-cart">
+                  <div>
+                    <label>{item.name}</label><br />
+                    <label>Price: </label>
+                    <strong>${item.price}</strong>
+                  </div>
+                  <div>
+                    <label>Quantity: </label>
+                    <strong>{item.quantity}</strong>
+                  </div>
+                  <div className="total-product-cart">
+                    <label>Total:</label>
+                    <strong>${item.price * item.quantity}</strong>
+                  </div>
+                  <button className="remove-cart" onClick={() => removeFromCart(item.productId)}>Remove</button>
+
                 </div>
-                <div>{item.quantity}</div>
-                <div className="total-product-cart">
-                  ${item.price * item.quantity}
-                </div>
-                <button className="remove-cart" onClick={() => removeFromCart(item.productId)}>Remove</button>
               </li>
             ))}
           </ul>
           <div className="cart-total">
-              <p className="subtotal">Subtotal: ${totalPrice}</p>
-              <button>Check Out</button>
+            <p className="subtotal">Subtotal: ${totalPrice}</p>
+            <button>Check Out</button>
           </div>
         </>
       )}

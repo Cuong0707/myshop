@@ -5,17 +5,30 @@ import DropdownMenu from '../../Global/GlobalDropdownMenu/DropdownMenu';
 import { fetchProducts } from '../../../services/productService';
 import { getCollections } from '../../../services/collectionService';
 import { getAllBrands } from '../../../services/brandService';
-
+import { usePopup } from '../../../context/PopupContext';
+import Loading from '../../Global/ProcessLoading/Loading';
 function Products() {
+    const { setPopup } = usePopup();
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const loaderRef = useRef(null);
     const [collections, setCollections] = useState([]);
     const [brands, setBrands] = useState([]);
-    const handleAddToCart = (button) => {
-        console.log("Added to cart", button);
+    const [sortByFilter, setSortByFilter] = useState(null);
+    const [sortDirFilter, setSortDirFilter] = useState(null);
+    const [collectionFilter, setCollectionFilter] = useState(null);
+    const [brandFilter, setBrandFilter] = useState(null);
+
+    const handleDropdownChange = (field, value) => {
+        if (field === 'sortBy') setSortByFilter(value);
+        if (field === 'sortDir') setSortDirFilter(value);
+        if (field === 'Collection') setCollectionFilter(value);
+        if (field === 'Brand' ) setBrandFilter(value);
     };
+    
+
+
     const loadCollections = useCallback(async () => {
         try {
             const collections = await getCollections()
@@ -24,26 +37,31 @@ function Products() {
             console.error('Failed to load collections:', error);
         }
     }, []);
+
     const loadBrands = useCallback(async () => {
         try {
             const brands = await getAllBrands();
             setBrands(brands);
-            console.log(brands);
         } catch (error) {
             console.error('Failed to load brands:', error);
         }
     }, []);
+
     useEffect(() => {
         loadCollections();
         loadBrands();
     }, [loadCollections,loadBrands]);
+
+
     // Hàm tải sản phẩm
     const loadProducts = useCallback(async () => {
-        if (isLoading || !hasMore) return;
+        if (isLoading || !hasMore) return ;
         setIsLoading(true);
         try {
             const currentPage = Math.floor(products.length / 4);
-            const newProducts = await fetchProducts(currentPage, 4);
+            const newProducts = await fetchProducts(currentPage, 4, sortByFilter, sortDirFilter
+                , collectionFilter, brandFilter, true);
+                console.log(sortByFilter, sortDirFilter, collectionFilter, brandFilter);   
             const uniqueProducts = newProducts.filter(
                 (product) => !products.some((p) => p.productId === product.productId)
             );
@@ -53,13 +71,17 @@ function Products() {
                 setProducts((prev) => [...prev, ...uniqueProducts]);
             }
         } catch (error) {
-            console.error("Failed to load products:", error);
+            setPopup("Có lỗi Xảy Ra, Vui Lòng Thử Lại Sau");
         } finally {
             setIsLoading(false);
         }
     }, [isLoading, hasMore, products]);
-
     // IntersectionObserver cho tải thêm
+    useEffect(() => {
+        setProducts([]);
+        setIsLoading(false);
+        setHasMore(true);
+    }, [sortByFilter, sortDirFilter, collectionFilter, brandFilter]);
     useEffect(() => {
         const loaderElement = loaderRef.current; // Sao chép giá trị của loaderRef.current
         const observerCallback = (entries) => {
@@ -78,8 +100,10 @@ function Products() {
             if (loaderElement) {
                 observer.unobserve(loaderElement); // Dùng biến cục bộ thay vì loaderRef.current
             }
+            observer.disconnect();
         };
-    }, [hasMore, isLoading, loadProducts]); // Thêm loadProducts vào danh sách phụ thuộc
+    }, [hasMore, isLoading, loadProducts]); 
+
 
     return (
         <div className='main-product'>
@@ -92,13 +116,13 @@ function Products() {
                     <DropdownMenu
                         title="Collection"
                         items={collections}
-                        onItemClick={handleAddToCart}
+                        onItemClick={handleDropdownChange}
                     />
 
                     <DropdownMenu
                         title="Brand"
                         items={brands.map((brand) => brand.brandName)}
-                        onItemClick={handleAddToCart}
+                        onItemClick={handleDropdownChange}
                     />
                     {/* <DropdownMenu
                         title="Collection"
@@ -134,16 +158,15 @@ function Products() {
                     </toolbar-item>
                     <div className="list-product">
                         {products.map((product) => (
-                            <Item key={product.productId} product={product} />
+                            <Item key={`product${product.productId}`} product={product} />
                         ))}
                     </div>
-
                     <div className="pagination-wrapper">
                         <nav className='pagination'>
                             <div ref={loaderRef} className="loading">
                                 {hasMore
                                     ? isLoading
-                                        ? 'Loading more products...'
+                                        ? isLoading && <Loading />
                                         : 'Scroll to load more products'
                                     : 'No more products available'}
                             </div>
