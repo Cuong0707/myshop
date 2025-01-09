@@ -26,8 +26,8 @@ function App(){
             });
     }, []);
     return(
-        <PopupProvider>
-            <Router>
+        <PopupProvider >
+            <Router >
                 <Header/>
                 <Routes>
                     <Route path="/" element={<HomePage/>} />

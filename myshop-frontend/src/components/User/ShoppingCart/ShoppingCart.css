@@ -14,6 +14,7 @@
 }
 .title-cart li{
     width: 25%;
+    text-transform: uppercase;
 }
 .cart .title-cart{
     display: flex;
@@ -66,23 +67,27 @@ strong {
 .info-product-cart div{
     width:  calc(100%/3);
 }
-label{
+.label-temp{
     display: none;
     font-size: 12px;
 }
+.name-item-cart{
+    display: none;
+}
 @media (max-width: 768px) {
-    label{
+    .label-temp ,.name-item-cart{
         display:inline;
         font-weight: 400;
     }
     .info-product-cart{
         display: grid;
+        width: 32%;
     }
     .name-item-temp{
         display: none;
     }
     .info-product-cart{
-        width: auto;
+        width: 68%;
     }
     .products-cart{
         text-align: start;
@@ -91,6 +96,9 @@ label{
         width: 100%;
     }
     .title-cart{
-        display: none;
+        display: none !important;
+    }
+    .name-item-cart .label-temp{
+        font-size: 18px;
     }
 }

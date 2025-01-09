@@ -11,7 +11,11 @@ function Product({ product }) {
     //     "price" : price,
     //     "image" : image
     // }];
-
+    // const toggleButtons = (button) => {
+    //     button.style.display = 'none';
+    //     const submit = button.nextElementSibling;
+    //     submit.style.display = 'block';
+    // };
     return (
         <div className="product">
             <div className="main-image">
@@ -20,7 +24,9 @@ function Product({ product }) {
                 </div>
                 <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" className="overlay-image" />
                 <div className="selection">
-                    <button className="add-to-cart" onClick={()=>{addToCart(product);setPopup("Đã thêm sản phẩm vào giỏ hàng !");}}>Add to Cart</button>
+                    {/*  onClick={(e)=>{ toggleButtons(e.currentTarget);}} 
+                    sử dụng khi hiển thị bản chọn size trước khi submit */}
+                    <button className="add-to-cart" onClick={() => {addToCart(product);setPopup("Đã thêm sản phẩm vào giỏ hàng !");}}>Add to Cart</button>
                     <div className="submit" style={{ display: 'none' }}>
                         <p className="title-submit">Size</p>
                         <p>XS   S   M   L   XL  2X</p>

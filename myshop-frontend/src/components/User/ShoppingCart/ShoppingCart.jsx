@@ -28,17 +28,19 @@ const ShoppingCart = () => {
                   </div>
                 </div>
                 <div className="info-product-cart">
+                  <div className="name-item-cart">
+                    <div className="label-temp">{item.name}</div>
+                  </div>
                   <div>
-                    <label>{item.name}</label><br />
-                    <label>Price: </label>
+                    <div className="label-temp">Price: </div>
                     <strong>${item.price}</strong>
                   </div>
                   <div>
-                    <label>Quantity: </label>
+                    <div className="label-temp">Quantity: </div>
                     <strong>{item.quantity}</strong>
                   </div>
                   <div className="total-product-cart">
-                    <label>Total:</label>
+                    <div className="label-temp">Total:</div>
                     <strong>${item.price * item.quantity}</strong>
                   </div>
                   <button className="remove-cart" onClick={() => removeFromCart(item.productId)}>Remove</button>
