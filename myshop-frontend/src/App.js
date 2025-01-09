@@ -9,6 +9,7 @@ import './App.css'
 import ShoppingCart from "./pages/User/CartPage/CartPage";
 import Header from "./components/User/Header/Header";
 import Footer from "./components/User/Footer/Footer";
+import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 function App(){
     useEffect(() => {
         const observer = new IntersectionObserver((entries, observer) => {
@@ -35,6 +36,7 @@ function App(){
                     <Route path="/signin" element={<SignUpPage/>} />
                     <Route path="/shop" element={<ProductPage/>} />
                     <Route path="/cart" element={<ShoppingCart/>} />
+                    <Route path="/admin/dashboard" element={<Dashboard/>} />
                 </Routes>
                 <Footer/>
             </Router>
