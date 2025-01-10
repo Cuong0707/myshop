@@ -11,7 +11,7 @@ import HomePageAdmin from "./pages/Admin/HomePageAdmin/HomePageAdmin";
 import Charts from "./components/Admin/Charts/Charts";
 import UserLayout from "./layouts/UserLayout/UserLayout";
 function App() {
-
+    
     useEffect(() => {
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -39,7 +39,7 @@ function App() {
                         <Route path="/cart" element={<ShoppingCart />} />
                     </Route>
                     <Route path="/admin" element={<HomePageAdmin />} >
-                        <Route path="dashboard" element={<Charts width={600} height={400} />} />
+                        <Route path="dashboard" element={<Charts height={400} />} />
                         <Route path="usersmanager" element={<ProductPage />} />
                     </Route>
                 </Routes>

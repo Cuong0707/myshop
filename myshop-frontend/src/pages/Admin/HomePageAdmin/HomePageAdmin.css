@@ -4,27 +4,83 @@
 
 .content {
     display: flex;
+    position: relative;
+    max-width: 100%;
 }
 
-aside {
-    width: 250px;
-    background-color: #f4f4f4;
-    transition: transform 0.3s ease;
+
+.logo {
+    display: flex;
+    justify-content: space-between;
 }
 
-aside.closed {
-    transform: translateX(-100%);
-}
-
-.content {
-    flex-grow: 1;
+/* .user-info {
+    width: 75%;
     padding: 20px;
-    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+
+} */
+
+.aside {
+    position: fixed;
+    top: 0;
+    left: -25%;
+    /* Ẩn aside mặc định */
+    width: 25%;
+    height: 100%;
+    transition: left 0.3s ease, background-color 0.3s ease;
+    z-index: 1;
+    overflow: hidden;
 }
 
-.toggle-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    cursor: pointer;
+.aside.active {
+    left: 0;
+}
+.chart{
+    width: 50%;
+}
+main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: left 0.3s ease, background-color 0.3s ease;
+    /* Để trượt nếu muốn */
+}
+.main button{
+    border: none;
+}
+.main.shifted {
+    left: 25%;
+    /* Dịch sang đúng chiều rộng của aside */
+    width: 75%;
+}
+
+
+
+@media (max-width: 768px) {
+    .aside {
+        position: absolute;
+        width: 50%;
+        left: -50%;
+    }
+    .aside.active {
+        left: 0;
+        background-color: #fff;
+    }
+    .main.shifted {
+        left: 25%;
+        /* Tương ứng với chiều rộng của aside */
+        width: 100%;        
+        opacity: 0.5;
+        background-color: black;
+    }
+    .main{
+        position: static;
+    }
+    .chart{
+        width: 100%;
+    }
 }
