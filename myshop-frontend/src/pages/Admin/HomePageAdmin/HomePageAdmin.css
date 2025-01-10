@@ -1,0 +1,30 @@
+/* HomePageAdmin.css */
+
+
+
+.content {
+    display: flex;
+}
+
+aside {
+    width: 250px;
+    background-color: #f4f4f4;
+    transition: transform 0.3s ease;
+}
+
+aside.closed {
+    transform: translateX(-100%);
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.toggle-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+}

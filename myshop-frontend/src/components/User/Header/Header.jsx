@@ -31,16 +31,16 @@ function Header() {
                 </div>
                 <div className="bottom-bar">
                     <a href="/" className="logo">
-                        <img src="assets/images/ella.jpg" alt="Ella Fashion Store Logo" className="logo-img" />
+                        <img src={`${process.env.PUBLIC_URL}/assets/images/ella.jpg`} alt="Ella Fashion Store Logo" className="logo-img" />
                     </a>
                     <div className="user-actions">
                         <p>FREE SHIPPING ON ALL ORDERS. NO MINIMUM PURCHASE</p>
                         <a href="/cart">
-                            <img src="assets/images/cardicon.jpg" alt="Card Icon" />
+                            <img src={`${process.env.PUBLIC_URL}/assets/images/cardicon.jpg`} alt="Card Icon" />
                             Shopping Cart ({totalItems})
                         </a>
-                        <a href="#">
-                            <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" />
+                        <a href="/wishlist">
+                            <img src={`${process.env.PUBLIC_URL}/assets/images/favoriteicon.jpg`} alt="Favorite Icon" />
                             My Wish lists
                         </a>
                         <a href="/signup">Sign in or Create an account</a>
@@ -57,13 +57,13 @@ function Header() {
                     <ul className="menu" id="menu">
                         <li><a href="/">New In</a></li>
                         <li><a href="/shop">Shop</a></li>
-                        <li><a href="#">Collections</a></li>
-                        <li><a href="#">Lookbook</a></li>
-                        <li><a href="#">Demo</a></li>
-                        <li><a href="#">Shop Instagram</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Brands</a></li>
-                        <li><a href="#">FAQs</a></li>
+                        <li><a href="/Collections">Collections</a></li>
+                        <li><a href="/Lookbook">Lookbook</a></li>
+                        <li><a href="/Demo">Demo</a></li>
+                        <li><a href="/Instagram">Shop Instagram</a></li>
+                        <li><a href="/Blog">Blog</a></li>
+                        <li><a href="/Brands">Brands</a></li>
+                        <li><a href="/FAQs">FAQs</a></li>
                     </ul>
                 </nav>
             </div>

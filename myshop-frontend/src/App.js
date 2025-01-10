@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/User/HomePage/Home";
 import SignUpPage from "./pages/User/SignUp&SignInPage/SignUp";
@@ -7,10 +7,11 @@ import ProductPage from "./pages/User/ProductPage/ProductPage";
 import { PopupProvider } from "./context/PopupContext";
 import './App.css'
 import ShoppingCart from "./pages/User/CartPage/CartPage";
-import Header from "./components/User/Header/Header";
-import Footer from "./components/User/Footer/Footer";
-import Dashboard from "./pages/Admin/Dashboard/Dashboard";
-function App(){
+import HomePageAdmin from "./pages/Admin/HomePageAdmin/HomePageAdmin";
+import Charts from "./components/Admin/Charts/Charts";
+import UserLayout from "./layouts/UserLayout/UserLayout";
+function App() {
+
     useEffect(() => {
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -26,21 +27,24 @@ function App(){
                 observer.observe(element);
             });
     }, []);
-    return(
+    return (
         <PopupProvider >
             <Router >
-                <Header/>
                 <Routes>
-                    <Route path="/" element={<HomePage/>} />
-                    <Route path="/signup" element={<SignUpPage/>} />
-                    <Route path="/signin" element={<SignUpPage/>} />
-                    <Route path="/shop" element={<ProductPage/>} />
-                    <Route path="/cart" element={<ShoppingCart/>} />
-                    <Route path="/admin/dashboard" element={<Dashboard/>} />
+                    <Route element={<UserLayout />}>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/signup" element={<SignUpPage />} />
+                        <Route path="/signin" element={<SignUpPage />} />
+                        <Route path="/shop" element={<ProductPage />} />
+                        <Route path="/cart" element={<ShoppingCart />} />
+                    </Route>
+                    <Route path="/admin" element={<HomePageAdmin />} >
+                        <Route path="dashboard" element={<Charts width={600} height={400} />} />
+                        <Route path="usersmanager" element={<ProductPage />} />
+                    </Route>
                 </Routes>
-                <Footer/>
             </Router>
-            <GlobalPopup/>
+            <GlobalPopup />
         </PopupProvider>
     )
 };
