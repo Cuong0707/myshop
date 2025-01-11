@@ -1,0 +1,12 @@
+.chart-first{
+    position: absolute;
+    width: 50%;
+    padding: 20px;
+    z-index: 1;
+}
+.chart-second{
+    position: absolute;
+    width: 50%;
+    padding: 20px;
+    right: 0;
+}

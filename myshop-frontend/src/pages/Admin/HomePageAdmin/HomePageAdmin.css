@@ -9,37 +9,47 @@
 }
 
 
-.logo {
+.logo-admin-page {
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #dbdfe6;
+    height: 70px;
+}
+.logo-admin-page a{
+    padding: 10px;
 }
 
-/* .user-info {
-    width: 75%;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-
-} */
+.logo-admin-page .close-button{
+    display: none;
+}
+.header-admin-page{
+    border-bottom: 1px solid #dbdfe6;
+    height: 70px;  
+}
+.header-admin-page button{
+    margin: 0 10px; 
+}
+.user-info {
+    margin: 0 10px;
+}
 
 .aside {
     position: fixed;
     top: 0;
     left: -25%;
-    /* Ẩn aside mặc định */
     width: 25%;
     height: 100%;
+    border-right: 1px solid #dbdfe6;
     transition: left 0.3s ease, background-color 0.3s ease;
-    z-index: 1;
+    z-index: 2;
     overflow: hidden;
 }
 
 .aside.active {
     left: 0;
+    
 }
-.chart{
-    width: 50%;
-}
+
 main {
     position: fixed;
     top: 0;
@@ -62,7 +72,6 @@ main {
 
 @media (max-width: 768px) {
     .aside {
-        position: absolute;
         width: 50%;
         left: -50%;
     }
@@ -70,17 +79,32 @@ main {
         left: 0;
         background-color: #fff;
     }
-    .main.shifted {
+    .header-admin-page{
+        border-bottom: none;
+    }
+    /* .main.shifted {
         left: 25%;
-        /* Tương ứng với chiều rộng của aside */
         width: 100%;        
         opacity: 0.5;
         background-color: black;
     }
+     */
+
     .main{
         position: static;
     }
     .chart{
         width: 100%;
     }
+    .logo-admin-page .close-button{
+        width: 27px;
+        height: 27px;
+        border: none;
+        margin-top: 10px ;
+        display: block;
+    }
+}
+.content-admin-page{
+    background-color: #dbdfe6;
+    height: 100%;
 }

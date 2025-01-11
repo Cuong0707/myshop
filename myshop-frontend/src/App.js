@@ -8,8 +8,9 @@ import { PopupProvider } from "./context/PopupContext";
 import './App.css'
 import ShoppingCart from "./pages/User/CartPage/CartPage";
 import HomePageAdmin from "./pages/Admin/HomePageAdmin/HomePageAdmin";
-import Charts from "./components/Admin/Charts/Charts";
+import Charts from "./components/Admin/LineCharts/LineCharts";
 import UserLayout from "./layouts/UserLayout/UserLayout";
+import UsersManagerContent from "./pages/Admin/UsersManagerContent/UsersManagerContent";
 function App() {
     
     useEffect(() => {
@@ -40,7 +41,7 @@ function App() {
                     </Route>
                     <Route path="/admin" element={<HomePageAdmin />} >
                         <Route path="dashboard" element={<Charts height={400} />} />
-                        <Route path="usersmanager" element={<ProductPage />} />
+                        <Route path="usermanagement" element={<UsersManagerContent/>} />
                     </Route>
                 </Routes>
             </Router>

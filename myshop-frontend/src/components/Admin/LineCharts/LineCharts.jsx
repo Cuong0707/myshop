@@ -1,6 +1,6 @@
 import React from 'react';
 import { ResponsiveLine } from '@nivo/line';
-
+import './LineCharts.css';
 const data = [
     {
         id: 'visits',
@@ -32,9 +32,9 @@ const data = [
     },
 ];
 
-const Charts = ({height}) => {
+const LineCharts = ({height}) => {
     return (
-        <div className='chart' style={{ height: height }}>
+        <div className="chart" style={{ height: height }}>
             <ResponsiveLine
                 data={data}
                 margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
@@ -103,4 +103,4 @@ const Charts = ({height}) => {
     );
 };
 
-export default Charts;
+export default LineCharts;
