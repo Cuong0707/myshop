@@ -10,7 +10,6 @@ function Header() {
         const menu = document.getElementById('menu');
         menu.classList.toggle('active');
     };
-
     return (
         <>
             <header>

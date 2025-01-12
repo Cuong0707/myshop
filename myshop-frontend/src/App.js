@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/User/HomePage/Home";
 import SignUpPage from "./pages/User/SignUp&SignInPage/SignUp";
-import GlobalPopup from "./components/Global/GlobalPopup/GlobalPopup";
 import ProductPage from "./pages/User/ProductPage/ProductPage";
 import { PopupProvider } from "./context/PopupContext";
 import './App.css'
@@ -13,21 +12,21 @@ import UserLayout from "./layouts/UserLayout/UserLayout";
 import UsersManagerContent from "./pages/Admin/UsersManagerContent/UsersManagerContent";
 function App() {
     
-    useEffect(() => {
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Dừng quan sát sau khi đã thấy
-                }
-            });
-        }, { threshold: 0.5 });
+    // useEffect(() => {
+    //     const observer = new IntersectionObserver((entries, observer) => {
+    //         entries.forEach(entry => {
+    //             if (entry.isIntersecting) {
+    //                 entry.target.classList.add('visible');
+    //                 observer.unobserve(entry.target); // Dừng quan sát sau khi đã thấy
+    //             }
+    //         });
+    //     }, { threshold: 0.5 });
 
-        document.querySelectorAll('.slide-in-right, .fade-left-right-text, .fade-right-left-text, .fade-left-right-image, .fade-right-left-image')
-            .forEach(element => {
-                observer.observe(element);
-            });
-    }, []);
+    //     document.querySelectorAll('.slide-in-right, .fade-left-right-text, .fade-right-left-text, .fade-left-right-image, .fade-right-left-image')
+    //         .forEach(element => {
+    //             observer.observe(element);
+    //         });
+    // }, []);
     return (
         <PopupProvider >
             <Router >
@@ -45,7 +44,6 @@ function App() {
                     </Route>
                 </Routes>
             </Router>
-            <GlobalPopup />
         </PopupProvider>
     )
 };

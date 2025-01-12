@@ -60,8 +60,7 @@ function Products() {
         try {
             const currentPage = Math.floor(products.length / 4);
             const newProducts = await fetchProducts(currentPage, 4, sortByFilter, sortDirFilter
-                , collectionFilter, brandFilter, true);
-                console.log(sortByFilter, sortDirFilter, collectionFilter, brandFilter);   
+                , collectionFilter, brandFilter, true); 
             const uniqueProducts = newProducts.filter(
                 (product) => !products.some((p) => p.productId === product.productId)
             );
@@ -75,7 +74,11 @@ function Products() {
         } finally {
             setIsLoading(false);
         }
-    }, [isLoading, hasMore, products]);
+    }, [isLoading, hasMore, products,sortByFilter,
+        sortDirFilter,
+        collectionFilter,
+        brandFilter,
+        setPopup,]);
     // IntersectionObserver cho tải thêm
     useEffect(() => {
         setProducts([]);
