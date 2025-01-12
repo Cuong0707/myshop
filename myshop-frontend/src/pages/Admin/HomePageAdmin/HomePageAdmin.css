@@ -93,6 +93,10 @@ main {
     .main{
         position: static;
     }
+    .main.shifted {
+        /* Dịch sang đúng chiều rộng của aside */
+        width: 100%;
+    }
     .chart{
         width: 100%;
     }

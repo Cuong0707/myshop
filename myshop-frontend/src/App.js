@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/User/HomePage/Home";
 import SignUpPage from "./pages/User/SignUp&SignInPage/SignUp";
 import ProductPage from "./pages/User/ProductPage/ProductPage";
@@ -10,6 +10,7 @@ import HomePageAdmin from "./pages/Admin/HomePageAdmin/HomePageAdmin";
 import Charts from "./components/Admin/LineCharts/LineCharts";
 import UserLayout from "./layouts/UserLayout/UserLayout";
 import UsersManagerContent from "./pages/Admin/UsersManagerContent/UsersManagerContent";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 function App() {
     
     // useEffect(() => {
@@ -39,8 +40,10 @@ function App() {
                         <Route path="/cart" element={<ShoppingCart />} />
                     </Route>
                     <Route path="/admin" element={<HomePageAdmin />} >
+                        <Route index element={<Navigate to="/admin/dashboard" />} />
                         <Route path="dashboard" element={<Charts height={400} />} />
                         <Route path="usermanagement" element={<UsersManagerContent/>} />
+                        <Route path="*" element={<NotFoundPage />} />
                     </Route>
                 </Routes>
             </Router>

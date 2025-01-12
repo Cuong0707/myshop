@@ -26,7 +26,7 @@ const HomePageAdmin = () => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside); // Dọn dẹp sự kiện khi component unmount
         };
-    }, []); // Chỉ cần chạy lần đầu tiên
+    }, []);
 
     return (
         <div className="homepage-admin">
@@ -77,4 +77,4 @@ const HomePageAdmin = () => {
     );
 };
 
-export default HomePageAdmin;
+export default React.memo(HomePageAdmin);

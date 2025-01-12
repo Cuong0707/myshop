@@ -1,0 +1,9 @@
+.not-found-container {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.not-found-message {
+    font-size: 2rem;
+    color: #343a40;
+}
