@@ -1,0 +1,40 @@
+.chart-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+.chart-content .income-chart {
+    width: 33.33%;
+    min-width: 280px;
+}
+.chart-content .income-chart .income-chart-content{
+    height: 160px;
+    background-color: #2E8EE8;
+    border-radius: 10px;
+    margin: 5px;
+}
+.card{
+    width: 80%;
+    margin: 0 auto;
+    height: 500px;
+    
+}
+.card .card-content{
+    margin: 0 5px;
+    height: 100%;
+    background-color: #2E8EE8;
+    border-radius: 10px;
+}
+@media (max-width: 1024px) {
+    .chart-content .income-chart {
+        width: 50%;
+    }
+}
+@media (max-width: 768px) {
+    .chart-content .income-chart {
+        width: 100%;
+    }
+}

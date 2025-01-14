@@ -48,14 +48,16 @@ const HomePageAdmin = () => {
                             </svg>
                         </button>
                     </div>
-                    <AsideMenu />
+                    <div className='aside-content'>
+                        <AsideMenu />
+                    </div>
                 </div>
                 <main className={`main ${isMenuOpen ? "shifted" : ""}`}>
                     <div className="header-admin-page">
                         <div className="user-info">
                             <h2>User</h2>
                         </div>
-                        <button onClick={toggleMenu}>
+                        <button className='button-aside-menu' onClick={toggleMenu}>
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 100 80"
                                 width="20"
@@ -69,7 +71,7 @@ const HomePageAdmin = () => {
                         </button>
                     </div>
                     <div className="content-admin-page">
-                        <Outlet /> 
+                        <Outlet />
                     </div>
                 </main>
             </div>

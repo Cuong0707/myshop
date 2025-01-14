@@ -14,31 +14,19 @@ const data = [
             { x: 780, y: 89 },   // 13:00
             { x: 810, y: 68 },   // 13:30
             { x: 840, y: 92 },   // 14:00
-            { x: 870, y: 10 },   // 14:30
-            { x: 900, y: 11 },   // 15:00
-            { x: 930, y: 12 },   // 15:30
-            { x: 960, y: 13 },   // 16:00
-            { x: 990, y: 14 },   // 16:30
-            { x: 1020, y: 534 }, // 17:00
-            { x: 1050, y: 16 },  // 17:30
-            { x: 1080, y: 17 },  // 18:00
-            { x: 1110, y: 57 },  // 18:30
-            { x: 1140, y: 19 },  // 19:00
-            { x: 1170, y: 45 },  // 19:30
-            { x: 1200, y: 89 },  // 20:00
-            { x: 1230, y: 35 },  // 20:30
-            { x: 1260, y: 78 },  // 21:00
         ],
     },
 ];
 
-const LineCharts = ({height}) => {
+const LineCharts = () => {
     return (
-        <div className="chart" style={{ height: height }}>
+        <div className="chart">
             <ResponsiveLine
                 data={data}
+                animate={false} // Tắt animation
+                motionConfig="stiff" // Nếu muốn animation mượt
                 margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-                xScale={{ type: 'linear' }}
+                xScale={{ type: 'point' }}
                 yScale={{
                     type: 'linear',
                     min: 'auto',
@@ -46,27 +34,34 @@ const LineCharts = ({height}) => {
                     stacked: true,
                     reverse: false,
                 }}
+                curve="monotoneX"
                 axisTop={null}
                 axisRight={null}
-                axisBottom={{
-                    orient: 'bottom',
-                    tickSize: 5,
-                    tickPadding: 5,
-                    tickRotation: 0,
-                    legend: 'Time',
-                    legendOffset: 36,
-                    legendPosition: 'middle',
-                }}
-                axisLeft={{
-                    orient: 'left',
-                    tickSize: 5,
-                    tickPadding: 5,
-                    tickRotation: 0,
-                    legend: 'Visits',
-                    legendOffset: -40,
-                    legendPosition: 'middle',
-                }}
-                pointSize={10}
+                axisBottom={null}
+                axisLeft={null}
+
+                enableGridX={false}
+                enableGridY={false}
+                // axisBottom={{
+                //     orient: 'bottom',
+                //     tickSize: 5,
+                //     tickPadding: 5,
+                //     tickRotation: 0,
+                //     legend: 'Time',
+                //     legendOffset: 36,
+                //     legendPosition: 'middle',
+                // }}
+                // axisLeft={{
+                //     orient: 'left',
+                //     tickSize: 5,
+                //     tickPadding: 5,
+                //     tickRotation: 0,
+                //     legend: 'Visits',
+                //     legendOffset: -40,
+                //     legendPosition: 'middle',
+                // }}
+                lineWidth={1}
+                pointSize={4}
                 pointColor={{ theme: 'background' }}
                 pointBorderWidth={2}
                 pointBorderColor={{ from: 'serieColor' }}
@@ -98,6 +93,28 @@ const LineCharts = ({height}) => {
                         ],
                     },
                 ]}
+            // theme={{
+            //     background: '#2E8EE8', /* Thêm màu nền tùy chọn */
+            //     axis: {
+            //         domain: {
+            //             line: {
+            //                 stroke: '#777777',
+            //                 strokeWidth: 1,
+            //             },
+            //         },
+            //         ticks: {
+            //             line: {
+            //                 stroke: '#777777',
+            //                 strokeWidth: 1,
+            //             },
+            //             text: {
+            //                 fill: '#333333',
+            //             },
+            //         },
+            //     },
+            // }}
+
+
             />
         </div>
     );

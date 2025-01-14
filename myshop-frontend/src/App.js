@@ -7,10 +7,10 @@ import { PopupProvider } from "./context/PopupContext";
 import './App.css'
 import ShoppingCart from "./pages/User/CartPage/CartPage";
 import HomePageAdmin from "./pages/Admin/HomePageAdmin/HomePageAdmin";
-import Charts from "./components/Admin/LineCharts/LineCharts";
 import UserLayout from "./layouts/UserLayout/UserLayout";
 import UsersManagerContent from "./pages/Admin/UsersManagerContent/UsersManagerContent";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import DashBoardContent from "./pages/Admin/DashBoardContent/DashBoardContent";
 function App() {
     
     // useEffect(() => {
@@ -41,7 +41,7 @@ function App() {
                     </Route>
                     <Route path="/admin" element={<HomePageAdmin />} >
                         <Route index element={<Navigate to="/admin/dashboard" />} />
-                        <Route path="dashboard" element={<Charts height={400} />} />
+                        <Route path="dashboard" element={<DashBoardContent />} />
                         <Route path="usermanagement" element={<UsersManagerContent/>} />
                         <Route path="*" element={<NotFoundPage />} />
                     </Route>

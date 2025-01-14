@@ -6,33 +6,49 @@
     display: flex;
     position: relative;
     max-width: 100%;
+    background-color: #fff;
 }
 
 
 .logo-admin-page {
+    position: fixed;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #dbdfe6;
+    border: 1px solid #dbdfe6;
     height: 70px;
+    width: 25%;
+    background-color: #fff;
 }
 .logo-admin-page a{
     padding: 10px;
 }
+.aside-content{
+    margin-top: 70px;
+    overflow-y: auto;
+    background-color: #fff;
+}
 
 .logo-admin-page .close-button{
     display: none;
+    cursor: pointer;
+    background-color: #fff;
 }
+
 .header-admin-page{
+    position: fixed;
     border-bottom: 1px solid #dbdfe6;
     height: 70px;  
+    width: 100%;
+    z-index: 1;
+    background-color: #fff;
 }
 .header-admin-page button{
     margin: 0 10px; 
+    background-color: #fff;
 }
 .user-info {
     margin: 0 10px;
 }
-
 .aside {
     position: fixed;
     top: 0;
@@ -42,7 +58,9 @@
     border-right: 1px solid #dbdfe6;
     transition: left 0.3s ease, background-color 0.3s ease;
     z-index: 2;
-    overflow: hidden;
+    overflow:hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .aside.active {
@@ -51,16 +69,16 @@
 }
 
 main {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     transition: left 0.3s ease, background-color 0.3s ease;
     /* Để trượt nếu muốn */
 }
 .main button{
     border: none;
+    cursor: pointer;
 }
 .main.shifted {
     left: 25%;
@@ -77,10 +95,6 @@ main {
     }
     .aside.active {
         left: 0;
-        background-color: #fff;
-    }
-    .header-admin-page{
-        border-bottom: none;
     }
     /* .main.shifted {
         left: 25%;
@@ -100,6 +114,9 @@ main {
     .chart{
         width: 100%;
     }
+    .logo-admin-page{
+        width: 50%;
+    }
     .logo-admin-page .close-button{
         width: 27px;
         height: 27px;
@@ -109,6 +126,7 @@ main {
     }
 }
 .content-admin-page{
+    margin-top: 70px;
     background-color: #dbdfe6;
-    height: 100%;
+    height: auto;
 }

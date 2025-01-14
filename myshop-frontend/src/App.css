@@ -69,3 +69,34 @@
   
  
    */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom thanh cuộn chung */
+::-webkit-scrollbar {
+  width: 5px;
+  /* Độ rộng của thanh cuộn dọc */
+  height: 5px;
+  /* Độ rộng của thanh cuộn ngang */
+}
+
+::-webkit-scrollbar-track {
+  background: #f4f4f4;
+  /* Màu nền của track */
+  border-radius: 10px;
+  /* Bo góc */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  /* Màu của thanh kéo */
+  border-radius: 10px;
+  /* Bo góc */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  /* Màu của thanh kéo khi hover */
+}

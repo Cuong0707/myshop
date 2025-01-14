@@ -1,6 +1,8 @@
 
 
 .chart {
-    background-color: white;
+    height: 80%;
+}
+.chart svg{
     border-radius: 10px;
 }
