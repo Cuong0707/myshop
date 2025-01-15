@@ -3,38 +3,111 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    width: 80%;
     margin: 0 auto;
 }
-.chart-content .income-chart {
+.chart-content .box-chart {
     width: 33.33%;
-    min-width: 280px;
+    min-width: 230px;
 }
-.chart-content .income-chart .income-chart-content{
-    height: 160px;
-    background-color: #2E8EE8;
+.chart-content .box-chart .info-chart-content{
+    height: 180px;
     border-radius: 10px;
-    margin: 5px;
+    margin: 10px;
+}
+.chart-content .box-chart .info-chart-content .header-chart{
+    padding: 30px 30px 0 30px;
+    height: 50%;
+    color: #fff;
+    overflow: hidden;
+}
+.chart-content .box-chart .info-chart-content .header-chart div{
+    display: flex;
+    align-items: flex-end;
+}
+
+/*Màu nền biểu đồ*/
+.users-chart-color{
+    background-color: #6862D9;
+}
+.income-chart-color{
+    background-color: #2E8EE8;
+}
+.conversion-chart-color{
+    background-color: #F9AC14;   
+}
+.sessions-chart-color{
+    background-color: #F55252;
 }
 .card{
-    width: 80%;
     margin: 0 auto;
     height: 500px;
-    
+}
+
+/*Set chiều rộng card và chart*/
+.card, .chart-content{
+    width: 95%;
 }
 .card .card-content{
-    margin: 0 5px;
+    margin: 15px 10px;
     height: 100%;
-    background-color: #2E8EE8;
+    background-color:#fff;
     border-radius: 10px;
+    border: 1px solid #DBDFE6;
 }
+.card .card-content .header-card{
+    padding: 5px 20px;
+    border-bottom: 1px solid #DBDFE6;
+    background-color: #f8f8f8;
+}
+.card .card-content .body-card .row-card{
+    height: 200px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.card .card-content .body-card .row-card .left-row-card,
+.card .card-content .body-card .row-card .right-row-card {
+    padding: 5%;
+}
+.card .card-content .body-card .row-card .progress-bar{
+    width: 43%;
+    height: inherit;
+    background-color: #2E8EE8;
+}
+.card .card-content .body-card .row-card .progress{
+    width: 100%;
+    height: 5px;
+    background-color: #E7EAEE;
+}
+.card .card-content .body-card .table-card{
+    width: 95%;
+    margin: 0 auto;
+    border: 1px solid #DBDFE6;
+    border-radius: 5px;
+}
+.card .card-content .body-card .table-card table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.card .card-content .body-card .table-card table thead{
+    background-color: #f8f8f8;
+}
+.card tr{
+    border-bottom: 1px solid #DBDFE6;
+}
+.card tr th, .card tr td{
+    padding: 10px;
+}
+.card .card-content .body-card .table-card table tbody{
+    text-align: center;
+}
+
 @media (max-width: 1024px) {
-    .chart-content .income-chart {
+    .chart-content .box-chart {
         width: 50%;
     }
 }
 @media (max-width: 768px) {
-    .chart-content .income-chart {
+    .chart-content .box-chart {
         width: 100%;
     }
 }
