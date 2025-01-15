@@ -1,0 +1,15 @@
+
+.checkout-container .checkout-colunm {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.checkout-container .checkout-colunm .left-colunm{
+    border-right: 1px solid #DBDFE6 ;
+    background-color: #fafafa;
+}
+.checkout-container .checkout-colunm .right-colunm{
+    background-color: #fff;
+}
+.checkout-container .checkout-colunm .right-colunm .checkout-products{
+    height: 80%;
+}

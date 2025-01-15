@@ -1,11 +1,11 @@
 import React from "react";
 import { useCart } from "../../../context/CartContext";
+import { useNavigate } from "react-router-dom";
 import './ShoppingCart.css';
 const ShoppingCart = () => {
   const { cart, removeFromCart } = useCart();
-
+  const navigate = useNavigate();
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  console.log(cart);
   return (
     <div className="cart">
       <ul className="title-cart">
@@ -22,7 +22,7 @@ const ShoppingCart = () => {
             {cart.map((item) => (
               <li key={item.productId} className="products-cart">
                 <div className="title-product-cart">
-                  <img className="img-product-cart" src={item.imageUrl} />
+                  <img className="img-product-cart" src={item.imageUrl} alt={item.name}/>
                   <div className="name-item-temp">
                     {item.name}
                   </div>
@@ -51,7 +51,7 @@ const ShoppingCart = () => {
           </ul>
           <div className="cart-total">
             <p className="subtotal">Subtotal: ${totalPrice}</p>
-            <button>Check Out</button>
+            <button onClick={()=> navigate("/checkout")}>Check Out</button>
           </div>
         </>
       )}
