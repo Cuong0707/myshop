@@ -69,9 +69,13 @@
     .footer-top{
         grid-template-columns: repeat(4,1fr);
         text-align: center;
+        padding: 10px 0 5px 0;
     }
     .footer-top .shop{
         grid-column: 1;
+    }
+    .footer-bottom{
+        padding: 0;
     }
 }
 

@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // URL của API backend Spring Boot
-const API_URL = "https://myshop-production-4ea0.up.railway.app/api" || "http://localhost:8080/api/";
+const API_URL = "http://localhost:8080/api"||"https://myshop-production-4ea0.up.railway.app/api";
 
 export const registerUser = async (userData) => {
   try {
