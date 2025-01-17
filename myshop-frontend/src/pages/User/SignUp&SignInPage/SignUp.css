@@ -1,25 +1,36 @@
-.body,html{
+.body,
+html {
     background-color: #f5f5f5;
 }
-.mainContainer{
+
+.main-container {
+    max-width: 80%;
+    margin: 50px auto;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    padding: 50px;
-    margin: 50px;
-    background-color: #ffffff;
-    border-radius: 5%;
-    align-items: center;
-    max-width: 470px;
-    border: 2px solid white;
+    height: 500px;
 }
-.titleContainer{
+
+.main-container .content-form {
+    display: flex;
+    padding: 50px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    align-items: center;
+    max-width: 100%;
+    border: 1px solid var(--border-color);
+    height: 100%;
+}
+
+.main-container .signup-form,
+.main-container .signin-form {
+    padding: 20px;
+}
+
+.title-container {
     max-width: 100px;
 }
-.inputContainer{
+
+.input-container {
     width: 100%;
     margin: 5px 10px;
     padding: 5px;
@@ -29,27 +40,74 @@
     font-size: 1rem;
     border: 1px solid black;
 }
-.errorLabel{
+
+.error-label {
     font-size: 0.75rem;
     color: red;
 }
 
+.main-container .form-layer {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: left 1s ease, right 1s ease;
+    top: 0;
+}
+
+.main-container .form-layer img {
+    width: 100%;
+    object-fit: cover;
+    transition: opacity 2s ease-in-out;
+    /* Hiệu ứng mượt */
+    opacity: 1;
+}
+.main-container .form-layer img:not([src]) {
+    opacity: 0; /* Ẩn ảnh nếu không có đường dẫn */
+  }
+
+.main-container .form-layer button {
+    width: 100px;
+    height: 45px;
+    position: absolute;
+    bottom: 10px;
+    left: 45%;
+}
+
+.main-container .form-layer.right-form {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    left: 50%;
+}
+
+.main-container .form-layer.left-form {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    left: 0;
+}
+
 @media (max-width:470px) {
-    .mainContainer{
+    .main-container {
         border: white;
     }
 
-    .body,html{
+    .body,
+    html {
         background-color: #ffffff;
     }
 }
+
 @media (max-width:580px) {
-    .mainContainer{
+    .main-container {
         position: unset;
         transform: none;
     }
 
-    .body,html{
+    .body,
+    html {
         background-color: #ffffff;
     }
 }
