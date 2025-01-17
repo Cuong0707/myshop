@@ -97,7 +97,7 @@
 }
 
 .dropdown-products .checkout-products.open {
-    max-height: 80vh;
+    max-height: 75vh;
     /* Chiều cao tối đa khi mở */
     opacity: 1;
     /* Hiển thị */
@@ -110,8 +110,8 @@
     height: 100px;
     border-bottom: 1px solid #DBDFE6;
 }
-.content-checkout-info label, .content-checkout-info input{
-    padding: 20px 0;
+.content-checkout-info label{
+   padding: 20px 0;
 }
 .content-checkout-info p{
     padding: 20px 10px;
@@ -120,6 +120,7 @@
     border: 1px solid #DBDFE6;
     border-radius: 5px;
     margin: 10px 0;
+    padding: 20px;
 }
 .content-checkout-info .shipping-address .fullname {
     display: flex;
@@ -167,11 +168,23 @@
     }
 
     .dropdown-products .btn-checkout-products {
-        display: block;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
         width: 100%;
+        height: 45px;
     }
 
     .checkout-container .checkout-colunm{
         display: block;
+    }
+    .checkout-products ul{
+        margin: 0 auto;
+    }
+}
+
+@media (max-width:425px) {
+    .name-product-checkout p{
+        font-size: 4vw;
     }
 }

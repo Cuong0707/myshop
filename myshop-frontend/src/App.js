@@ -12,6 +12,8 @@ import UsersManagerContent from "./pages/Admin/UsersManagerContent/UsersManagerC
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import DashBoardContent from "./pages/Admin/DashBoardContent/DashBoardContent";
 import CheckoutPage from "./pages/User/CheckoutPage/CheckoutPage";
+
+
 function App() {
     
     // useEffect(() => {
@@ -39,7 +41,7 @@ function App() {
                         <Route path="/signin" element={<SignUpPage />} />
                         <Route path="/shop" element={<ProductPage />} />
                         <Route path="/cart" element={<ShoppingCart />} />
-                        <Route path="/checkout" element={<CheckoutPage />} />
+                        <Route path="/cart/checkout" element={<CheckoutPage />} />
                         <Route path="*" element={<NotFoundPage />} />
                     </Route>
                     <Route path="/admin" element={<HomePageAdmin />} >

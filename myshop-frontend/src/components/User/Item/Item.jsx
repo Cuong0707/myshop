@@ -22,7 +22,7 @@ function Product({ product }) {
                 <div className="item-image">
                     <img loading="lazy" src={product.imageUrl} alt={product.title} />    
                 </div>
-                <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" className="overlay-image" />
+                {/* <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" className="overlay-image" /> */}
                 <div className="selection">
                     {/*  onClick={(e)=>{ toggleButtons(e.currentTarget);}} 
                     sử dụng khi hiển thị bản chọn size trước khi submit */}

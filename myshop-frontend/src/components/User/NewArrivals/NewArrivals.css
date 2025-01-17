@@ -36,7 +36,7 @@
 .new-arrivals .show-more:hover {
     background-color: #d2b9b9;
 }
-.products img{
+.new-arrivals .products img{
     max-height: 350px;
 }
 

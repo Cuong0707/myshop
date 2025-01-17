@@ -51,7 +51,7 @@ const ShoppingCart = () => {
           </ul>
           <div className="cart-total">
             <p className="subtotal">Subtotal: ${totalPrice}</p>
-            <button onClick={()=> navigate("/checkout")}>Check Out</button>
+            <button onClick={()=> navigate("/cart/checkout")}>Check Out</button>
           </div>
         </>
       )}

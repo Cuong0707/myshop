@@ -2,6 +2,12 @@
     background-color: #fafafa;
     text-align: center;
 }
+.instagram .instagram-gallery img:first-child{
+    border-radius: 10px 0 0 10px;
+}
+.instagram .instagram-gallery img:last-child{
+    border-radius: 0 10px 10px 0;
+}
 .instagram h2{
     display: flex;
     justify-content: center;

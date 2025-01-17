@@ -2,7 +2,7 @@
     max-height: 100px;
     margin-right: 20px;
 }
-.cart .list-cart li, .title-cart{
+.cart .list-cart li, .cart .title-cart{
     border-bottom: 1px dotted #6e6e6e;
     padding: 10px;
     margin: 0 auto;
@@ -19,6 +19,7 @@
 .cart .title-cart{
     display: flex;
     list-style-type: none;
+    font-weight: bolder;
 }
 .products-cart{
     display: flex;
@@ -52,11 +53,20 @@ strong {
     text-align: center;
     padding: 30px 0;
 }
+.cart-total .subtotal{
+    padding: 10px;
+}
+
 .cart-total button{
     padding: 10px 30px;
     font-weight: 700;
     font-size: 18px;
     line-height: 1.3333333;
+    background-color: black;
+    color: white;
+}
+.cart-total button:hover{
+    background-color: #ff2020;
 }
 .info-product-cart{
     display: flex;

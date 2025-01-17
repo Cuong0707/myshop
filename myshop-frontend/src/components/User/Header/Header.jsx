@@ -38,10 +38,10 @@ function Header() {
                             <img src={`${process.env.PUBLIC_URL}/assets/images/cardicon.jpg`} alt="Card Icon" />
                             Shopping Cart ({totalItems})
                         </a>
-                        <a href="/wishlist">
+                        {/* <a href="/wishlist">
                             <img src={`${process.env.PUBLIC_URL}/assets/images/favoriteicon.jpg`} alt="Favorite Icon" />
                             My Wish lists
-                        </a>
+                        </a> */}
                         <a href="/signup">Sign in or Create an account</a>
                     </div>
                 </div>

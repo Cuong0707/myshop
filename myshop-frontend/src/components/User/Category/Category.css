@@ -12,6 +12,7 @@
 
 .category img {
     display: block;
+    border-radius: 10px;
 }
 
 .category p {

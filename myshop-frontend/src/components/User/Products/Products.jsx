@@ -7,6 +7,7 @@ import { getCollections } from '../../../services/collectionService';
 import { getAllBrands } from '../../../services/brandService';
 import { usePopup } from '../../../context/PopupContext';
 import Loading from '../../Global/ProcessLoading/Loading';
+import Breadcrumb from '../../Global/Breadcrumb/Breadcrumb';
 function Products() {
     const { setPopup } = usePopup();
     const [products, setProducts] = useState([]);
@@ -111,7 +112,7 @@ function Products() {
     return (
         <div className='main-product'>
             <nav className='collection-breadcrumb'>
-                <p>Home Products</p>
+                <div><Breadcrumb/></div>
             </nav>
             <div className="colection">
                 <div className='page-sidebar'>

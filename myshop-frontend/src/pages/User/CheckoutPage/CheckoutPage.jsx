@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './CheckoutPage.css'
 import { useCart } from '../../../context/CartContext';
+import Breadcrumb from '../../../components/Global/Breadcrumb/Breadcrumb'
 const CheckoutPage = () => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleMenu = (e) => {
@@ -46,7 +47,8 @@ const CheckoutPage = () => {
                     <div className="left-colunm">
                         <div className="checkout-info">
                             <div className="header-checkout-info">
-                                <img src="/assets/images/ella.jpg" alt="Ella Fashion Store Logo" class="logo-img"/>
+                                <img src="/assets/images/ella.jpg" alt="Ella Fashion Store Logo" className="logo-img"/>
+                                <Breadcrumb/>
                             </div>
                             <div className="content-checkout-info">
                                 <div className="contact-info">
