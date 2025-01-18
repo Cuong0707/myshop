@@ -1,24 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SignUp.css'
 import { registerUser } from "../../../services/authService"
 import { usePopup } from '../../../context/PopupContext';
 function SignUpPage() {
+  const [currentImage, setCurrentImage] = useState("");
+  const [fade, setFade] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(true);
+
+  const { setPopup } = usePopup();
+  const [emailError, setemailError] = useState('');
+  useEffect(() => {
+    // Kích hoạt hiệu ứng fade-out
+    setFade(true);
+
+    // Thay đổi hình ảnh sau khi fade-out
+    const timeout = setTimeout(() => {
+      setCurrentImage(
+        isSignUp
+          ? `${process.env.PUBLIC_URL}/assets/products/set1.jpg`
+          : `${process.env.PUBLIC_URL}/assets/images/item4.jpg`
+      );
+
+      // Kích hoạt fade-in
+      setFade(false);
+    }, 1000); // 1s để fade-out
+
+    return () => clearTimeout(timeout);
+  }, [isSignUp]);
+
   const [formData, setFormData] = useState({
     userName: "",
     passWord: "",
     confirmPassword: "",
   });
-  const [isSignUp, setIsSignUp] = useState(true);
+
   const onToggleTransfer = (e) => {
     e.preventDefault();
     setIsSignUp((prev) => !prev);
   }
-  console.log("nè: " + isSignUp)
-  const { setPopup } = usePopup();
-  // const [username,setUsername] = useState('')
-  // const [password,setPassword] = useState('')
-  // const [confirmPassword,setconfirmPassword] = useState('')
-  const [emailError, setemailError] = useState('');
   const onButtonClick = async (e) => {
     e.preventDefault();
     try {
@@ -38,7 +57,7 @@ function SignUpPage() {
   return (
     <div className="main-container">
       <div className='content-form'>
-        <form action="/signup" className='signup-form'>
+        <form action="/signup" className={`signup-form ${isSignUp?'hide-form':'show-form'}`}>
           <a href="/">
             <img src='assets/images/ella.jpg' alt='Ella Fashion Store Logo' />
           </a>
@@ -74,7 +93,7 @@ function SignUpPage() {
             onClick={onButtonClick}
           />
         </form>
-        <form action="/signin" className='signin-form'>
+        <form action="/signin" className={`signin-form ${isSignUp?'show-form':'hide-form'}`}>
           <a href="/">
             <img src='assets/images/ella.jpg' alt='Ella Fashion Store Logo' />
           </a>
@@ -114,14 +133,13 @@ function SignUpPage() {
       {/*${process.env.PUBLIC_URL}/assets/products/set1.jpg */}
       <div className={`form-layer ${isSignUp ? 'left-form' : 'right-form'}`}>
         <img
-          src={isSignUp
-            ? `${process.env.PUBLIC_URL}/assets/products/set1.jpg`
-            : `${process.env.PUBLIC_URL}/assets/images/item4.jpg`
-          }
+          loading='lazy'
+          src={currentImage}
           alt="Layer"
+          className={`image ${fade ? "fade-out" : "fade-in"}`}
         />
 
-        <button onClick={onToggleTransfer}>Transfer</button>
+        <button onClick={onToggleTransfer}>{isSignUp&&fade ?'SignUp':'SignIn'}</button>
       </div>
     </div>
   );

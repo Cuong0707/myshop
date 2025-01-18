@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/collections/';
+const API_URL = "http://192.168.100.134:8080/api/collections/";
 
 export const getCollections = async () => {
     try {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/products/page";
+const API_URL = "http://192.168.100.134:8080/api/products/page";
 
 export const fetchProducts = async (offset = 0, limit = 6, sortBy, sortDir, collection, brand, desp) => {
     try {
