@@ -1,12 +1,13 @@
-.loading-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f3f3f3;
-}
 
-.loading-spinner {
+.loading-spinner{
+    height: inherit;
+    width: inherit;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+.loading-spinner .spinner{
     border: 16px solid #f3f3f3;
     border-top: 16px solid #3498db;
     border-radius: 50%;

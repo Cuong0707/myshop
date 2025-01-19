@@ -121,4 +121,8 @@ html {
 button {
   border-radius: 5px;
   border: 1px solid #888;
+  cursor: pointer;
+}
+input[type='submit']{
+  cursor: pointer;
 }

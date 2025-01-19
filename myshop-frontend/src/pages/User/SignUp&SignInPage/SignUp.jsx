@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './SignUp.css'
 import { registerUser } from "../../../services/authService"
 import { usePopup } from '../../../context/PopupContext';
+import Loading from '../../../components/Global/ProcessLoading/Loading'
 function SignUpPage() {
   const [currentImage, setCurrentImage] = useState("");
   const [fade, setFade] = useState(false);
@@ -9,10 +10,14 @@ function SignUpPage() {
 
   const { setPopup } = usePopup();
   const [emailError, setemailError] = useState('');
+  const [isLoading, setIsLoading] = useState(true); 
+
+  const handleImageLoad = () => {
+    setIsLoading(false); 
+  };
   useEffect(() => {
     // Kích hoạt hiệu ứng fade-out
     setFade(true);
-
     // Thay đổi hình ảnh sau khi fade-out
     const timeout = setTimeout(() => {
       setCurrentImage(
@@ -92,6 +97,10 @@ function SignUpPage() {
             value={'Sign Up'}
             onClick={onButtonClick}
           />
+          <a
+            className='switch-button'
+            onClick={onToggleTransfer}>{isSignUp ?'Creat Account':'Login'}
+           </a>
         </form>
         <form action="/signin" className={`signin-form ${isSignUp?'show-form':'hide-form'}`}>
           <a href="/">
@@ -125,20 +134,25 @@ function SignUpPage() {
           <label className="error-label">{emailError}</label>
           <input className='input-container'
             type='submit'
-            value={'Sign Up'}
+            value={'Sign In'}
             onClick={onButtonClick}
           />
+          <a
+            className='switch-button'
+            onClick={onToggleTransfer}>{isSignUp ?'Creat Account':'Login'}
+           </a>
         </form>
       </div>
       {/*${process.env.PUBLIC_URL}/assets/products/set1.jpg */}
       <div className={`form-layer ${isSignUp ? 'left-form' : 'right-form'}`}>
+        {isLoading&&<Loading/>}
         <img
           loading='lazy'
           src={currentImage}
           alt="Layer"
           className={`image ${fade ? "fade-out" : "fade-in"}`}
+          onLoad={handleImageLoad}
         />
-
         <button onClick={onToggleTransfer}>{isSignUp&&fade ?'SignUp':'SignIn'}</button>
       </div>
     </div>

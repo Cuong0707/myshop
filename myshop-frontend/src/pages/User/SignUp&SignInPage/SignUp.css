@@ -4,7 +4,7 @@ html {
 }
 
 .main-container {
-    max-width: 80%;
+    max-width: 1165px;
     margin: 50px auto;
     position: relative;
     height: 500px;
@@ -17,13 +17,16 @@ html {
     border-radius: 10px;
     align-items: center;
     max-width: 100%;
-    /* border: 1px solid var(--border-color); */
+    border: 1px solid var(--border-color);
     height: 100%;
+    justify-content: space-around;
 }
 
 .main-container .signup-form,
 .main-container .signin-form {
-    padding: 20px;
+    padding: 50px;
+    text-align: center;
+    margin: 50px;
 }
 
 .title-container {
@@ -36,10 +39,10 @@ html {
     padding: 5px;
     height: 35px;
     border-radius: 10px;
-    min-width: 150px;
     font-size: 1rem;
     border: 1px solid black;
 }
+
 
 .error-label {
     font-size: 0.75rem;
@@ -51,7 +54,7 @@ html {
     width: 50%;
     height: 100%;
     overflow: hidden;
-    /* border: 1px solid var(--border-color); */
+    border: 1px solid var(--border-color);
     transition: left 2s ease;
     background-color: var(--background-color);
     top: 0;
@@ -108,7 +111,48 @@ html {
     transition: opacity 2s ease-in-out;
     opacity: 1;
 }
+.main-container .switch-button {
+    display: none;
+    margin: 10px;
+    padding: 10px;
+    font-size: 15px;
+    text-decoration: underline;
+}
 
+@media (max-width:1440px) {
+    .main-container {
+        margin: 50px;
+    }
+}
+@media (max-width:1024px) {
+    .main-container{
+        margin: 0;
+    }
+}
+@media (max-width:768px) {
+    .main-container .signup-form, 
+    .main-container .signin-form{
+        padding: 0;
+    }
+}
+@media (max-width:600px) {
+    .main-container {
+        max-width: 100%;
+    }
+    .main-container .content-form{
+        padding: 0;
+    }
+}
+@media (max-width:580px) {
+    .main-container {
+        transform: none;
+    }
+
+    .body,
+    html {
+        background-color: #ffffff;
+    }
+}
 @media (max-width:470px) {
     .main-container {
         border: white;
@@ -119,15 +163,20 @@ html {
         background-color: #ffffff;
     }
 }
-
-@media (max-width:580px) {
-    .main-container {
-        position: unset;
-        transform: none;
+@media (max-width:425px) {
+    .main-container .hide-form{
+        display: none;
     }
-
-    .body,
-    html {
-        background-color: #ffffff;
+    .main-container .show-form{
+        display: block;
+    }
+    .main-container .form-layer{
+        display: none;
+    }
+    .main-container .switch-button{
+        display: block;
+    }
+    .input-container{
+        width: 80%;
     }
 }
