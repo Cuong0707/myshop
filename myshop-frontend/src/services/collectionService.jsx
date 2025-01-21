@@ -1,10 +1,8 @@
-import axios from 'axios';
-
-const API_URL = "http://192.168.100.134:8080/api/collections/";
+import axiosInstance from "./axiosInstance";
 
 export const getCollections = async () => {
     try {
-        const response = await axios.get(API_URL);
+        const response = await axiosInstance.get('/collections/');
         return response.data;
     } catch (error) {
         console.error('Error fetching collections:', error);

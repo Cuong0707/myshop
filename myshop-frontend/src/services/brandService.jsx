@@ -1,10 +1,9 @@
-import axios from 'axios';
+import axiosInstance from "./axiosInstance";
 
-const API_URL ='http://192.168.100.134:8080/api/brand';
 
 export const getAllBrands = async () => {
     try {
-        const response = await axios.get(API_URL);
+        const response = await axiosInstance.get('/brand');
         return response.data;
     } catch (error) {
         console.error('Error fetching brands:', error);

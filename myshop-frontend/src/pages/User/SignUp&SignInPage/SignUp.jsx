@@ -9,7 +9,7 @@ function SignUpPage() {
   const [isSignUp, setIsSignUp] = useState(true);
 
   const { setPopup } = usePopup();
-  const [emailError, setemailError] = useState('');
+  const [emailError] = useState('');
   const [isLoading, setIsLoading] = useState(true); 
 
   const handleImageLoad = () => {
@@ -28,7 +28,7 @@ function SignUpPage() {
 
       // Kích hoạt fade-in
       setFade(false);
-    }, 1000); // 1s để fade-out
+    }, 500); 
 
     return () => clearTimeout(timeout);
   }, [isSignUp]);
@@ -70,7 +70,7 @@ function SignUpPage() {
             Sign Up
           </div>
           <input className='input-container'
-            type="text" placeholder='UserName'
+            type="email" placeholder='Your Email'
             value={formData.userName}
             name='userName'
             onChange={handleChange}
@@ -97,20 +97,20 @@ function SignUpPage() {
             value={'Sign Up'}
             onClick={onButtonClick}
           />
-          <a
+          <p
             className='switch-button'
             onClick={onToggleTransfer}>{isSignUp ?'Creat Account':'Login'}
-           </a>
+           </p>
         </form>
-        <form action="/signin" className={`signin-form ${isSignUp?'show-form':'hide-form'}`}>
+        <form action="/signup" className={`signin-form ${isSignUp?'show-form':'hide-form'}`}>
           <a href="/">
             <img src='assets/images/ella.jpg' alt='Ella Fashion Store Logo' />
           </a>
           <div className="title-container">
-            Sign Up
+            Login
           </div>
           <input className='input-container'
-            type="text" placeholder='UserName'
+            type="text" placeholder='Your Email'
             value={formData.userName}
             name='userName'
             onChange={handleChange}
@@ -118,29 +118,21 @@ function SignUpPage() {
           <label className="error-label">{emailError}</label>
           <input className='input-container'
             type="password"
-            placeholder='PassWord'
+            placeholder='Password'
             value={formData.passWord}
             onChange={handleChange}
             name='passWord'
           />
           <label className="error-label">{emailError}</label>
           <input className='input-container'
-            type="password"
-            placeholder='Confirm PassWord'
-            name='confirmPassword'
-            value={formData.confirmPassword}
-            onChange={handleChange}
-          />
-          <label className="error-label">{emailError}</label>
-          <input className='input-container'
             type='submit'
-            value={'Sign In'}
+            value={'Login'}
             onClick={onButtonClick}
           />
-          <a
+          <p
             className='switch-button'
             onClick={onToggleTransfer}>{isSignUp ?'Creat Account':'Login'}
-           </a>
+           </p>
         </form>
       </div>
       {/*${process.env.PUBLIC_URL}/assets/products/set1.jpg */}
