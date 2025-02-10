@@ -13,6 +13,7 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import DashBoardContent from "./pages/Admin/DashBoardContent/DashBoardContent";
 import CheckoutPage from "./pages/User/CheckoutPage/CheckoutPage";
 import CollectionPage from "./pages/User/CollectionPage/CollectionPage";
+import BlogPage from "./pages/User/BlogPage/BlogPage";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
                         <Route path="/cart" element={<ShoppingCart />} />
                         <Route path="/cart/checkout" element={<CheckoutPage />} />
                         <Route path="/collections" element={<CollectionPage />} />
+                        <Route path="/blog" element={<BlogPage />} />
                         <Route path="*" element={<NotFoundPage />} />
                     </Route>
                     <Route path="/admin" element={<HomePageAdmin />} >
