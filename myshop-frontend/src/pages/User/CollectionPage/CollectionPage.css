@@ -1,0 +1,72 @@
+.collection-page{
+    max-width: 1200px;
+    margin: 10px auto;
+}
+.box-container{
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+        "header header header"
+        "content1 content2 content3"
+        "footer1 footer2 footer2";
+}
+.box-container:nth-child(1) .box-product ,
+.box-container:nth-child(1) .box-title{
+    background: linear-gradient(135deg, #004d99, #66ccff);
+    background-attachment: fixed;
+    border-radius: 15px;
+    margin: 5px;
+}
+.box-container .box-product ,
+.box-container .box-title{
+    position: relative;
+}
+.box-container button{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--background-color);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+.box-container:nth-child(1) .box-title{
+    grid-area: header;
+    height: 400px;
+}
+.box-container:nth-child(1) .box-product{
+    height: 200px;
+}
+.box-product:nth-child(1){
+    grid-area: content1;
+}
+.box-product:nth-child(2){
+    grid-area: content2;
+}
+.box-product:nth-child(3){
+    grid-area: content3;
+}
+.box-product:nth-child(4){
+    grid-area: footer1;
+}
+.box-product:nth-child(5){
+    grid-area: footer2;
+}
+
+.box-container:nth-child(2) .box-title{
+    grid-area: header;
+    height: 400px;
+}
+.box-container:nth-child(2) .box-product{
+    height: 200px;
+    
+}
+.box-container:nth-child(2) .box-product ,
+.box-container:nth-child(2) .box-title{
+    background: linear-gradient(135deg, #5c0099, #d18bff);
+    background-attachment: fixed;
+    border-radius: 15px;
+    margin: 5px;
+}

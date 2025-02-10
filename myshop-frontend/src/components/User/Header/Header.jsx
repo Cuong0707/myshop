@@ -57,8 +57,6 @@ function Header() {
                         <li><a href="/">New In</a></li>
                         <li><a href="/shop">Shop</a></li>
                         <li><a href="/Collections">Collections</a></li>
-                        <li><a href="/Lookbook">Lookbook</a></li>
-                        <li><a href="/Demo">Demo</a></li>
                         <li><a href="/Instagram">Shop Instagram</a></li>
                         <li><a href="/Blog">Blog</a></li>
                         <li><a href="/Brands">Brands</a></li>
