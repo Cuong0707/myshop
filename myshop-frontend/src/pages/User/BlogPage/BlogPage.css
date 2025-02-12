@@ -1,73 +1,46 @@
-
-.blog-page .slide-banner {
+.slider-wrapper {
+    height: 500px;
     max-width: 1400px;
-    height: 300px;
-    background-color: aqua;
-    margin: 20px 0px;
-    border-radius: 10px;
+    display: flex;
+    margin: 0 auto;
     position: relative;
-}
-.blog-page .slide-banner .slides{
-    display: flex;
-    height: 300px;
     overflow: hidden;
-}
-.blog-page .slide-banner .slides img{
-    width: 80%;
-    height: 100%;
-    object-fit: cover;
-}
-
-
-.blog-page .content-section {
+  }
+  
+  .slider-wrapper .slider-container {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.everyday-fashion,
-.celebrity-style {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.everyday-fashion h2,
-.celebrity-style h2 {
-    margin-bottom: 10px;
-    font-size: 24px;
-    color: #333;
-}
-
-.celebrity-style .celebrity-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.celebrity-style .celebrity-item img {
     width: 100%;
-    max-width: 300px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-.celebrity-style .celebrity-item h3 {
+ 
+  }
+  
+  .slider-wrapper .slider-container .slider-image {
+    width: 1200px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    margin:  0 10px;
+  }
+  
+  .blog-container {
+    height: 500px;;
+  }
+  
+  .slider-btn {
+    position: absolute;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
     font-size: 20px;
-    color: #555;
-    text-align: center;
-}
-
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-    .content-section {
-        flex-direction: column;
-    }
-
-    .everyday-fashion,
-    .celebrity-style {
-        margin-bottom: 20px;
-    }
-}
+    z-index: 1;
+  }
+  
+  .left {
+    top: 50%;
+    left: 10px;
+  }
+  
+  .right {
+    top: 50%;
+    right: 10px;
+  }
