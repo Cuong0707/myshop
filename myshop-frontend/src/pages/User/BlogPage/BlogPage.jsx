@@ -1,11 +1,28 @@
-import React from 'react';
+import React,{ useState} from 'react';
 import './BlogPage.css';
 
 const BlogPage = () => {
+    const Banner = [
+        'assets/images/banner.jpg',
+        'assets/images/banner.jpg',
+        'assets/images/banner.jpg',
+        'assets/images/banner.jpg',
+    ];
+
     return (
         <div className="blog-page">
             <div className="slide-banner">
-                {/* Add your slide banner content here */}
+                <div className="slides">
+                    {Banner.map((src, index) => {
+                        return (
+                            <img
+                                key={index}
+                                src={src}
+                                alt={`circle-img-${index}`}
+                            />
+                        );
+                    })}
+                </div>
             </div>
             <div className="content-section">
                 <div className="everyday-fashion">
