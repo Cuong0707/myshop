@@ -1,57 +1,9 @@
-/* .slider-wrapper {
-    max-width: 1800px;
-    display: flex;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .slider-wrapper .slider-container {
-    display: flex;
-    width: 100%;
- 
-  }
-  
-  .slider-wrapper .slider-container .slider-image {
-    width: 100%;
-    border-radius: 10px;
-    flex-shrink: 0;
-  }
-  .slider-wrapper .slider-container .slider-image 
-  img{
-    width: 100%;
-    max-height: 800px;
-    height: -webkit-fill-available;
-    padding:  0 5px;
-  }
-  .blog-container {
-    height: 500px;;
-  }
-  
-  .slider-btn {
-    position: absolute;
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 10px;
-    border-radius: 50%;
-    font-size: 20px;
-    z-index: 1;
-    transform: translate(0, -50%);
-    top: 50%;
-  }
-  
-  .left {
-    left: 10px;
-  }
-  
-  .right {
-    right: 10px;
-  } */
+/* Banner blog */
 .slider-wrapper {
   max-width: 1400px;
   margin: auto;
   position: relative;
+  padding-bottom: 25px;
 }
 
 .custom-arrow {
@@ -61,21 +13,21 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 0.5rem;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 1rem;
   border-radius: 50%;
-  z-index: 10;
+  z-index: 1;
 }
 
 /* Điều chỉnh nút Previous (Trái) */
 .custom-arrow.prev {
-  left: 50px;
+  left: 5%;
 }
 
 /* Điều chỉnh nút Next (Phải) */
 .custom-arrow.next {
-  right: 50px;
+  right: 5%;
 }
 
 /* Khi hover, nút sáng lên */
@@ -84,12 +36,80 @@
 }
 
 .slider-item {
-  padding: 10px;
+  padding: 0.5vw;
 }
 
 .slider-image {
   width: 100%;
-  max-height: 600px;
+  max-height: 550px;
   border-radius: 10px;
   transition: transform 0.5s;
+}
+
+/* Blog */
+.blog-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.blog-title {
+  position: relative;
+  display: block;
+}
+
+.blog-title h3 {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin: 0;
+  padding: 0 15px 0 0;
+  background-color: #F5F5F5;
+  vertical-align: middle;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: 30px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.blog-title::after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  margin-top: -2px;
+  height: 4px;
+  background-color: #dedede;
+  content: '';
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.everyday-fashion-slider {
+  max-width: 100%;
+  margin: 20px auto;
+}
+
+.everyday-fashion-slider .slick-slide {
+  padding: 0 5px;
+  /* Thêm khoảng cách giữa các div */
+  height: 100%;
+}
+
+.fashion-item {
+  border-radius: 10px;
+  min-height: 200px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  background-color: aqua;
+}
+.fashion-item img{
+  height: 200px;
+  width: 100%;
+  border-radius:10px ;
 }

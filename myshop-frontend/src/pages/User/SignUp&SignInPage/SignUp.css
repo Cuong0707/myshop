@@ -158,11 +158,6 @@ html {
     .main-container {
         transform: none;
     }
-
-    .body,
-    html {
-        background-color: #ffffff;
-    }
 }
 @media (max-width:470px) {
     .main-container {
