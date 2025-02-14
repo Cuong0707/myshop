@@ -164,10 +164,6 @@ html {
         border: white;
     }
 
-    .body,
-    html {
-        background-color: #ffffff;
-    }
 }
 @media (max-width:425px) {
     

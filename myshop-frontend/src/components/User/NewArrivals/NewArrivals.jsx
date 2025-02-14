@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import './NewArrivals.css'; // Nhập CSS cho NewArrivals nếu cần
 import Item from '../Item/Item';
+import { usePopup } from '../../../context/PopupContext';
 import {fetchProducts} from '../../../services/productService'
 function NewArrivals() {
     const [products, setProducts] = useState([]);
-    const [error, setError] = useState();
-
+    const { setPopup } = usePopup();
 
     useEffect(()=>{
         const loadProducts = async () => {
@@ -13,11 +13,11 @@ function NewArrivals() {
                 const data = await fetchProducts(0, 4); // Offset 0, limit 6
                 setProducts(data);
             } catch (error) {
-                setError(error.message);
+                setPopup(error.message);
             }
         }
         loadProducts();
-    },[])
+    },[setPopup])
     
     
     return (

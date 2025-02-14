@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
-import Header from '../../../components/User/Header/Header';
+import React from 'react';
 import Banner from '../../../components/User/Banner/Banner';
 import Category from '../../../components/User/Category/Category';
 import NewArrivals from '../../../components/User/NewArrivals/NewArrivals';
-import Footer from '../../../components/User/Footer/Footer'
+
 import Instagram from '../../../components/User/Instagram/Instagram'
 import './Home.css'
 function HomePage() {

@@ -49,7 +49,7 @@ const BlogPage = () => {
     slidesToShow: 1,       // Hiển thị 3 ảnh
     slidesToScroll: 1,     // Cuộn từng ảnh một
     centerMode: true,      // Bật chế độ trung tâm
-    centerPadding: "15%", // Padding để ảnh phụ hiển thị 1 phần nhỏ
+    centerPadding: "10%", // Padding để ảnh phụ hiển thị 1 phần nhỏ
     autoplay: true,        // Tự động chạy
     autoplaySpeed: 3000,   // Chạy mỗi 3 giây
     arrows: true,          // Hiển thị nút điều hướng
@@ -67,6 +67,20 @@ const BlogPage = () => {
     arrows: false,        // Tắt nút điều hướng
     dots: true,          // Tắt chấm tròn
     pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 768, // Khi màn hình < 768px
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 425, // Khi màn hình < 425px
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+    ],
   };
   return (
     <div>
@@ -89,7 +103,8 @@ const BlogPage = () => {
               <div key={index}
                 className="fashion-item">
                 <img src={blog} alt={index} />
-                {index + 1}
+                <h5>Get Ready for KALKI Fashion’s Unbeatable Ethnic Sale Deals</h5>
+                <p>17 hours ago</p>
               </div>
             ))}
           </Slider>
@@ -99,10 +114,12 @@ const BlogPage = () => {
         </div>
         <div className="everyday-fashion-slider">
           <Slider {...settingsBlogs}>
-            {[...Array(10)].map((_, index) => (
+            {blogs.map((blog, index) => (
               <div key={index}
                 className="fashion-item">
-                {index + 1}
+                <img src={blog} alt={index} />
+                <h5>Get Ready for KALKI Fashion’s Unbeatable Ethnic Sale Deals</h5>
+                <p>17 hours ago</p>
               </div>
             ))}
           </Slider>
