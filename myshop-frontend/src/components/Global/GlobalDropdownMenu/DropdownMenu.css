@@ -1,10 +1,10 @@
 .menu-container {
-  width: 200px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 90%;
   overflow: hidden;
 }
-
+.menu-container:nth-child(2) {
+  border-top: 1px solid black;
+}
 .menu-header {
   background-color: #f0f0f0;
   padding: 10px;
@@ -12,6 +12,8 @@
   font-weight: bold;
   text-align: center;
   user-select: none;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .menu-items {
@@ -20,7 +22,9 @@
   opacity: 0;
   overflow: hidden;
 }
-
+/* .menu-items span{
+  select: none;
+} */
 .menu-items.show {
   max-height: 200px;
   opacity: 1;

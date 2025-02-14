@@ -1,11 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Header from "../../components/User/Header/Header";
 import Footer from "../../components/User/Footer/Footer";
-const UserLayout = () =>{
+import "./UserLayout.css";
+const UserLayout = () => {
     return (
         <>
             <Header />
-            <Outlet />
+            <div className="outlet-container">
+                <Outlet />
+            </div>
             <Footer />
         </>
     )

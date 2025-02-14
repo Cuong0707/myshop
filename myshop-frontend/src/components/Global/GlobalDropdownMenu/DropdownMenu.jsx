@@ -10,7 +10,7 @@ function DropdownMenu({ title, items, onItemClick }) {
     };
 
     const handleItemClick = (item) => {
-        if (selectedItem === item) {
+        if (selectedItem === item ) {
             setSelectedItem(null); // Bỏ chọn nếu nhấp lại vào mục đã chọn
             onItemClick(title,null); // Gọi hàm onItemClick với giá trị null
         } else {
@@ -25,7 +25,6 @@ function DropdownMenu({ title, items, onItemClick }) {
             <div className="menu-header" onClick={toggleMenu}>
                 {title}
             </div>
-            <hr />
             <div className={`menu-items ${isOpen ? 'show' : 'hide'}`}>
                 {items.map((item) => (
                     <div 

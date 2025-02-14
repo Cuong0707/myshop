@@ -9,6 +9,7 @@ import { usePopup } from '../../../context/PopupContext';
 import Loading from '../../Global/ProcessLoading/Loading';
 import Breadcrumb from '../../Global/Breadcrumb/Breadcrumb';
 function Products() {
+    const [price, setPrice] = useState(5000000);
     const { setPopup } = usePopup();
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -20,14 +21,13 @@ function Products() {
     const [sortDirFilter, setSortDirFilter] = useState(null);
     const [collectionFilter, setCollectionFilter] = useState(null);
     const [brandFilter, setBrandFilter] = useState(null);
-
     const handleDropdownChange = (field, value) => {
         if (field === 'sortBy') setSortByFilter(value);
         if (field === 'sortDir') setSortDirFilter(value);
         if (field === 'Collection') setCollectionFilter(value);
-        if (field === 'Brand' ) setBrandFilter(value);
+        if (field === 'Brand') setBrandFilter(value);
     };
-    
+
 
 
     const loadCollections = useCallback(async () => {
@@ -51,31 +51,35 @@ function Products() {
     useEffect(() => {
         loadCollections();
         loadBrands();
-    }, [loadCollections,loadBrands]);
+    }, [loadCollections, loadBrands]);
 
 
     // Hàm tải sản phẩm
     const loadProducts = useCallback(async () => {
-        if (isLoading || !hasMore) return ;
+        if (isLoading || !hasMore) return;
         setIsLoading(true);
         try {
             const currentPage = Math.floor(products.length / 4);
             const newProducts = await fetchProducts(currentPage, 4, sortByFilter, sortDirFilter
-                , collectionFilter, brandFilter, true); 
+                , collectionFilter, brandFilter, true);
             const uniqueProducts = newProducts.filter(
                 (product) => !products.some((p) => p.productId === product.productId)
             );
             if (uniqueProducts.length === 0) {
                 setHasMore(false); // Dừng tải thêm
             } else {
-                setProducts((prev) => [...prev, ...uniqueProducts]);
+                const sortedProducts = [...products, ...uniqueProducts].sort((a, b) =>
+                    sortDirFilter === "ASC" ? a.price - b.price : sortByFilter==="DESC"? b.price - a.price : ''
+                );
+
+                setProducts(sortedProducts);
             }
         } catch (error) {
             setPopup("Có lỗi Xảy Ra, Vui Lòng Thử Lại Sau");
         } finally {
             setIsLoading(false);
         }
-    }, [isLoading, hasMore, products,sortByFilter,
+    }, [isLoading, hasMore, products, sortByFilter,
         sortDirFilter,
         collectionFilter,
         brandFilter,
@@ -106,13 +110,13 @@ function Products() {
             }
             observer.disconnect();
         };
-    }, [hasMore, isLoading, loadProducts]); 
+    }, [hasMore, isLoading, loadProducts]);
 
 
     return (
         <div className='main-product'>
             <nav className='collection-breadcrumb'>
-                <div><Breadcrumb/></div>
+                <div><Breadcrumb /></div>
             </nav>
             <div className="colection">
                 <div className='page-sidebar'>
@@ -128,16 +132,24 @@ function Products() {
                         items={brands.map((brand) => brand.brandName)}
                         onItemClick={handleDropdownChange}
                     />
-                    {/* <DropdownMenu
-                        title="Collection"
-                        items={['spring', 'summer', 'autumn', 'winter']}
-                        onItemClick={handleAddToCart}
-                    />
                     <DropdownMenu
-                        title="Collection"
-                        items={['spring', 'summer', 'autumn', 'winter']}
-                        onItemClick={handleAddToCart}
-                    /> */}
+                        title="Price"
+                        items={[
+                            <div>
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max="5000000"
+                                    step="100000"
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                    style={{ width: '100%' }}
+                                />
+                                <p className="price-label">${price}</p>
+                            </div>
+                        ]}
+                        onItemClick={handleDropdownChange}
+                    />
                 </div>
                 <div className='page-content'>
                     <div className="articleLookbook">
@@ -147,23 +159,28 @@ function Products() {
                     </div>
                     <toolbar-item className="toolbar">
                         <div className="toolbar-colLeft">
-                            <p>View as</p>
+
                         </div>
                         <div className="toolbar-colRight">
                             <div className="toolbar-limiteView">
-                                <p>Items per page</p>
-                                <p>DROPMENU</p>
+
                             </div>
                             <div className="toolbar-sort">
-                                <p>Sort by</p>
-                                <p>DROPMENU</p>
+                                <p>Sort by : </p>
+                                <select onChange={(e) => handleDropdownChange('sortDir', e.target.value)}>
+                                    <option value="null">Default</option>
+                                    <option value="DESC">DESC</option>
+                                    <option value="ASC">ASC</option>
+                                </select>
                             </div>
                         </div>
                     </toolbar-item>
                     <div className="list-product">
-                        {products.map((product) => (
-                            <Item key={`product${product.productId}`} product={product} />
-                        ))}
+                        {products
+                            .filter(product => product.price <= price) // Lọc sản phẩm có giá ≤ maxPrice
+                            .map(product => (
+                                <Item key={`product${product.productId}`} product={product} />
+                            ))}
                     </div>
                     <div className="pagination-wrapper">
                         <nav className='pagination'>
