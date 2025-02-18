@@ -5,11 +5,12 @@ import { usePopup } from '../../../context/PopupContext';
 function Product({ product }) {
     const { addToCart } = useCart();
     const { setPopup } = usePopup();
-
+    //noooooooooooooo
     const toggleButtons = (button) => {
         button.parentElement.style.display = 'none';
         const submit = button.parentElement.nextElementSibling;
         submit.style.display = 'block';
+
     };
     return (
         <div className="product">
