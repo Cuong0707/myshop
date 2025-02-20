@@ -30,13 +30,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class ProductController {
 	
 	private final ProductService productService;
-	
 	@GetMapping
 	public ApiResponse<List<ProductDto>> getAllProducts() {
         List<ProductDto> products = productService.getAllProducts();
         return ApiResponse.success(HttpStatus.OK, "Ok", products); // Trả về danh sách ProductDto
     }
-	
 	@PostMapping("/create")
 	public ApiResponse<List<ProductDto>> createProduct(@RequestBody List<Product> products){
 		List<ProductDto> productDtos = productService.createProductDto(products);
@@ -51,11 +49,8 @@ public class ProductController {
 	        @RequestParam(required = false) String collection,
 	        @RequestParam(required = false) String brand){
 		Sort sort = sortDir.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
-
 		PageRequest pageRequest = PageRequest.of(page, size, sort);
-		
 		Page<ProductDto> products = productService.getFilteredPageProducts(collection, brand, pageRequest);
-
         return ApiResponse.success(HttpStatus.OK, "Ok", products.getContent());
 	}
 }

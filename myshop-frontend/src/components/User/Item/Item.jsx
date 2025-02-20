@@ -10,7 +10,6 @@ function Product({ product }) {
         button.parentElement.style.display = 'none';
         const submit = button.parentElement.nextElementSibling;
         submit.style.display = 'block';
-
     };
     return (
         <div className="product">
