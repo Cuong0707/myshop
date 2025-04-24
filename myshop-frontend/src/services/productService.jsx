@@ -15,7 +15,6 @@ export const fetchProducts = async (offset = 0, limit = 6, sortBy, sortDir, coll
         
         return response.data.data;
     } catch (error) {
-        console.error('Lỗi:' + error);
         throw error;
     }
 };

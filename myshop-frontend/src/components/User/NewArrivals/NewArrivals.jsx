@@ -17,7 +17,7 @@ function NewArrivals() {
             }
         }
         loadProducts();
-    },[setPopup])
+    },[])
     
     
     return (
