@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer{
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
-			.allowedOrigins("http://192.168.1.177:3000","http://192.168.100.134:3000","https://localhost:3000","https://myshop-gray.vercel.app")// Lựa chọn các đường dẫn cho phép truy cập api
+			.allowedOrigins("http://192.168.1.177:3000","http://192.168.100.134:3000","https://localhost:3000","https://myshop-gray.vercel.app","http://localhost:3000")// Lựa chọn các đường dẫn cho phép truy cập api
 			.allowedMethods("GET", "POST", "PUT", "DELETE") // Các phương thức HTTP được phép
             .allowedHeaders("*") // Cho phép tất cả các headers
             .allowCredentials(true);
