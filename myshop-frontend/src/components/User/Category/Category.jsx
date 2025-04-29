@@ -1,11 +1,13 @@
 import React from 'react';
-import './Category.css'; 
+import './Category.css';
 
 function Category({ image, title }) {
     return (
-        <div className="category">
+        <div className="category slide-up-main">
             <img src={image} alt={title} />
-            <p>{title}</p>
+            <div>
+                <p className='slide-up-secondary'>{title}</p>
+            </div>
         </div>
     );
 }

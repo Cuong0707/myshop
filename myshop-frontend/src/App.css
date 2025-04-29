@@ -126,3 +126,21 @@ button {
 input[type='submit']{
   cursor: pointer;
 }
+
+
+/* animation slide-up */
+/* Cấu hình cơ bản cho phần tử */
+.slide-up-main {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-up-secondary {
+  position: absolute;
+  transform: translateY(500%);
+  transition: transform 0.3s ease;
+}
+
+.slide-up-main:hover .slide-up-secondary{
+  transform: translateY(0%);
+}

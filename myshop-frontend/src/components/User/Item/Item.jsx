@@ -5,20 +5,20 @@ import { usePopup } from '../../../context/PopupContext';
 function Product({ product }) {
     const { addToCart } = useCart();
     const { setPopup } = usePopup();
-    //noooooooooooooo
+
     const toggleButtons = (button) => {
         button.parentElement.style.display = 'none';
         const submit = button.parentElement.nextElementSibling;
         submit.style.display = 'block';
     };
     return (
-        <div className="product">
+        <div className="product slide-up-main">
             <div className="main-image">
                 <div className="item-image">
                     <img loading="lazy" src={product.imageUrl} alt={product.title} />
                 </div>
                 {/* <img src="assets/images/favoriteicon.jpg" alt="Favorite Icon" className="overlay-image" /> */}
-                <div className="selection">
+                <div className="selection slide-up-secondary">
                     <div>
                         <button className="chose-size" onClick={(e) => { toggleButtons(e.currentTarget); }}>Chose Size</button>
                         {/* chuyển trang */}

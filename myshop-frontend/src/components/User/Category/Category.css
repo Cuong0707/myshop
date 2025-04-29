@@ -14,17 +14,31 @@
     display: block;
     border-radius: 10px;
 }
-
-.category p {
+.category:hover div {
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+.category div {
+    border-radius: 10px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);font-size: 16px;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: #ffffff;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
-
+.category p{
+    font-weight: 600;
+}
 /* Responsive Design for Categories */
 @media (max-width: 1160px) {
     .categories {
