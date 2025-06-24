@@ -15,11 +15,13 @@ public class OrderMapper {
 		if (order==null) {
 			return null;
 		}
+		
 		return new OrderDto(
 				order.getOrderId(),
-				order.getUsers().getUserId(),
+				order.getUsers()!=null?order.getUsers().getUserId():null,
 				order.getStatus(),
-				order.getPaymentMethod()
+				order.getPaymentMethod(),
+				order.getPaymentDate()
 				);
 	}
     public static Order orderDtoToOrder(OrderDto orderDto) {

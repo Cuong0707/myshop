@@ -3,13 +3,14 @@ package com.example.myshop_backend.mapper;
 import com.example.myshop_backend.dto.PaymentLogDto;
 import com.example.myshop_backend.entity.PaymentLog;
 import com.example.myshop_backend.exceptions.NotFoundException;
+import com.example.myshop_backend.reponsitory.OrderRepository;
 import com.example.myshop_backend.reponsitory.PaymentLogRepository;
 import com.example.myshop_backend.reponsitory.PaymentMethodRepository;
 
 public class PaymentLogMapper {
 	
 	private static PaymentMethodRepository paymentMethodRepository;
-	
+	private static OrderRepository orderRepository;
 	public static PaymentLogDto paymentLogToDto(PaymentLog paymentLog)
 	{
 		if (paymentLog==null) {
@@ -17,7 +18,7 @@ public class PaymentLogMapper {
 		}
 		return new PaymentLogDto(
 				paymentLog.getLogId(),
-				paymentLog.getOrderId(),
+				paymentLog.getOrder().getOrderId(),
 				paymentLog.getPaymentMethod().getPaymentMethodId(),
 				paymentLog.getAmount(),
 				paymentLog.getCurrency(),
@@ -30,7 +31,8 @@ public class PaymentLogMapper {
 		
 		return new PaymentLog(
 				paymentLogDto.getLogId(),
-				paymentLogDto.getOrderId(),
+				orderRepository.findById(paymentLogDto.getOrderId()).
+					orElseThrow(()-> new NotFoundException("Not Found Order !!")),
 				paymentMethodRepository.findById(paymentLogDto.getLogId()).
 					orElseThrow(()-> new NotFoundException("Invalid PaymentLog Id:"+paymentLogDto.getLogId())),
 				paymentLogDto.getAmount(),

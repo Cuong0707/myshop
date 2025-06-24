@@ -9,6 +9,8 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.example.myshop_backend.enums.OrderStatus;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,12 +23,13 @@ public class PaymentLog {
     @Column(name = "log_id")
     private Integer logId;
 
-    @Column(name = "order_id")
-    private Integer orderId; // Khóa ngoại tới bảng đơn hàng
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "payment_method_id")
-    private PaymentMethod paymentMethod; // Khóa ngoại tới bảng phương thức thanh toán
+    private PaymentMethod paymentMethod; 
 
     @Column(name = "amount", precision = 10, scale = 2)
     private BigDecimal amount;
@@ -34,9 +37,10 @@ public class PaymentLog {
     @Column(name = "currency", length = 10)
     private String currency; // Loại tiền tệ
 
-    @Column(name = "transaction_date", nullable = false)
+    @Column(name = "transaction_date", nullable= true)
     private LocalDateTime transactionDate;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 50)
-    private String status; // Trạng thái giao dịch
+    private OrderStatus status; 
 }

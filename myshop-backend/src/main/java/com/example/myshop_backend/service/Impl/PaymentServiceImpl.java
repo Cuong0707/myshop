@@ -55,11 +55,11 @@ public class PaymentServiceImpl implements PaymentService{
 	    
 	    // Lưu lịch sử giao dịch
 	    PaymentLog log = new PaymentLog();
-	    log.setOrderId(orderId);
+//	    log.setOrderId(orderId);
 	    log.setPaymentMethod(paymentMethod);
 	    log.setAmount(totalAmount);
 	    log.setCurrency(paymentMethod.getCurrency());
-	    log.setStatus("PENDING"); // Trạng thái có thể thay đổi tùy theo kết quả giao dịch
+//	    log.setStatus("PENDING"); 
 	    log.setTransactionDate(LocalDateTime.now());
 	    paymentLogService.createPaymentLog(PaymentLogMapper.paymentLogToDto(log));
 	    

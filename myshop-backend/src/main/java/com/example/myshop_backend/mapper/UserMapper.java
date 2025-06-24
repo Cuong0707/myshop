@@ -1,29 +1,32 @@
 package com.example.myshop_backend.mapper;
 
-import com.example.myshop_backend.dto.UserDto;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+
+import com.example.myshop_backend.dto.UserRegisterDTO;
+import com.example.myshop_backend.dto.UserResponseDTO;
 import com.example.myshop_backend.entity.Users;
 
+@Component
 public class UserMapper {
-	public static Users mapToUsers(UserDto userDto) {
-		return new Users(
-				userDto.getId(),
-				userDto.getName(),
-				userDto.getEmail(),
-				userDto.getAddress(),
-				userDto.getPaymentInfo(),
-				userDto.getUserName(), 
-				userDto.getPassWord(), null
-		);	
-	}
-	public static UserDto mapToUserDto(Users users) {
-		return new UserDto(
-				users.getUserId(),
-				users.getName(),
-				users.getEmail(),
-				users.getAddress(),
-				users.getPaymentInfo(),
-				users.getUserName(),
-				users.getPassWord(),null
-		);	
-	}
+	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public Users toEntity(UserRegisterDTO dto) {
+        Users user = new Users();
+        user.setName(dto.getName());
+        user.setEmail(dto.getEmail());
+        user.setAddress(dto.getAddress());
+        user.setPaymentInfo(dto.getPaymentInfo());
+        user.setUserName(dto.getUserName());
+        user.setPassWord(passwordEncoder.encode(dto.getPassWord()));
+        return user;
+    }
+
+    public UserResponseDTO toDTO(Users user) {
+        return new UserResponseDTO(user.getUserId(), user.getName(), user.getEmail());
+    }
 }

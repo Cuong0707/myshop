@@ -3,6 +3,8 @@ package com.example.myshop_backend.dto;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.example.myshop_backend.enums.OrderStatus;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,5 +21,5 @@ public class PaymentLogDto {
 	private BigDecimal amount;
 	private String currency;
 	private LocalDateTime transactionDate;
-	private String status;
+	private OrderStatus status;
 }

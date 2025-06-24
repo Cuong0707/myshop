@@ -16,6 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ApiResponse<T> {
+	private boolean success;
 	private int status;
 	private HttpStatus error;
 	private String message;
@@ -23,14 +24,16 @@ public class ApiResponse<T> {
 	private LocalDateTime time = LocalDateTime.now();
 	private T data;
 
-	public ApiResponse(HttpStatus status, String message) {
+	public ApiResponse(boolean success,HttpStatus status, String message) {
+		this.success = success;
 		this.status = status.value();
 		this.error = status;
 		this.message = message;
 		this.time = LocalDateTime.now();
 		this.data = null;
 	}
-	public ApiResponse(HttpStatus status, String message,T data) {
+	public ApiResponse(boolean success, HttpStatus status, String message,T data) {
+		this.success = success;
 		this.status = status.value();
 		this.error = status;
 		this.message = message;
@@ -38,13 +41,13 @@ public class ApiResponse<T> {
 		this.data = data;
 	}
 	public static <T> ApiResponse<T> success(HttpStatus status, String message, T data) {
-		return new ApiResponse<>(status, message, data);
+		return new ApiResponse<>(true,status, message, data);
 	}
 
 	public static <T> ApiResponse<T> error(HttpStatus status, String message) {
-		return new ApiResponse<>(status, message);
+		return new ApiResponse<>(false, status, message);
 	}
 	public static <T> ApiResponse<T> error(HttpStatus status, String message, T data) {
-		return new ApiResponse<>(status, message, data);
+		return new ApiResponse<>(false, status, message, data);
 	}
 }

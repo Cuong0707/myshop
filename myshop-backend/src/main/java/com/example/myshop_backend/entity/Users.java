@@ -2,6 +2,9 @@ package com.example.myshop_backend.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,9 +44,11 @@ public class Users {
 	@Column(name = "username")
 	private String userName;
 	
+	@JsonIgnore
 	@Column(name = "password", nullable = false)
 	private String passWord;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy = "users")
 	private List<Order> orders;
 }

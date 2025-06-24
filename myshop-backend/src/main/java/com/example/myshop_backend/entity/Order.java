@@ -1,13 +1,13 @@
 package com.example.myshop_backend.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.apache.catalina.User;
-
 import com.example.myshop_backend.enums.OrderStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -18,6 +18,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -39,6 +40,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonManagedReference
     private Users users;
 
     @Column(name = "order_date", nullable = false)
@@ -47,6 +49,11 @@ public class Order {
     @Column(name = "payment_date")
     private LocalDateTime paymentDate;
     
+    @Column(name = "delivery_adress")
+    private String deliveryAdress;
+    
+    @Column(name = "delivery_phone" )
+    private String deliveryPhone;
     
     @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 50)
@@ -54,6 +61,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "payment_method")
+    @JsonBackReference
     private PaymentMethod paymentMethod;
 
     @ManyToMany(mappedBy = "orders")

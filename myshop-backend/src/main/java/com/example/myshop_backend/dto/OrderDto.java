@@ -1,5 +1,7 @@
 package com.example.myshop_backend.dto;
 
+import java.time.LocalDateTime;
+
 import com.example.myshop_backend.entity.PaymentMethod;
 import com.example.myshop_backend.enums.OrderStatus;
 
@@ -17,7 +19,6 @@ public class OrderDto {
 	private Integer userId;
 	private OrderStatus orderStatus;
 	private PaymentMethod paymentMethod;
-	/*
-	 * Thay đổi list product thành Orderproduct chứa số lượng sản phẩm và id sản phẩm
-	 */
+	private LocalDateTime orderDate;
+	
 }
