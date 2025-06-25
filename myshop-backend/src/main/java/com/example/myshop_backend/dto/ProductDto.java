@@ -1,6 +1,7 @@
 package com.example.myshop_backend.dto;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ public class ProductDto {
 	private Integer productId;
     private String name;
     private String description;
-    private Double price;
+    private BigDecimal price;
     private String imageUrl;
     private Integer categoryId;
     private List<Integer> collectionId;

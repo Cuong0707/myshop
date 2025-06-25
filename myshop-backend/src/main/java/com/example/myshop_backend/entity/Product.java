@@ -1,7 +1,13 @@
 package com.example.myshop_backend.entity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 
 import jakarta.persistence.Entity;
@@ -38,27 +44,26 @@ public class Product {
     private String description;
 
     @Column(name = "price", nullable = false)
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "image_url", length = 500)
     private String imageUrl;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToMany
-    @JoinTable(
-        name = "OrderProduct", 
-        joinColumns = @JoinColumn(name = "product_id"), 
-        inverseJoinColumns = @JoinColumn(name = "order_id")
-    )
-    private List<Order> orders;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<OrderProduct> orderProducts;
     
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "brand_id")
     private Brand brand;
     
     @ManyToMany(mappedBy = "products")
+    @JsonIgnore
     private List<Collection> collections;
 }

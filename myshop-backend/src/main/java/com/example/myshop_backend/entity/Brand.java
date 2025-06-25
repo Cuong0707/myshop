@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.hibernate.annotations.DialectOverride.GeneratedColumn;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,5 +38,6 @@ public class Brand {
 	private String brandImg;
 	
 	@OneToMany(mappedBy = "brand")
+	@JsonManagedReference
 	private List<Product> products;
 }

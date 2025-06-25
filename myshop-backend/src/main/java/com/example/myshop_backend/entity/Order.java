@@ -63,9 +63,14 @@ public class Order {
     @JoinColumn(name = "payment_method")
     @JsonBackReference
     private PaymentMethod paymentMethod;
+    
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<PaymentLog> paymentLogs;
 
-    @ManyToMany(mappedBy = "orders")
-    private List<Product> products;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<OrderProduct> orderProducts;
     
     @PrePersist
     public void prePersist() {

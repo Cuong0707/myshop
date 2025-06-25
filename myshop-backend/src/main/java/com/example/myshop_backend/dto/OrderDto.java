@@ -1,8 +1,12 @@
 package com.example.myshop_backend.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import com.example.myshop_backend.entity.OrderProduct;
+import com.example.myshop_backend.entity.PaymentLog;
 import com.example.myshop_backend.entity.PaymentMethod;
+import com.example.myshop_backend.entity.Product;
 import com.example.myshop_backend.enums.OrderStatus;
 
 import lombok.AllArgsConstructor;
@@ -20,5 +24,6 @@ public class OrderDto {
 	private OrderStatus orderStatus;
 	private PaymentMethod paymentMethod;
 	private LocalDateTime orderDate;
-	
+	private List<PaymentLog> paymentLogs;
+	private List<OrderProduct> orderProduct;
 }

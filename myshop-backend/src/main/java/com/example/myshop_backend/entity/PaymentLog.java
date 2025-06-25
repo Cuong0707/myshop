@@ -8,8 +8,10 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.example.myshop_backend.enums.OrderStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @AllArgsConstructor
@@ -25,11 +27,13 @@ public class PaymentLog {
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
+    @JsonBackReference
     private Order order;
 
     @ManyToOne
     @JoinColumn(name = "payment_method_id")
     private PaymentMethod paymentMethod; 
+    
 
     @Column(name = "amount", precision = 10, scale = 2)
     private BigDecimal amount;

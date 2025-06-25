@@ -7,7 +7,7 @@ public class PublicRoutes {
     	    "/api/products/**",
     	    "/api/brand/**",
     	    "/api/collections/**",
-    	    "/api/orders/checkout",
+    	    "/api/orders/**",
     	    "/api/categories/**"
     };
 }

@@ -36,4 +36,10 @@ public class OrderController {
         System.out.println(ResponseEntity.status(response.getStatus()).body(response));
         return ResponseEntity.status(response.getStatus()).body(response);
     }
+    @GetMapping("/{orderId}")
+    public ResponseEntity<ApiResponse<OrderDto>> getOrderDetails(@PathVariable Integer orderId)
+    {
+    	ApiResponse<OrderDto> response = orderService.getOrderById(orderId);
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
 }

@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.myshop_backend.dto.CheckoutRequest;
@@ -14,6 +15,7 @@ import com.example.myshop_backend.dto.OrderDto;
 import com.example.myshop_backend.dto.PaymentLogDto;
 import com.example.myshop_backend.entity.Order;
 import com.example.myshop_backend.entity.OrderProduct;
+import com.example.myshop_backend.entity.OrderProductKey;
 import com.example.myshop_backend.entity.PaymentLog;
 import com.example.myshop_backend.entity.PaymentMethod;
 import com.example.myshop_backend.entity.Product;
@@ -25,6 +27,7 @@ import com.example.myshop_backend.exceptions.NotFoundException;
 import com.example.myshop_backend.mapper.OrderMapper;
 import com.example.myshop_backend.mapper.PaymentLogMapper;
 import com.example.myshop_backend.mapper.ProductMapper;
+import com.example.myshop_backend.reponsitory.OrderProductsRepository;
 import com.example.myshop_backend.reponsitory.OrderRepository;
 import com.example.myshop_backend.reponsitory.PaymentLogRepository;
 import com.example.myshop_backend.reponsitory.PaymentMethodRepository;
@@ -38,14 +41,15 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class OrderServiceImpl implements OrderService{
 	
-	private OrderRepository orderRepository;
+	private final OrderRepository orderRepository;
+	private final OrderProductsRepository orderProductsRepository;
 	private final UserRepository userRepository;
 	private final PaymentMethodRepository paymentMethodRepository;
 	private final ProductRepository productRepository;
 	private final PaymentLogRepository paymentLogRepository;
 	@Override
 	public ApiResponse<PaymentLogDto> createOrder(CheckoutRequest request) {
-		Double amount = 0.0 ;
+		BigDecimal amount = new BigDecimal('0');
 		Optional<Users> userOtp = userRepository.findByEmail(request.getEmail());
         PaymentMethod method = paymentMethodRepository.findById(request.getPaymentMethod())
                 .orElseThrow(() -> new NotFoundException("Payment method not found"));
@@ -56,23 +60,26 @@ public class OrderServiceImpl implements OrderService{
         order.setDeliveryPhone(request.getPhone());
         order.setStatus(OrderStatus.PENDING);
         order = orderRepository.save(order);
-
+        
         List<OrderProduct> orderProducts = new ArrayList<>();
         for (CheckoutRequest.ProductOrderDTO dto : request.getProducts()) {
             Product product = productRepository.findById(dto.getProductId())
                     .orElseThrow(() -> new NotFoundException("Product not found"));
-            amount = amount + product.getPrice() * dto.getQuantity();
-            
+            amount = amount.add(product.getPrice().multiply(BigDecimal.valueOf(dto.getQuantity())));
+
+            OrderProductKey key = new OrderProductKey(order.getOrderId(), product.getProductId());
             OrderProduct op = new OrderProduct();
-            op.setOrderId(order.getOrderId());
-            op.setProductId(product.getProductId());
+            op.setId(key);
+            op.setOrder(order);
+            op.setProduct(product);
             op.setQuantity(dto.getQuantity());
+            op.setPrice(product.getPrice());
             orderProducts.add(op);
         }
-        
+        orderProductsRepository.saveAll(orderProducts);
         PaymentLog paymentLog = new PaymentLog();
         paymentLog.setOrder(order);
-        paymentLog.setAmount(BigDecimal.valueOf(amount));
+        paymentLog.setAmount(amount);
         paymentLog.setCurrency("VNĐ");
         paymentLog.setPaymentMethod(method);
         paymentLog.setStatus(order.getStatus());
@@ -84,9 +91,10 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public OrderDto getOrderById(Integer orderId) {
-		return OrderMapper.orderToDto(orderRepository.findById(orderId).
-				orElseThrow(()-> new NotFoundException("Invalid Order Id: "+ orderId)));
+	public ApiResponse<OrderDto> getOrderById(Integer orderId) {
+		OrderDto orderDto = OrderMapper.orderToDto(orderRepository.findById(orderId)
+				.orElseThrow(()-> new NotFoundException("Not Found OrderId: "+orderId)));
+		return ApiResponse.success(HttpStatus.OK, null, orderDto);
 	}
 
 	@Override
