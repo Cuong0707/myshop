@@ -14,7 +14,7 @@ import DashBoardContent from "./pages/Admin/DashBoardContent/DashBoardContent";
 import CheckoutPage from "./pages/User/CheckoutPage/CheckoutPage";
 import CollectionPage from "./pages/User/CollectionPage/CollectionPage";
 import BlogPage from "./pages/User/BlogPage/BlogPage";
-
+import ThankyouPage from "./pages/User/ThankyouPage/ThankyouPage";
 
 function App() {
     
@@ -46,6 +46,7 @@ function App() {
                         <Route path="/cart/checkout" element={<CheckoutPage />} />
                         <Route path="/collections" element={<CollectionPage />} />
                         <Route path="/blog" element={<BlogPage />} />
+                        <Route path="/thankyou" element={<ThankyouPage />} />
                         <Route path="*" element={<NotFoundPage />} />
                     </Route>
                     <Route path="/admin" element={<HomePageAdmin />} >

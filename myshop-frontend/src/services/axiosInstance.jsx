@@ -5,7 +5,6 @@ const axiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
   
 });
 console.log(process.env.REACT_APP_API_BASE_URL)

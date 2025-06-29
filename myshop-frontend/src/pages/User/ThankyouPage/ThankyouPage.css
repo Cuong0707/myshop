@@ -1,0 +1,54 @@
+.thank-you-page {
+  padding: 20px;
+  text-align: center;
+  background-color: #f4f4f4;
+}
+
+.thank-you-message h1 {
+  font-size: 36px;
+  color: #333;
+}
+
+.thank-you-message p {
+  font-size: 18px;
+  color: #666;
+}
+
+.order-summary {
+  margin-top: 40px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.order-summary ul {
+  list-style: none;
+  padding: 0;
+}
+
+.order-summary li {
+  font-size: 16px;
+  color: #333;
+}
+
+.cta-buttons button {
+  margin-top: 20px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+
+.cta-buttons button:hover {
+  background-color: #45a049;
+}

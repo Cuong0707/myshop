@@ -8,7 +8,7 @@ const GlobalPopup = ({message,onAnimationEnd }) => {
   }, [message, onAnimationEnd]);
   if (!message) {
     return null;
-  }
+  } 
   return (
     
       <div className="global-popup">

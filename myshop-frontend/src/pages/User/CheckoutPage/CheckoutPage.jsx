@@ -1,14 +1,60 @@
 import React, { useState } from 'react';
 import './CheckoutPage.css'
 import { useCart } from '../../../context/CartContext';
-import Breadcrumb from '../../../components/Global/Breadcrumb/Breadcrumb'
+import { usePopup } from '../../../context/PopupContext';
+import Breadcrumb from '../../../components/Global/Breadcrumb/Breadcrumb';
+import { checkoutOrder } from '../../../services/orderService.jsx';
+import { useNavigate } from 'react-router-dom';
 const CheckoutPage = () => {
+    const navigate = useNavigate();
+    const { setPopup } = usePopup();
     const [isOpen, setIsOpen] = useState(false);
     const toggleMenu = (e) => {
         e.preventDefault();
         setIsOpen(!isOpen);
     }
     const { cart } = useCart();
+    const [formData, setFormData] = useState({
+        email: '',
+        firstName: '',
+        lastName: '',
+        address: '',
+        phone: '',
+        paymentMethod: '2'
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+    const handleCheckOut = async (e) => {
+        e.preventDefault();
+        const checkoutData = {
+            ...formData,
+            products: cart.map(item => ({
+                productId: item.productId,
+                quantity: item.quantity,
+                price: item.price
+            }))
+        };
+        try {
+            const res = await checkoutOrder(checkoutData);
+            if (res.success) {
+                console.log("Checkout successful:", res);
+                setPopup("✅ Thanh toán thành công: " + res.message);
+                navigate(`/thankyou?orderId=${res.data.orderId}`);
+            } else {
+                setPopup("⚠️ Có lỗi khi xử lý đơn hàng: " + res.message);
+            }
+        } catch (err) {
+            const errMsg = err?.response?.data?.message || "Đã xảy ra lỗi không xác định.";
+            setPopup("❌ Lỗi khi thanh toán: " + errMsg);
+        }
+    };
+
     return (
         <>
             <div className="dropdown-products">
@@ -42,33 +88,74 @@ const CheckoutPage = () => {
                 </div>
             </div>
             <div className="checkout-container">
-                <form action="/checkout" className="checkout-form checkout-colunm">
+                <form
+                    action="/checkout"
+                    className="checkout-form checkout-colunm"
+                    onSubmit={handleCheckOut}
+                >
                     {/* Điền thông tin */}
                     <div className="left-colunm">
                         <div className="checkout-info">
                             <div className="header-checkout-info">
-                                <img src="/assets/images/ella.jpg" alt="Ella Fashion Store Logo" className="logo-img"/>
-                                <Breadcrumb/>
+                                <img src="/assets/images/ella.jpg" alt="Ella Fashion Store Logo" className="logo-img" />
+                                <Breadcrumb />
                             </div>
                             <div className="content-checkout-info">
                                 <div className="contact-info">
                                     <label >Contact Infomation</label>
-                                    <input type="email" placeholder='Your email' />
+                                    <input
+                                        type="email"
+                                        placeholder='Your email'
+                                        name='email'
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required
+                                    />
                                     <div className='checkout-checkbox'>
-                                        <input type="checkbox" />
+                                        <input
+                                            type="checkbox"
+                                        />
                                         <p>Keep me up to date on news and exclusive offers</p>
                                     </div>
                                 </div>
                                 <div className="shipping-address">
                                     <label >Shipping Address</label>
                                     <div className="fullname">
-                                        <input type="text" name="" id="firstname" placeholder='First name' />
-                                        <input type="text" name="" id="" placeholder='Last name' />
+                                        <input
+                                            type="text"
+                                            name="firstName"
+                                            value={formData.firstName}
+                                            onChange={handleChange}
+                                            placeholder='First name'
+                                            required
+                                        />
+                                        <input
+                                            type="text"
+                                            name="lastName"
+                                            value={formData.lastName}
+                                            onChange={handleChange}
+                                            placeholder='Last name'
+                                            required
+                                        />
                                     </div>
-                                    <input type="text" placeholder='Full address' />
-                                    <input type="text" placeholder='Your phone' />
+                                    <input
+                                        type="text"
+                                        placeholder='Full address'
+                                        name='address'
+                                        value={formData.address}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='Your phone'
+                                        name='phone'
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        required
+                                    />
                                 </div>
-                                <button>Continue to shipping</button>
+                                <button type='submit'>Continue to shipping</button>
                             </div>
                         </div>
                     </div>

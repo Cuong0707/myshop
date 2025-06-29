@@ -18,7 +18,6 @@ export const PopupProvider = ({ children }) => {
       setTimeout(() => {
         // Đảm bảo popup cũ bị hủy trước khi hiển thị popup mới
         setAnimationKey((prev) => prev + 1); // Cập nhật key để làm mới animation
-        console.log(animationKey);
         setPopup(message); // Hiển thị popup mới
       }, 0);
     };
