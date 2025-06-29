@@ -24,6 +24,6 @@ public class OrderDto {
 	private OrderStatus orderStatus;
 	private PaymentMethod paymentMethod;
 	private LocalDateTime orderDate;
-	private List<PaymentLog> paymentLogs;
-	private List<OrderProduct> orderProduct;
+	private List<PaymentLogDto> paymentLogs;
+	private List<OrderProductDto> orderProduct;
 }

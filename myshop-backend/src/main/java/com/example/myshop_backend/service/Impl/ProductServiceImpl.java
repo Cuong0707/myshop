@@ -58,25 +58,7 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public Page<ProductDto> getFilteredPageProducts(String collection, String brand, Pageable pageable) {
-	    // Tạo query với điều kiện động
-	    Specification<Product> spec = Specification.where(null);
-
-	    if (collection != null && !collection.isEmpty()) {
-	        spec = spec.and((root, query, criteriaBuilder) -> {
-	            // Thực hiện JOIN với bảng collections
-	            Join<Object, Object> join = root.join("collections");
-	            return criteriaBuilder.equal(join.get("collectionName"), collection);
-	        });
-	    }
-
-	    if (brand != null && !brand.isEmpty()) {
-	        spec = spec.and((root, query, criteriaBuilder) -> 
-	            criteriaBuilder.equal(root.get("brand").get("brandName"), brand));
-	    }
-
-	    // Lấy dữ liệu theo spec và phân trang
-	    return productRepository.findAll(spec, pageable)
-	            .map(product -> ProductMapper.productToProductDto(product));
+		return productRepository.findAllProductDtosWithFilter(collection, brand, pageable);
 	}
 
 	

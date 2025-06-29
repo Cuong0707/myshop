@@ -11,8 +11,8 @@ import com.example.myshop_backend.enums.OrderStatus;
 import com.example.myshop_backend.exceptions.ApiResponse;
 
 public interface OrderService{
-	ApiResponse<PaymentLogDto> createOrder(CheckoutRequest request);
-	ApiResponse<OrderDto> getOrderById(Integer orderId);
+	PaymentLogDto createOrder(CheckoutRequest request);
+	OrderDto getOrderById(Integer orderId);
 	List<OrderDto> getAllOrders();
 	OrderDto updateOrderStatus(Integer orderId, OrderStatus status);
 }

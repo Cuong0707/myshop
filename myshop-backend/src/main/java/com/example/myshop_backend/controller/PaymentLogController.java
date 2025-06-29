@@ -26,9 +26,9 @@ public class PaymentLogController {
         return ApiResponse.success(HttpStatus.OK,"Success", paymentLogDtos);
     }
 
-    @PostMapping
-    public ApiResponse<PaymentLogDto> createPaymentLog(@RequestBody PaymentLogDto paymentLogDto) {
-    	PaymentLogDto paymentLogDto2 = PaymentLogMapper.paymentLogToDto(paymentLogRepository.save(PaymentLogMapper.dtoToPaymentLog(paymentLogDto)));
-        return ApiResponse.success(HttpStatus.CREATED, "Payment Created", paymentLogDto2);
-    }
+//    @PostMapping
+//    public ApiResponse<PaymentLogDto> createPaymentLog(@RequestBody PaymentLogDto paymentLogDto) {
+////    	PaymentLogDto paymentLogDto2 = PaymentLogMapper.paymentLogToDto(paymentLogRepository.save(PaymentLogMapper.dtoToPaymentLog(paymentLogDto)));
+////        return ApiResponse.success(HttpStatus.CREATED, "Payment Created", paymentLogDto2);
+//    }
 }

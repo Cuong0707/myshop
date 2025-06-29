@@ -31,15 +31,14 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/checkout")
-    public ResponseEntity<ApiResponse<PaymentLogDto>> checkout(@RequestBody CheckoutRequest request) {
-        ApiResponse<PaymentLogDto> response = orderService.createOrder(request);
-        System.out.println(ResponseEntity.status(response.getStatus()).body(response));
-        return ResponseEntity.status(response.getStatus()).body(response);
+    public ApiResponse<PaymentLogDto> checkout(@RequestBody CheckoutRequest request) {
+        PaymentLogDto response = orderService.createOrder(request);
+        return ApiResponse.success(HttpStatus.OK, "Đơn hàng đã được tạo", response);
     }
     @GetMapping("/{orderId}")
-    public ResponseEntity<ApiResponse<OrderDto>> getOrderDetails(@PathVariable Integer orderId)
+    public ApiResponse<OrderDto> getOrderDetails(@PathVariable Integer orderId)
     {
-    	ApiResponse<OrderDto> response = orderService.getOrderById(orderId);
-        return ResponseEntity.status(response.getStatus()).body(response);
+    	OrderDto response = orderService.getOrderById(orderId);
+        return ApiResponse.success(HttpStatus.OK, null, response);
     }
 }

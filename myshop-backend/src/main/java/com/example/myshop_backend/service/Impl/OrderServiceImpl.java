@@ -35,6 +35,7 @@ import com.example.myshop_backend.reponsitory.ProductRepository;
 import com.example.myshop_backend.reponsitory.UserRepository;
 import com.example.myshop_backend.service.OrderService;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -48,7 +49,7 @@ public class OrderServiceImpl implements OrderService{
 	private final ProductRepository productRepository;
 	private final PaymentLogRepository paymentLogRepository;
 	@Override
-	public ApiResponse<PaymentLogDto> createOrder(CheckoutRequest request) {
+	public PaymentLogDto createOrder(CheckoutRequest request) {
 		BigDecimal amount = new BigDecimal('0');
 		Optional<Users> userOtp = userRepository.findByEmail(request.getEmail());
         PaymentMethod method = paymentMethodRepository.findById(request.getPaymentMethod())
@@ -86,15 +87,21 @@ public class OrderServiceImpl implements OrderService{
         
         paymentLogRepository.save(paymentLog);
         
+        
         PaymentLogDto paymentLogDto = PaymentLogMapper.paymentLogToDto(paymentLog);
-        return ApiResponse.success(HttpStatus.OK, "Đơn hàng đã được cập nhật", paymentLogDto);
+        return paymentLogDto;
 	}
 
 	@Override
-	public ApiResponse<OrderDto> getOrderById(Integer orderId) {
-		OrderDto orderDto = OrderMapper.orderToDto(orderRepository.findById(orderId)
-				.orElseThrow(()-> new NotFoundException("Not Found OrderId: "+orderId)));
-		return ApiResponse.success(HttpStatus.OK, null, orderDto);
+	@Transactional
+	public OrderDto getOrderById(Integer orderId) {
+		Order order = orderRepository.findWithOrderProducts(orderId)
+		        .orElseThrow(() -> new NotFoundException("Not Found OrderId: " + orderId));
+
+		    // Gọi .size() để load paymentLogs (không bị lỗi vì có @Transactional)
+		    order.getPaymentLogs().size();
+
+		    return OrderMapper.orderToDto(order);
 	}
 
 	@Override

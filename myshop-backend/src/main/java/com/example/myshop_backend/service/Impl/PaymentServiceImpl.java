@@ -61,7 +61,7 @@ public class PaymentServiceImpl implements PaymentService{
 	    log.setCurrency(paymentMethod.getCurrency());
 //	    log.setStatus("PENDING"); 
 	    log.setTransactionDate(LocalDateTime.now());
-	    paymentLogService.createPaymentLog(PaymentLogMapper.paymentLogToDto(log));
+	    paymentLogService.createPaymentLog(PaymentLogMapper.paymentLogToDto(log),order,paymentMethod);
 	    
 	    if ("SUCCESS".equals(log.getStatus())) {
             // Cập nhật trạng thái của đơn hàng thành COMPLETED

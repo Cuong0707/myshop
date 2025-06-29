@@ -45,7 +45,7 @@ public class AuthController {
     public ApiResponse<String> login(@RequestBody UserLoginDTO userLoginDTO) {
 		try {
 	        Authentication authentication = authenticationManager.authenticate(
-	            new UsernamePasswordAuthenticationToken(userLoginDTO.getUserName(), userLoginDTO.getPassWord())
+	            new UsernamePasswordAuthenticationToken(userLoginDTO.getUserName(), userLoginDTO.getEmail())
 	        );
 
 	        SecurityContextHolder.getContext().setAuthentication(authentication);

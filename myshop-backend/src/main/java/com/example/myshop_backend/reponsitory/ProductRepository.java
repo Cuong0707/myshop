@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.example.myshop_backend.entity.Product;
 
-public interface ProductRepository extends JpaRepository<Product, Integer>, JpaSpecificationExecutor<Product>{
-
+public interface ProductRepository extends JpaRepository<Product, Integer>, JpaSpecificationExecutor<Product>, ProductRepositoryCustom{
+	
 }
