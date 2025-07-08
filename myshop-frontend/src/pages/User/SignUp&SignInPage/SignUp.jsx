@@ -1,151 +1,134 @@
-import React, { useState, useEffect } from 'react';
-import './SignUp.css'
-import { registerUser } from "../../../services/authService"
+import React, { useState, useEffect, use } from 'react';
+import './SignUp.css';
+import { registerUser } from '../../../services/authService';
 import { usePopup } from '../../../context/PopupContext';
-import Loading from '../../../components/Global/ProcessLoading/Loading'
+import Loading from '../../../components/Global/ProcessLoading/Loading';
+
 function SignUpPage() {
-  const [currentImage, setCurrentImage] = useState("");
+  const [currentImage, setCurrentImage] = useState('');
   const [fade, setFade] = useState(false);
   const [isSignUp, setIsSignUp] = useState(true);
-
+  const [formData, setFormData] = useState({ userName: '', passWord: '', confirmPassword: '' });
+  const [emailError, setEmailError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const { setPopup } = usePopup();
-  const [emailError] = useState('');
-  const [isLoading, setIsLoading] = useState(true); 
 
-  const handleImageLoad = () => {
-    setIsLoading(false); 
-  };
   useEffect(() => {
-    // Kích hoạt hiệu ứng fade-out
     setFade(true);
-    // Thay đổi hình ảnh sau khi fade-out
     const timeout = setTimeout(() => {
       setCurrentImage(
         isSignUp
           ? `${process.env.PUBLIC_URL}/assets/products/set1.jpg`
           : `${process.env.PUBLIC_URL}/assets/images/item4.jpg`
       );
-
-      // Kích hoạt fade-in
       setFade(false);
-    }, 500); 
-
+    }, 500);
     return () => clearTimeout(timeout);
   }, [isSignUp]);
 
-  const [formData, setFormData] = useState({
-    userName: "",
-    passWord: "",
-    confirmPassword: "",
-  });
+  const handleImageLoad = () => setIsLoading(false);
 
-  const onToggleTransfer = (e) => {
-    e.preventDefault();
-    setIsSignUp((prev) => !prev);
-  }
-  const onButtonClick = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await registerUser(formData);
-      setPopup(response.data); // Hiển thị thông báo thành công
-    } catch (error) {
-      setPopup(error.response.data); // Hiển thị thông báo lỗi
-    }
-  };
+  const handleToggleMode = () => setIsSignUp((prev) => !prev);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isSignUp && formData.passWord !== formData.confirmPassword) {
+      setEmailError('Passwords do not match');
+      return;
+    }
+    try {
+      const response = await registerUser(formData);
+      setPopup(response.message || 'Đăng ký thành công');
+    } catch (error) {
+      const msg = error.response?.data?.message || 'Đăng ký thất bại';
+      setPopup(msg);
+    }
+  };
+
   return (
     <div className="main-container">
-      <div className='content-form'>
-        <form action="/signup" className={`signup-form ${isSignUp?'hide-form':'show-form'}`}>
+      <div className="content-form">
+        <form onSubmit={handleSubmit} className={`signup-form ${isSignUp ? 'hide-form' : 'show-form'}`}>
           <a href="/">
-            <img src='assets/images/ella.jpg' alt='Ella Fashion Store Logo' />
+            <img src="assets/images/ella.jpg" alt="Ella Fashion Store Logo" />
           </a>
-          <div className="title-container">
-            Sign Up
-          </div>
-          <input className='input-container'
-            type="email" placeholder='Your Email'
+          <div className="title-container">Sign Up</div>
+          <input
+            className="input-container"
+            type="email"
+            placeholder="Your Email"
             value={formData.userName}
-            name='userName'
+            name="userName"
             onChange={handleChange}
+            required
           />
-          <label className="error-label">{emailError}</label>
-          <input className='input-container'
+          <input
+            className="input-container"
             type="password"
-            placeholder='PassWord'
+            placeholder="Password"
             value={formData.passWord}
             onChange={handleChange}
-            name='passWord'
+            name="passWord"
+            required
           />
-          <label className="error-label">{emailError}</label>
-          <input className='input-container'
+          <input
+            className="input-container"
             type="password"
-            placeholder='Confirm PassWord'
-            name='confirmPassword'
+            placeholder="Confirm Password"
+            name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
+            required
           />
           <label className="error-label">{emailError}</label>
-          <input className='input-container'
-            type='submit'
-            value={'Sign Up'}
-            onClick={onButtonClick}
-          />
-          <p
-            className='switch-button'
-            onClick={onToggleTransfer}>{isSignUp ?'Creat Account':'Login'}
-           </p>
+          <button className="input-container" type="submit">Sign Up</button>
+          <p className="switch-button" onClick={handleToggleMode}>Already have an account? Login</p>
         </form>
-        <form action="/signup" className={`signin-form ${isSignUp?'show-form':'hide-form'}`}>
+
+        <form onSubmit={handleSubmit} className={`signin-form ${isSignUp ? 'show-form' : 'hide-form'}`}>
           <a href="/">
-            <img src='assets/images/ella.jpg' alt='Ella Fashion Store Logo' />
+            <img src="assets/images/ella.jpg" alt="Ella Fashion Store Logo" />
           </a>
-          <div className="title-container">
-            Login
-          </div>
-          <input className='input-container'
-            type="text" placeholder='Your Email'
+          <div className="title-container">Login</div>
+          <input
+            className="input-container"
+            type="text"
+            placeholder="Your Email"
             value={formData.userName}
-            name='userName'
+            name="userName"
             onChange={handleChange}
+            required
           />
-          <label className="error-label">{emailError}</label>
-          <input className='input-container'
+          <input
+            className="input-container"
             type="password"
-            placeholder='Password'
+            placeholder="Password"
             value={formData.passWord}
             onChange={handleChange}
-            name='passWord'
+            name="passWord"
+            required
           />
           <label className="error-label">{emailError}</label>
-          <input className='input-container'
-            type='submit'
-            value={'Login'}
-            onClick={onButtonClick}
-          />
-          <p
-            className='switch-button'
-            onClick={onToggleTransfer}>{isSignUp ?'Creat Account':'Login'}
-           </p>
+          <button className="input-container" type="submit">Login</button>
+          <p className="switch-button" onClick={handleToggleMode}>Don't have an account? Sign Up</p>
         </form>
       </div>
-      {/*${process.env.PUBLIC_URL}/assets/products/set1.jpg */}
+
       <div className={`form-layer ${isSignUp ? 'left-form' : 'right-form'}`}>
-        {isLoading&&<Loading/>}
+        {isLoading && <Loading />}
         <img
-          loading='lazy'
+          loading="lazy"
           src={currentImage}
           alt="Layer"
-          className={`image ${fade ? "fade-out" : "fade-in"}`}
+          className={`image ${fade ? 'fade-out' : 'fade-in'}`}
           onLoad={handleImageLoad}
         />
-        <button onClick={onToggleTransfer}>{isSignUp&&fade ?'SignUp':'SignIn'}</button>
+        <button onClick={handleToggleMode}>{isSignUp ? 'SignUp' : 'SignIn'}</button>
       </div>
     </div>
   );

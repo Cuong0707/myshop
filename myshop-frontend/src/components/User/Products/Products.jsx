@@ -1,26 +1,32 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useLoaderData } from "react-router-dom";
 import Item from '../Item/Item';
 import './Products.css';
 import DropdownMenu from '../../Global/GlobalDropdownMenu/DropdownMenu';
 import { fetchProducts } from '../../../services/productService';
-import { getCollections } from '../../../services/collectionService';
-import { getAllBrands } from '../../../services/brandService';
 import { usePopup } from '../../../context/PopupContext';
 import Loading from '../../Global/ProcessLoading/Loading';
 import Breadcrumb from '../../Global/Breadcrumb/Breadcrumb';
+
 function Products() {
-    const [price, setPrice] = useState(5000000);
+    const { products: initialProducts, brands: initialBrands, collections: initialCollections } = useLoaderData();
+
     const { setPopup } = usePopup();
-    const [products, setProducts] = useState([]);
+    const loaderRef = useRef(null);
+
+    const [products, setProducts] = useState(initialProducts || []);
+    const [brands] = useState(initialBrands || []);
+    const [collections] = useState(initialCollections?.map(c => c.collectionName) || []);
+    const [price, setPrice] = useState(5000000);
+
     const [isLoading, setIsLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
-    const loaderRef = useRef(null);
-    const [collections, setCollections] = useState([]);
-    const [brands, setBrands] = useState([]);
+
     const [sortByFilter, setSortByFilter] = useState(null);
     const [sortDirFilter, setSortDirFilter] = useState(null);
     const [collectionFilter, setCollectionFilter] = useState(null);
     const [brandFilter, setBrandFilter] = useState(null);
+
     const handleDropdownChange = (field, value) => {
         if (field === 'sortBy') setSortByFilter(value);
         if (field === 'sortDir') setSortDirFilter(value);
@@ -28,70 +34,52 @@ function Products() {
         if (field === 'Brand') setBrandFilter(value);
     };
 
-
-
-    const loadCollections = useCallback(async () => {
-        try {
-            const collections = await getCollections()
-            setCollections(collections.map((collection) => collection.collectionName));
-        } catch (error) {
-            console.error('Failed to load collections:', error);
-        }
-    }, []);
-
-    const loadBrands = useCallback(async () => {
-        try {
-            const brands = await getAllBrands();
-            setBrands(brands);
-        } catch (error) {
-            console.error('Failed to load brands:', error);
-        }
-    }, []);
-
-    useEffect(() => {
-        loadCollections();
-        loadBrands();
-    }, [loadCollections, loadBrands]);
-
-
-    // Hàm tải sản phẩm
-    const loadProducts = useCallback(async () => {
-        if (isLoading || !hasMore) return;
-        setIsLoading(true);
-        try {
-            const currentPage = Math.floor(products.length / 4);
-            const newProducts = await fetchProducts(currentPage, 4, sortByFilter, sortDirFilter
-                , collectionFilter, brandFilter, true);
-            const uniqueProducts = newProducts.filter(
-                (product) => !products.some((p) => p.productId === product.productId)
-            );
-            if (uniqueProducts.length === 0) {
-                setHasMore(false); // Dừng tải thêm
-            } else {
-                const sortedProducts = [...products, ...uniqueProducts].sort((a, b) =>
-                    sortDirFilter === "ASC" ? a.price - b.price : sortByFilter==="DESC"? b.price - a.price : ''
-                );
-
-                setProducts(sortedProducts);
-            }
-        } catch (error) {
-            setPopup("Có lỗi Xảy Ra, Vui Lòng Thử Lại Sau");
-        } finally {
-            setIsLoading(false);
-        }
-    }, [isLoading, hasMore, products, sortByFilter,
-        sortDirFilter,
-        collectionFilter,
-        brandFilter,
-        setPopup,]);
-    // IntersectionObserver cho tải thêm
+    // Reset danh sách sản phẩm khi filter thay đổi
     useEffect(() => {
         setProducts([]);
         setIsLoading(false);
         setHasMore(true);
     }, [sortByFilter, sortDirFilter, collectionFilter, brandFilter]);
+
+    const loadProducts = useCallback(async () => {
+        if (isLoading || !hasMore) return;
+        setIsLoading(true);
+        try {
+            const currentPage = Math.floor(products.length / 4);
+            const newProducts = await fetchProducts(
+                currentPage, 4,
+                sortByFilter,
+                sortDirFilter,
+                collectionFilter,
+                brandFilter,
+                true
+            );
+
+            const uniqueProducts = newProducts.filter(
+                (product) => !products.some((p) => p.productId === product.productId)
+            );
+
+            if (uniqueProducts.length === 0) {
+                setHasMore(false);
+            } else {
+                const combinedProducts = [...products, ...uniqueProducts];
+                const sortedProducts = sortDirFilter === "ASC"
+                    ? combinedProducts.sort((a, b) => a.price - b.price)
+                    : sortDirFilter === "DESC"
+                        ? combinedProducts.sort((a, b) => b.price - a.price)
+                        : combinedProducts;
+
+                setProducts(sortedProducts);
+            }
+        } catch (error) {
+            setPopup("Có lỗi xảy ra, vui lòng thử lại sau.");
+        } finally {
+            setIsLoading(false);
+        }
+    }, [isLoading, hasMore, products, sortByFilter, sortDirFilter, collectionFilter, brandFilter, setPopup]);
+
     useEffect(() => {
-        const loaderElement = loaderRef.current; // Sao chép giá trị của loaderRef.current
+        const loaderElement = loaderRef.current;
         const observerCallback = (entries) => {
             if (entries[0].isIntersecting && hasMore && !isLoading) {
                 loadProducts();
@@ -106,12 +94,11 @@ function Products() {
 
         return () => {
             if (loaderElement) {
-                observer.unobserve(loaderElement); // Dùng biến cục bộ thay vì loaderRef.current
+                observer.unobserve(loaderElement);
             }
             observer.disconnect();
         };
     }, [hasMore, isLoading, loadProducts]);
-
 
     return (
         <div className='main-product'>
@@ -132,6 +119,7 @@ function Products() {
                         items={brands.map((brand) => brand.brandName)}
                         onItemClick={handleDropdownChange}
                     />
+
                     <DropdownMenu
                         title="Price"
                         items={[
@@ -151,22 +139,19 @@ function Products() {
                         onItemClick={handleDropdownChange}
                     />
                 </div>
+
                 <div className='page-content'>
                     <div className="articleLookbook">
                         <div className="articleLookbook-item">
                             <h1>Products</h1>
                         </div>
                     </div>
-                    <toolbar-item className="toolbar">
-                        <div className="toolbar-colLeft">
-
-                        </div>
+                    <div className="toolbar">
+                        <div className="toolbar-colLeft" />
                         <div className="toolbar-colRight">
-                            <div className="toolbar-limiteView">
-
-                            </div>
+                            <div className="toolbar-limiteView" />
                             <div className="toolbar-sort">
-                                <p>Sort by : </p>
+                                <p>Sort by: </p>
                                 <select onChange={(e) => handleDropdownChange('sortDir', e.target.value)}>
                                     <option value="null">Default</option>
                                     <option value="DESC">DESC</option>
@@ -174,20 +159,22 @@ function Products() {
                                 </select>
                             </div>
                         </div>
-                    </toolbar-item>
+                    </div>
+
                     <div className="list-product">
                         {products
-                            .filter(product => product.price <= price) // Lọc sản phẩm có giá ≤ maxPrice
+                            .filter(product => product.price <= price)
                             .map(product => (
                                 <Item key={`product${product.productId}`} product={product} />
                             ))}
                     </div>
+
                     <div className="pagination-wrapper">
                         <nav className='pagination'>
                             <div ref={loaderRef} className="loading">
                                 {hasMore
                                     ? isLoading
-                                        ? isLoading && <Loading />
+                                        ? <Loading />
                                         : 'Scroll to load more products'
                                     : 'No more products available'}
                             </div>
