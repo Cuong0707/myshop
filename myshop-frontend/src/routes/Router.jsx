@@ -10,6 +10,7 @@ import HomePageAdmin from "../pages/Admin/HomePageAdmin/HomePageAdmin";
 import DashBoardContent from "../pages/Admin/DashBoardContent/DashBoardContent";
 import UsersManagerContent from "../pages/Admin/UsersManagerContent/UsersManagerContent";
 import { productsLoader } from "../loaders/productsLoader";
+import withSupense from "../utils/withSuspense.jsx";
 
 const SignUpPage = lazy(() => import("../pages/User/SignUp&SignInPage/SignUp"));
 const ProductPage = lazy(() => import("../components/User/Products/Products"));
@@ -26,46 +27,49 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <HomePage />,
+                element:
+                    withSupense(HomePage),
 
             },
             {
                 path: "signup",
-                element: <SignUpPage />,
+                element: withSupense(SignUpPage),
             },
             {
                 path: "signin",
-                element: <SignUpPage />,
+                element: withSupense(SignUpPage),
             },
             {
                 path: "shop",
-                element: <ProductPage />,
+                element:
+                    withSupense(ProductPage),
                 loader: productsLoader,
                 errorElement: <NotFoundPage />,
             },
             {
                 path: "cart",
-                element: <ShoppingCart />,
+                element: withSupense(ShoppingCart),
             },
             {
                 path: "cart/checkout",
-                element: <CheckoutPage />,
+                element: withSupense(CheckoutPage),
             },
             {
                 path: "collections",
-                element: <CollectionPage />,
+                element: withSupense(CollectionPage),
             },
             {
                 path: "blog",
-                element: <BlogPage />,
+                element:
+                    withSupense(BlogPage),
             },
             {
                 path: "thankyou",
-                element: <ThankyouPage />,
+                element: withSupense(ThankyouPage),
             },
             {
                 path: "*",
-                element: <NotFoundPage />,
+                element: withSupense(NotFoundPage),
             },
         ],
     },

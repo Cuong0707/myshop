@@ -10,7 +10,6 @@ import Breadcrumb from '../../Global/Breadcrumb/Breadcrumb';
 
 function Products() {
     const { products: initialProducts, brands: initialBrands, collections: initialCollections } = useLoaderData();
-
     const { setPopup } = usePopup();
     const loaderRef = useRef(null);
 

@@ -8,6 +8,7 @@
 .category {
     padding: 15px;
     position: relative;
+    cursor: pointer;
 }
 
 .category img {

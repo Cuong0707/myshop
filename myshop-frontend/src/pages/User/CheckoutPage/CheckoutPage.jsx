@@ -13,7 +13,7 @@ const CheckoutPage = () => {
         e.preventDefault();
         setIsOpen(!isOpen);
     }
-    const { cart } = useCart();
+    const { cart, clearCart } = useCart();
     const [formData, setFormData] = useState({
         email: '',
         firstName: '',
@@ -41,7 +41,7 @@ const CheckoutPage = () => {
             }))
         };
         try {
-            const res = await checkoutOrder(checkoutData);
+            const res = await checkoutOrder(checkoutData, clearCart);
             if (res.success) {
                 console.log("Checkout successful:", res);
                 setPopup("✅ Thanh toán thành công: " + res.message);

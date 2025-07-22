@@ -1,4 +1,3 @@
-import React from 'react';
 import Banner from '../../../components/User/Banner/Banner';
 import Category from '../../../components/User/Category/Category';
 import NewArrivals from '../../../components/User/NewArrivals/NewArrivals';

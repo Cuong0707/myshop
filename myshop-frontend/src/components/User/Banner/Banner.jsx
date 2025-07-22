@@ -4,7 +4,7 @@ import './Banner.css';
 function Banner() {
     return (
         <section className="banner">
-            <img src="assets/images/banner.jpg" alt="Banner" className="banner-img" />
+            <img src="assets/images/h1_hero1.webp" alt="Banner" className="banner-img" />
             <div className="banner-content">
                 <h2>Cosmopolis</h2>
                 <hr className="custom-line" />

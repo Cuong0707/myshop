@@ -1,8 +1,13 @@
 import axiosInstance from "./axiosInstance";
 
-export const checkoutOrder = async (checkoutData) => {
+
+
+export const checkoutOrder = async (checkoutData, clearCartFn) => {
     try {
         const response = await axiosInstance.post('/orders/checkout', checkoutData);
+        if (response.data.status === 200) {
+            clearCartFn(); 
+        }
         return response.data;
     } catch (error) {
         console.error("Error during checkout:", error);
